@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { ComponentsComponent } from './components.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalComponent } from './modal/modal.component';
 import { NgbdModalContent } from './modal/modal.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { NgbdModalContent } from './modal/modal.component';
         NgbModule,
         NouisliderModule,
         RouterModule,
-        JwBootstrapSwitchNg2Module
+        JwBootstrapSwitchNg2Module,
+        SharedModule
     ],
     declarations: [
         ComponentsComponent,
@@ -35,6 +37,7 @@ import { NgbdModalContent } from './modal/modal.component';
         NgbdModalContent
     ],
     entryComponents: [NgbdModalContent],
-    exports:[ ComponentsComponent ]
+    exports:[ ComponentsComponent ],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class ComponentsModule { }

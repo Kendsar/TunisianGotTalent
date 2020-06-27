@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
     constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {}
+    
     ngOnInit() {
         var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
             }
             this.navbar.sidebarClose();
         });
+
         this.renderer.listen('window', 'scroll', (event) => {
             const number = window.scrollY;
             if (number > 150 || window.pageYOffset > 150) {
