@@ -1,23 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer.component';
 
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
+import { SharedModule } from './shared/shared.module';
+import { BusinessModule } from './tunisian-got-talent/business/business.module';
+import { CompetitionsModule } from './tunisian-got-talent/competitions/competitions.module';
+import { EventsModule } from './tunisian-got-talent/events/events.module';
+import { ForumModule } from './tunisian-got-talent/forum/forum.module';
+import { TalentsModule } from './tunisian-got-talent/talents/talents.module';
+import { CoreModule } from './core/core.module';
 
-
+/** TO-DO LAZY LOADING */
+const TUNISIAN_GOT_TALENT_MODULES = [BusinessModule, CompetitionsModule, EventsModule, ForumModule, TalentsModule];
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +31,14 @@ import { ExamplesModule } from './examples/examples.module';
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+
+    SharedModule,
+    CoreModule,
+    
+    TUNISIAN_GOT_TALENT_MODULES
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
