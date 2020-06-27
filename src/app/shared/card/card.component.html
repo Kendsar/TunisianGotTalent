@@ -1,0 +1,42 @@
+<ng-container [ngSwitch]="cardType">
+
+  <div *ngSwitchCase="EcardType.EVENT" class="card row col-md-12">
+    <img src="./../../../assets/img/events/{{data.imgSrc}}" alt="">
+    <div class="card-body">
+      <h5 class="card-title"> {{ data.titre }} </h5>
+      <p class="card-text"> {{data.description}} </p>
+      <br>
+      <div>Nombre de participants : <span> {{ data.nb_participant }} </span> </div>
+      <div class="row">
+        <div class="col-md-10">
+          <div> Lieu : <span> {{ data.lieux }} </span> </div>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-success btn-round"> Participer </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-12">
+    <img src="./../../../assets/img/competitions/{{data.imgSrc}}" alt="">
+    <div class="card-body">
+      <h5> {{ data.nom }} </h5>
+      <p class="card-text">
+        {{ data.description }}
+      </p>
+      <div>Nombre de participants : <span> {{ data.nb_participant }} </span> </div>
+      <br>
+      <div class="row">
+        <div class="col-md-10">
+          <div> Date de début : <span> {{ data.date_debut }} </span> </div>
+          <div> Date de fin : <span> {{ data.date_fin }} </span> </div>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-danger btn-round"> Participer </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

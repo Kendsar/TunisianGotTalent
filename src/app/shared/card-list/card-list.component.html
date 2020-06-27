@@ -1,0 +1,16 @@
+
+<ng-container *ngFor="let item of data | slice: (pageIndex-1) * pageSize : (pageIndex-1) * pageSize + pageSize">
+
+    <app-card [data]="item" [cardType]="cardType"></app-card>
+
+</ng-container>
+
+<div class="row">
+  <ngb-pagination 
+  style="margin: auto;"
+  [collectionSize]="data.length"
+  [pageSize]="pageSize" 
+  [(page)]="pageIndex" 
+  [boundaryLinks]="true">
+</ngb-pagination>
+</div>
