@@ -1,4 +1,5 @@
 import { TalentProfilDetailsComponent } from './tunisian-got-talent/talents/components/talent-profil-details/talent-profil-details.component';
+import { EventListComponent } from './tunisian-got-talent/events/components/event-list/event-list.component';
 import { TalentListComponent } from './tunisian-got-talent/talents/components/talent-list/talent-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
@@ -21,7 +22,7 @@ const routes: Routes =[
   { path: 'profil',        component: ProfileComponent },
   { path: 'profilDetails/:id',        component: TalentProfilDetailsComponent },
   { path: 'talents',        component: TalentListComponent },
-  { path: 'events',         component: EventsComponent },
+  { path: 'events',         component: EventListComponent },
   { path: 'competitions',   component: CompetitionsComponent },
   { path: 'business',       component: BusinessComponent },
   { path: 'forum',          component: ForumComponent },

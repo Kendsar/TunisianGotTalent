@@ -27,16 +27,34 @@
 }
 
 .star {
-  font-size: 40px;
-  color: #b0c4de;
-}
-.filled {
-  color: #ffd700;
-}
-.filled.bad {
-  color: #ff1e1e;
-}
+    font-size: 40px;
+    color: #b0c4de;
+  }
+  .filled {
+    color: #FFD700;
+  }
+  .bad {
+    color: #deb0b0;
+  }
+  .filled.bad {
+    color: #ff1e1e;
+  }
 
-.talent-span {
-  color: #f5593d;
-}
+
+    .evenement-card {
+      height: 211px;
+  
+      img {
+          height: 100%;
+          width: 32.5%;
+          max-width: 32.5%;
+          max-height: 211px;
+          border-bottom-left-radius: 12px;
+          border-top-left-radius: 12px;
+      }
+  
+      div.card-body {
+          width: 62.5%;
+          height: 100%;
+      }
+  }
