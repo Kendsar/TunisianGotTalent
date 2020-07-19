@@ -39,4 +39,32 @@
     </div>
   </div>
 
+  <div *ngSwitchCase="EcardType.TALENT" class="card col-md-12">
+    <div class="row">
+      <div class="col-xs-6  col-sm-3 col-md-2 offset-md-1">
+        <img src="assets/img/faces/clem-onojeghuo-3.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
+        <p class="text-center">{{data.iduser.username_canonical}}</p>
+      </div>
+      <div class="card-body" style="width: 50%;">
+        <ngb-rating max=5 rate=0>
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+        <h5 class="card-title"> {{ data.talent }} </h5>
+        <p class="card-text"> {{data.description}} </p>
+        <br>
+        <div>Talent Category : <span> {{ data.category }} </span> </div>
+        <div class="row">
+          <div class="col-md-10">
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-outline-success btn-round"> Show Profil </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
 </ng-container>

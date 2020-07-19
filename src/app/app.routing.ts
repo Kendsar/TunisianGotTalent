@@ -1,3 +1,4 @@
+import { TalentListComponent } from './tunisian-got-talent/talents/components/talent-list/talent-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
@@ -16,8 +17,8 @@ import { ForumComponent } from './tunisian-got-talent/forum/forum.component';
 
 const routes: Routes =[
   /** TunisianGotTalent Modules */
-  { path: 'talents',        component: ProfileComponent },
-  // { path: 'talents',        component: TalentsComponent },
+  { path: 'profil',        component: ProfileComponent },
+  { path: 'talents',        component: TalentListComponent },
   { path: 'events',         component: EventsComponent },
   { path: 'competitions',   component: CompetitionsComponent },
   { path: 'business',       component: BusinessComponent },

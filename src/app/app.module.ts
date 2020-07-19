@@ -16,6 +16,7 @@ import { EventsModule } from './tunisian-got-talent/events/events.module';
 import { ForumModule } from './tunisian-got-talent/forum/forum.module';
 import { TalentsModule } from './tunisian-got-talent/talents/talents.module';
 import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 /** TO-DO LAZY LOADING */
 const TUNISIAN_GOT_TALENT_MODULES = [BusinessModule, CompetitionsModule, EventsModule, ForumModule, TalentsModule];
@@ -35,7 +36,9 @@ const TUNISIAN_GOT_TALENT_MODULES = [BusinessModule, CompetitionsModule, EventsM
     SharedModule,
     CoreModule,
     
-    TUNISIAN_GOT_TALENT_MODULES
+    TUNISIAN_GOT_TALENT_MODULES,
+
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent],

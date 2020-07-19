@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './card/card.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   imports: [

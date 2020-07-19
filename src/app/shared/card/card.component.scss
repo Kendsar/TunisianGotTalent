@@ -25,3 +25,17 @@
         height: 100%;
     }
 }
+
+.star {
+    font-size: 40px;
+    color: #b0c4de;
+  }
+  .filled {
+    color: #FFD700;
+  }
+  .bad {
+    color: #deb0b0;
+  }
+  .filled.bad {
+    color: #ff1e1e;
+  }

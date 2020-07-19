@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true"
+    style="background-image: url('./assets/img/talent1.jpg');">
+    <div class="filter"></div>
+  </div>
+  <div class="container" style="margin: 36px auto;">
+    <ng-container *ngIf="data">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group has-success">
+            <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Username">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group has-success">
+            <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Category">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group has-success">
+            <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Governorate">
+          </div>
+        </div>
+      </div>
+      <app-card-list [pageSize]="5" [data]="profils" [cardType]="EcardType.TALENT"></app-card-list>
+    </ng-container>
+  </div>
+</div>
