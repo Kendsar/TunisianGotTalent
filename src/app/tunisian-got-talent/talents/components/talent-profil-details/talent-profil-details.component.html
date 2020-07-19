@@ -1,0 +1,102 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true"
+        style="background-image: url('./assets/img/talent1.jpg');">
+        <div class="filter"></div>
+    </div>
+    <div class="section profile-content">
+        <div class="container">
+            <div class="owner">
+                <div class="avatar">
+                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image"
+                        class="img-circle img-no-padding img-responsive">
+                </div>
+                <div class="name">
+                    <ngb-rating max=5 rate=0>
+                        <ng-template let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                        </ng-template>
+                    </ngb-rating>
+                    <h4 class="title">Jane Faker<br /></h4>
+                    <h6 class="description">Music Producer</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based
+                        Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
+                        with a solid groove structure. </p>
+                    <br />
+                </div>
+            </div>
+            <div class="container">
+                <div class="text-center" style="padding-bottom: 5%">
+                    <br />
+                    <a (click)="youtubeNavigator()" class="btn btn-outline-danger btn-round"><i
+                            class="fa fa-play"></i>Watch video</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <div class="card page-carousel">
+                        <ngb-carousel>
+                            <ng-template ngbSlide>
+                                <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
+                                <div class="carousel-caption">
+                                    <p>Somewhere</p>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbSlide>
+                                <img src="./assets/img/federico-beccari.jpg" alt="Random second slide">
+                                <div class="carousel-caption">
+                                    <p>Somewhere else</p>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbSlide>
+                                <img src="./assets/img/joshua-stannard.jpg" alt="Random third slide">
+                                <div class="carousel-caption">
+                                    <p>Here it is</p>
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <ngb-tabset [justify]="'center'">
+                        <ngb-tab title="About Me">
+                            <ng-template ngbTabContent>
+                                <div class="row" style="text-align: start">
+                                    <h5 class="about col-md-6"> <img src="assets/img/phone.png" alt=""
+                                            class="icons"> <span style="color: #f5593d;"> Phone number : </span>
+                                        <span>98698589</span></h5>
+                                    <h5 class="about col-md-6"><img src="assets/img/maill.png" alt=""> <span
+                                            style="color: #f5593d;"> Email :
+                                        </span><span>hannachi.louay@gmail.com</span></h5>
+                                </div>
+                                <div class="row" style="text-align: start">
+                                    <h5 class="about col-md-6"><img src="assets/img/map.png" alt=""
+                                            class="icons"><span style="color: #f5593d;"> Address : </span><span>hedi
+                                            nouira 8563 borj louzir</span></h5>
+                                    <h5 class="about col-md-6"><img src="assets/img/home-run.png" alt=""
+                                            class="icons"><span style="color: #f5593d;"> Governorate :
+                                        </span><span>hammem lanf</span></h5>
+                                </div>
+
+
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Comments">
+                            <ng-template ngbTabContent>
+                                <h3 class="text-muted">Not following anyone yet :(</h3>
+                                <br>
+                                <button class="btn btn-warning btn-round">Find artists</button>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

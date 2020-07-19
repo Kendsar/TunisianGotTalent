@@ -4,25 +4,32 @@
     <div class="filter"></div>
   </div>
   <div class="container" style="margin: 36px auto;">
-    <ng-container *ngIf="data">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group has-success">
-            <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Username">
+    <ng-container *ngIf="filtredProfils">
+      <form [formGroup]="form">
+        <div class="row search-block">
+          <div class="loop">
+            <img src="assets/img/zoom-2.png" alt="">
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group has-success">
-            <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Category">
+          <div class="col-sm-3">
+            <div class="form-group has-success">
+              <input type="text" class="form-control form-control-success" formControlName="username" placeholder="Username">
+            </div>
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group has-success">
-            <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Governorate">
+          <div class="col-sm-3">
+            <div class="form-group has-success">
+              <input type="text" class="form-control form-control-success" formControlName="category" placeholder="Category">
+            </div>
           </div>
+          <div class="col-sm-3">
+            <div class="form-group has-success">
+              <input type="text" class="form-control form-control-success" formControlName="governorate" placeholder="Governorate">
+            </div>
+          </div>
+          <button type="button" class="btn btn-success btn-round reset-btn" (click)="reset()">Reset</button>
         </div>
-      </div>
-      <app-card-list [pageSize]="5" [data]="profils" [cardType]="EcardType.TALENT"></app-card-list>
+        
+      </form>
+      <app-card-list [pageSize]="5" [data]="filtredProfils" [cardType]="EcardType.TALENT"></app-card-list>
     </ng-container>
   </div>
 </div>

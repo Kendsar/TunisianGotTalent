@@ -1,3 +1,4 @@
+import { TalentProfilDetailsComponent } from './tunisian-got-talent/talents/components/talent-profil-details/talent-profil-details.component';
 import { TalentListComponent } from './tunisian-got-talent/talents/components/talent-list/talent-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
@@ -18,6 +19,7 @@ import { ForumComponent } from './tunisian-got-talent/forum/forum.component';
 const routes: Routes =[
   /** TunisianGotTalent Modules */
   { path: 'profil',        component: ProfileComponent },
+  { path: 'profilDetails/:id',        component: TalentProfilDetailsComponent },
   { path: 'talents',        component: TalentListComponent },
   { path: 'events',         component: EventsComponent },
   { path: 'competitions',   component: CompetitionsComponent },

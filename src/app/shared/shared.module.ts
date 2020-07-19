@@ -6,7 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './card/card.component';
 import { HttpModule } from '@angular/http';
@@ -17,7 +17,8 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     NgbModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   bootstrap: [SharedComponent, CardListComponent, NavbarComponent, FooterComponent],
   declarations: [SharedComponent, CardListComponent, CardComponent, NavbarComponent, FooterComponent],
