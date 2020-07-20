@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { ECardType } from 'app/shared/card-list/card-list.component';
-import { EVENTS_MOCK } from './models/mock';
+import { Component, OnInit } from "@angular/core";
+import { ECardType } from "app/shared/card-list/card-list.component";
+import { EVENTS_MOCK } from "./models/mock";
+import { EventService } from "./services/event.service";
+import { Event } from "./models/event.model";
 
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  selector: "app-events",
+  templateUrl: "./events.component.html",
+  styleUrls: ["./events.component.scss"],
 })
 export class EventsComponent implements OnInit {
+ 
 
-  data = EVENTS_MOCK;
-  EcardType = ECardType;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
   }
+
 
 }

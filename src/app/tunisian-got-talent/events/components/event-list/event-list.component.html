@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/ev.jpg');">
+      <div class="filter"></div>
+  </div>
+    <div class="container" style="margin: 36px auto;">
+      <ng-container *ngIf="events">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group has-success">
+              <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Category">
+            </div>
+          </div>
+        </div>
+        <app-card-list [pageSize]="2" [data]="events" [cardType]="EcardType.EVENT"></app-card-list>
+      </ng-container>
+    </div>
+  </div>

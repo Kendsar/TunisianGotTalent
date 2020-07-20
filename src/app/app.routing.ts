@@ -1,3 +1,6 @@
+import { TalentProfilDetailsComponent } from './tunisian-got-talent/talents/components/talent-profil-details/talent-profil-details.component';
+import { EventListComponent } from './tunisian-got-talent/events/components/event-list/event-list.component';
+import { TalentListComponent } from './tunisian-got-talent/talents/components/talent-list/talent-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
@@ -16,11 +19,13 @@ import { ForumComponent } from './tunisian-got-talent/forum/forum.component';
 
 const routes: Routes =[
   /** TunisianGotTalent Modules */
-  { path: 'talents',        component: ProfileComponent },
-  // { path: 'talents',        component: TalentsComponent },
   // { path: 'entreprises',     component: TalentsComponent },
   // { path: 'sponsorise',      component: TalentsComponent },
   { path: 'events',         component: EventsComponent },
+  { path: 'profil',        component: ProfileComponent },
+  { path: 'profilDetails/:id',        component: TalentProfilDetailsComponent },
+  { path: 'talents',        component: TalentListComponent },
+  { path: 'events',         component: EventListComponent },
   { path: 'competitions',   component: CompetitionsComponent },
   { path: 'business',       component: BusinessComponent },
   { path: 'forum',          component: ForumComponent },

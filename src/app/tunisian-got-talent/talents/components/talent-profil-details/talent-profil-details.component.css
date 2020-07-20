@@ -1,0 +1,24 @@
+.star {
+  font-size: 40px;
+  color: #b0c4de;
+}
+.filled {
+  color: #ffd700;
+}
+.filled.bad {
+  color: #ff1e1e;
+}
+
+.talent-span {
+  color: #f5593d;
+}
+
+.icons {
+  padding-bottom: 1%;
+}
+
+.about {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5em;
+}
