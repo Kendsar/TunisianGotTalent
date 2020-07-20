@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './card/card.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CardComponent } from './card/card.component';
     BrowserModule,
     NgbModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    BarRatingModule
   ],
   bootstrap: [SharedComponent, CardListComponent, NavbarComponent, FooterComponent],
   declarations: [SharedComponent, CardListComponent, CardComponent, NavbarComponent, FooterComponent],

@@ -18,6 +18,8 @@ const routes: Routes =[
   /** TunisianGotTalent Modules */
   { path: 'talents',        component: ProfileComponent },
   // { path: 'talents',        component: TalentsComponent },
+  // { path: 'entreprises',     component: TalentsComponent },
+  // { path: 'sponsorise',      component: TalentsComponent },
   { path: 'events',         component: EventsComponent },
   { path: 'competitions',   component: CompetitionsComponent },
   { path: 'business',       component: BusinessComponent },

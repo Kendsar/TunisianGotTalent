@@ -3,6 +3,21 @@
     <div class="filter"></div>
 </div>
   <div class="container" style="margin: 36px auto;">
+
+    <div class="row" style="padding: 20px;">
+      <div class="col-sm-3" style="text-align: center; margin: auto 0;">
+        Chercher une compétition :
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group" style="text-align: center; margin: auto 0;">
+          <fieldset>
+          <input type="text" class="form-control" placeholder="">
+          <i style="position: absolute; top: 13px; left: 13px;"class="nc-icon nc-zoom-split"></i>
+        </fieldset>
+        </div>
+      </div>
+    </div>
+    
     <ng-container *ngIf="data">
       <app-card-list [pageSize]="3" [data]="data" [cardType]="EcardType.COMPETITION"></app-card-list>
     </ng-container>

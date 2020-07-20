@@ -1,20 +1,27 @@
 <ng-container [ngSwitch]="cardType">
 
-  <div *ngSwitchCase="EcardType.EVENT" class="card row col-md-12">
-    <img src="./../../../assets/img/events/{{data.imgSrc}}" alt="">
-    <div class="card-body">
-      <h5 class="card-title"> {{ data.titre }} </h5>
-      <p class="card-text"> {{data.description}} </p>
-      <br>
-      <div>Nombre de participants : <span> {{ data.nb_participant }} </span> </div>
-      <div class="row">
-        <div class="col-md-10">
-          <div> Lieu : <span> {{ data.lieux }} </span> </div>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-outline-success btn-round"> Participer </button>
+  <div *ngSwitchCase="EcardType.EVENT" class="event-card card">
+    <div class="row" style="padding: 15px;">
+      <img class="col-md-3" src="./../../../assets/img/events/{{data.imgSrc}}" alt="">
+      <div class="col-md-6">
+        <h5 class="card-title"> {{ data.titre }} </h5>
+        <br>
+        <div style="padding: 5px;"> <i class="nc-icon nc-pin-3"></i> Lieu : <span> {{ data.lieux }} </span> </div>
+        <div style="padding: 5px;"> <i class="nc-icon nc-circle-10"></i> Nombre de participants : <span> {{ data.nb_participant }} </span> </div>
+        <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> Date : <span> 24/06/2020 </span> </div>
+      </div>
+      <div class="col-md-3" style="text-align: center; margin: auto;">
+        <button *ngIf="data.nb_participant < 300" type="button" class="btn btn-outline-danger btn-round btn-lg"> Participer </button>
+        <div *ngIf="data.nb_participant == 300" style="display: flex; flex-direction: column;">
+          <button type="button" class="btn btn-default btn-round btn-lg"> Closed </button>
+          <div style="display: flex; flex-direction: column; padding: 15px 0px;">
+            <div style="text-align: initial;">Rating :</div> <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="row" style="padding: 15px;">
+      <p class="card-text col-md-5"> {{data.description}} </p>
     </div>
   </div>
 
@@ -25,16 +32,16 @@
       <p class="card-text">
         {{ data.description }}
       </p>
-      <div>Nombre de participants : <span> {{ data.nb_participant }} </span> </div>
-      <br>
+      <div style="padding: 5px;"><i class="nc-icon nc-circle-10"></i> Nombre de participants : <span> {{ data.nb_participant }} </span> </div>
       <div class="row">
-        <div class="col-md-10">
-          <div> Date de début : <span> {{ data.date_debut }} </span> </div>
-          <div> Date de fin : <span> {{ data.date_fin }} </span> </div>
+        <div class="col-md-7">
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> Date de début : <span> {{ data.date_debut }} </span> </div>
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> Date de fin : <span> {{ data.date_fin }} </span> </div>
         </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-outline-danger btn-round"> Participer </button>
-        </div>
+        <div class="col-md-5" style="display: flex; flex-direction: row; justify-content: space-around;">
+          <div><button type="button" class="btn btn-outline-danger btn-round"> Participer </button></div>
+            <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+          </div>
       </div>
     </div>
   </div>

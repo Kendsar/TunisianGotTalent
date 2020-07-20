@@ -25,3 +25,18 @@
         height: 100%;
     }
 }
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+.nc-icon {
+    font-size: 15px;
+    padding: 0 8px;
+}
+
+.br-default {
+    margin: auto;
+}
