@@ -24,5 +24,6 @@ export class CardListComponent implements OnInit {
 export enum ECardType {
   COMPETITION = "COMPETITION",
   EVENT = "EVENT",
-  TALENT = "TALENT"
+  TALENT = "TALENT",
+  COMMENT = "COMMENT"
 }

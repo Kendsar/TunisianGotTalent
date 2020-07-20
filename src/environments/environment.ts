@@ -26,6 +26,9 @@ export const wsUrl = {
       create: "/tgt/talent/rating/rate",
       edit: "/tgt/talent/rating/edit",
     },
+    comment: {
+      getCommentsByProfil: "/tgt/talent/comment/getCommentByProfil/{0}"
+    }
   },
   event: {
     events: {

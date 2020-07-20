@@ -27,34 +27,47 @@
 }
 
 .star {
-    font-size: 40px;
-    color: #b0c4de;
-  }
-  .filled {
-    color: #FFD700;
-  }
-  .bad {
-    color: #deb0b0;
-  }
-  .filled.bad {
-    color: #ff1e1e;
+  font-size: 40px;
+  color: #b0c4de;
+}
+.filled {
+  color: #ffd700;
+}
+.bad {
+  color: #deb0b0;
+}
+.filled.bad {
+  color: #ff1e1e;
+}
+
+.evenement-card {
+  height: 211px;
+
+  img {
+    height: 100%;
+    width: 32.5%;
+    max-width: 32.5%;
+    max-height: 211px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
   }
 
-
-    .evenement-card {
-      height: 211px;
-  
-      img {
-          height: 100%;
-          width: 32.5%;
-          max-width: 32.5%;
-          max-height: 211px;
-          border-bottom-left-radius: 12px;
-          border-top-left-radius: 12px;
-      }
-  
-      div.card-body {
-          width: 62.5%;
-          height: 100%;
-      }
+  div.card-body {
+    width: 62.5%;
+    height: 100%;
   }
+}
+
+.comment-img {
+  max-width: 35% !important;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  padding: 4px;
+  border-radius: 50% !important;
+}
+
+.raised-like {
+  color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+}

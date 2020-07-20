@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="profil">
     <div class="page-header page-header-xs" data-parallax="true"
         style="background-image: url('./assets/img/talent1.jpg');">
         <div class="filter"></div>
@@ -16,22 +16,20 @@
                             <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
                         </ng-template>
                     </ngb-rating>
-                    <h4 class="title">Jane Faker<br /></h4>
-                    <h6 class="description">Music Producer</h6>
+                    <h4 class="title">{{profil.profils.iduser.username_canonical}}<br /></h4>
+                    <h6 class="description">{{profil.profils.talent}}</h6>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based
-                        Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
-                        with a solid groove structure. </p>
+                    <p>{{profil.profils.description}}</p>
                     <br />
                 </div>
             </div>
-            <div class="container">
+            <div *ngIf="profil.profils.video" class="container">
                 <div class="text-center" style="padding-bottom: 5%">
                     <br />
-                    <a (click)="youtubeNavigator()" class="btn btn-outline-danger btn-round"><i
+                    <a (click)="youtubeNavigator(profil.profils.video)" class="btn btn-outline-danger btn-round"><i
                             class="fa fa-play"></i>Watch video</a>
                 </div>
             </div>
@@ -68,20 +66,20 @@
                         <ngb-tab title="About Me">
                             <ng-template ngbTabContent>
                                 <div class="row" style="text-align: start">
-                                    <h5 class="about col-md-6"> <img src="assets/img/phone.png" alt=""
-                                            class="icons"> <span style="color: #f5593d;"> Phone number : </span>
-                                        <span>98698589</span></h5>
+                                    <h5 class="about col-md-6"> <img src="assets/img/phone.png" alt="" class="icons">
+                                        <span style="color: #f5593d;"> Phone number : </span>
+                                        <span>{{profil.profils.telephone}}</span></h5>
                                     <h5 class="about col-md-6"><img src="assets/img/maill.png" alt=""> <span
                                             style="color: #f5593d;"> Email :
-                                        </span><span>hannachi.louay@gmail.com</span></h5>
+                                        </span><span>{{profil.profils.iduser.email}}</span></h5>
                                 </div>
                                 <div class="row" style="text-align: start">
-                                    <h5 class="about col-md-6"><img src="assets/img/map.png" alt=""
-                                            class="icons"><span style="color: #f5593d;"> Address : </span><span>hedi
-                                            nouira 8563 borj louzir</span></h5>
+                                    <h5 class="about col-md-6"><img src="assets/img/map.png" alt="" class="icons"><span
+                                            style="color: #f5593d;"> Address :
+                                        </span><span>{{profil.profils.address}}</span></h5>
                                     <h5 class="about col-md-6"><img src="assets/img/home-run.png" alt=""
                                             class="icons"><span style="color: #f5593d;"> Governorate :
-                                        </span><span>hammem lanf</span></h5>
+                                        </span><span>{{profil.profils.governorate}}</span></h5>
                                 </div>
 
 
@@ -89,9 +87,11 @@
                         </ngb-tab>
                         <ngb-tab title="Comments">
                             <ng-template ngbTabContent>
-                                <h3 class="text-muted">Not following anyone yet :(</h3>
-                                <br>
-                                <button class="btn btn-warning btn-round">Find artists</button>
+                                <div class="card">
+                                    <textarea type="text" placeholder="Write your comment here!"></textarea>
+                                </div>
+                                <app-card-list *ngIf="comments.length > 0" [pageSize]="5" [data]="comments"
+                                    [cardType]="EcardType.COMMENT"></app-card-list>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
