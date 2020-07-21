@@ -1,3 +1,4 @@
+import { GlobalService } from './../../tunisian-got-talent/shared/shared.services';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
@@ -9,14 +10,26 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-
-    constructor(public location: Location, private element : ElementRef) {
+    private connectedUser: any;
+    constructor(public location: Location, private element : ElementRef, private globalService : GlobalService) {
         this.sidebarVisible = false;
-    }
+    }    
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this.getConnectedUser();
+    }
+
+    getConnectedUser(){
+        this.globalService.getConnectedUser().subscribe(result => {
+            this.connectedUser = result;
+            console.log('Connected User :',this.connectedUser)
+        })
+    }
+
+    logOut(){
+        this.globalService.setConnectedUser(null);
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;

@@ -87,9 +87,31 @@
                         </ngb-tab>
                         <ngb-tab title="Comments">
                             <ng-template ngbTabContent>
-                                <div class="card">
-                                    <textarea type="text" placeholder="Write your comment here!"></textarea>
-                                </div>
+                                <form [formGroup]="commentForm" *ngIf="connectedUser && connectedUser.id !== profil.profils.iduser.id">
+                                    <div class="card comment">
+                                        <div class="row" style="padding-top: 1%">
+                                            <div class="col-md-3">
+                                                <img src="assets/img/faces/clem-onojeghuo-3.jpg"
+                                                    class="img-no-padding img-responsive comment-img"
+                                                    alt="Rounded Image">
+                                            </div>
+
+                                            <div class="col-md-8" style="padding-top: 1%; text-align: initial">
+                                                <textarea type="text" class="text-area"
+                                                    placeholder="Write your comment here!"
+                                                    formControlName="comment"></textarea>
+                                            </div>
+
+                                            <div class="col-md-1" style="padding-top: 1%;">
+                                                <div class="row" style="padding-top: 36%;">
+                                                    <button type="button" class="btn btn-info btn-just-icon"
+                                                        (click)="comment()"><i class="fa fa-share"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <button *ngIf="!connectedUser" style="margin-bottom: 3%;" type="button" class="btn btn-outline-danger btn-round" (click)="login()"><i class="fa fa-user"></i>Sign In To Add Comments</button>
                                 <app-card-list *ngIf="comments.length > 0" [pageSize]="5" [data]="comments"
                                     [cardType]="EcardType.COMMENT"></app-card-list>
                             </ng-template>

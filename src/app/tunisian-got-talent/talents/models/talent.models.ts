@@ -29,6 +29,7 @@ export class Comment {
     nblike?:number;
     text?:string;
     profils?: Profil;
+    profil?: Profil;
     iduser?:any;
 }
 

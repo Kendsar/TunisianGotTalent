@@ -9,7 +9,7 @@ export const environment = {
 
 export const wsUrl = {
   authentification: {
-    user: "tgt/talent/user/loginAdminUser",
+    user: "tgt/talent/user/loginUser",
   },
   talent: {
     profil: {
@@ -27,7 +27,8 @@ export const wsUrl = {
       edit: "/tgt/talent/rating/edit",
     },
     comment: {
-      getCommentsByProfil: "/tgt/talent/comment/getCommentByProfil/{0}"
+      getCommentsByProfil: "/tgt/talent/comment/getCommentByProfil/{0}",
+      addNewComment: "/tgt/talent/comment/createComment"
     }
   },
   event: {

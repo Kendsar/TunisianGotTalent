@@ -34,15 +34,16 @@
                         <p class="d-lg-none">Instagram</p>
                     </a>
                 </li>
-
-                <li class="nav-item" *ngIf="isHome()">
-                    <a [routerLink]="['/signup']" target="_blank" class="btn btn-danger btn-round">
-                        Sign In
-                    </a>
-                </li>
                 <!-- <li>
                     <button type="button" class="btn btn-outline-danger btn-round"> Sign in</button>
                 </li> -->
+                <li class="nav-item">
+                    <a [routerLink]="['/signup']" *ngIf="connectedUser" style="color: #28a745;" class="nav-link"><i class="fa fa-user"></i><span style="vertical-align: sub">{{connectedUser.username_canonical}}</span></a>
+                    <a [routerLink]="['/signup']" *ngIf="!connectedUser" class="nav-link"><i class="fa fa-user"></i><span style="vertical-align: sub">Sign In</span></a>
+                </li>
+                <li *ngIf="connectedUser" class="nav-item">
+                    <a class="nav-link" (click)="logOut()"><span style="vertical-align: sub; color: #dc3545;">Log Out</span></a>
+                </li>
                 <li class="nav-item" *ngIf="!isHome()">
                     <a [routerLink]="['/home']" *ngIf="!isDocumentation()" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
                     <a [routerLink]="['/home']" *ngIf="isDocumentation()" class="nav-link">Back to Kit</a>

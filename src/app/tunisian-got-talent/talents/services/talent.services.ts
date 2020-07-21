@@ -1,4 +1,4 @@
-import { Profil, ProfilDetail } from './../models/talent.models';
+import { Profil, ProfilDetail, Comment } from './../models/talent.models';
 import { wsUrl } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -33,6 +33,14 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
     getCommentByProfil(id): Observable<Comment[]>{
       const url = StringFormat(wsUrl.talent.comment.getCommentsByProfil , id);
       return this.httpClient.get<Comment[]>(url, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    addComment(comment: Comment): Observable<any>{
+      return this.httpClient.post<Comment[]>(wsUrl.talent.comment.addNewComment, comment,{
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
