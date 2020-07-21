@@ -77,10 +77,9 @@ export class CardComponent implements OnInit {
   }
 
   likeAction(idComment){
-    this.talentService.like(this.connectedUser.id, idComment).subscribe(result=>{
-      this.liked = !this.liked;
-      this.refreshData.emit();
-    })
+    this.liked = !this.liked;
+    this.talentService.like(this.connectedUser.id, idComment).subscribe();
+    this.liked ? this.data.nblike ++ : this.data.nblike -- ;
   }
 
   editCommentAction(id){
