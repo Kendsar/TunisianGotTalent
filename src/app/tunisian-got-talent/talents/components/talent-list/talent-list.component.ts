@@ -1,7 +1,6 @@
 import { Profil } from "./../../models/talent.models";
 import { TalentService } from "./../../services/talent.services";
 import { ECardType } from "./../../../../shared/card-list/card-list.component";
-import { EVENTS_MOCK } from "./../../../events/models/mock";
 
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";

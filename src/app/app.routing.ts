@@ -16,6 +16,7 @@ import { EventsComponent } from './tunisian-got-talent/events/events.component';
 import { CompetitionsComponent } from './tunisian-got-talent/competitions/competitions.component';
 import { BusinessComponent } from './tunisian-got-talent/business/business.component';
 import { ForumComponent } from './tunisian-got-talent/forum/forum.component';
+import { ParticipationComponent } from './tunisian-got-talent/events/components/participation/participation.component';
 
 const routes: Routes =[
   /** TunisianGotTalent Modules */
@@ -26,6 +27,9 @@ const routes: Routes =[
   { path: 'competitions',   component: CompetitionsComponent },
   { path: 'business',       component: BusinessComponent },
   { path: 'forum',          component: ForumComponent },
+  { path: 'participer/:id',          component: ParticipationComponent },
+
+
 
   /** Template */
     { path: '', redirectTo: 'home', pathMatch: 'full' },
