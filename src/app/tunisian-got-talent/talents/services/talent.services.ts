@@ -1,4 +1,4 @@
-import { Profil, ProfilDetail, Comment } from './../models/talent.models';
+import { Profil, ProfilDetail, Comment, Rating } from './../models/talent.models';
 import { wsUrl } from './../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -76,6 +76,23 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
     like(idUser, idComment){
       const url = StringFormat(wsUrl.talent.like.like, idUser, idComment);
       return this.httpClient.get<boolean>(url ,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    rateProfil(rate: Rating): Observable<any>{
+      return this.httpClient.put<any>(wsUrl.talent.rating.create, rate,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    getRateByProfilUserId(idProfil, idUser){
+      const url = StringFormat(wsUrl.talent.rating.getByProfilUserId, idProfil, idUser);
+      return this.httpClient.get<number>(url ,{
         headers: {
           "Access-Control-Allow-Origin": "*",
         },

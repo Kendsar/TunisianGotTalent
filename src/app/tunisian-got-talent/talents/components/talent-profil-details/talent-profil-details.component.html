@@ -11,7 +11,7 @@
                         class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <ngb-rating max=5 rate=0>
+                    <ngb-rating *ngIf="connectedUser" max=5 [rate]="rate" (rateChange)="rateChange($event)">
                         <ng-template let-fill="fill" let-index="index">
                             <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
                         </ng-template>

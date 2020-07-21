@@ -25,6 +25,7 @@ export const wsUrl = {
       delete: "/tgt/talent/rating/delete/{0}",
       create: "/tgt/talent/rating/rate",
       edit: "/tgt/talent/rating/edit",
+      getByProfilUserId: '/tgt/talent/rating/getByProfilUserId/{0}/{1}'
     },
     comment: {
       getCommentsByProfil: "/tgt/talent/comment/getCommentByProfil/{0}",

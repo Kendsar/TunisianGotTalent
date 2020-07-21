@@ -2,7 +2,7 @@ import { GlobalService } from "./../../../shared/shared.services";
 import { FormBuilder, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { ECardType } from "app/shared/card-list/card-list.component";
-import { ProfilDetail, Comment, Profil } from "./../../models/talent.models";
+import { ProfilDetail, Comment, Profil, Rating } from "./../../models/talent.models";
 import { TalentService } from "./../../services/talent.services";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -19,6 +19,7 @@ export class TalentProfilDetailsComponent implements OnInit {
   connectedUser: any;
   comments: Comment[] = [];
   commentForm: FormGroup;
+  rate: number;
   constructor(
     private talentService: TalentService,
     private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class TalentProfilDetailsComponent implements OnInit {
   getConnectedUser() {
     this.globalService.getConnectedUser().subscribe((result) => {
       this.connectedUser = result;
+      this.getRateIfExist();
     });
   }
 
@@ -94,5 +96,23 @@ export class TalentProfilDetailsComponent implements OnInit {
 
   refreshComments(){
     this.getProfilComments(this.idProfil);
+  }
+
+  rateChange(event){
+    if (event > 0) {
+      let rate : Rating = new Rating();
+      rate.rate = event;
+      rate.iduser = {};
+      rate.profil = new Profil();
+      rate.iduser.id = this.connectedUser.id;
+      rate.profil.id = this.idProfil;
+      this.talentService.rateProfil(rate).subscribe();
+    }
+  }
+
+  getRateIfExist(){
+    this.talentService.getRateByProfilUserId(this.idProfil, this.connectedUser.id).subscribe(result => {
+      this.rate = result;
+    })
   }
 }
