@@ -87,7 +87,12 @@ export class TalentProfilDetailsComponent implements OnInit {
 
   getProfilComments(id) {
     this.talentService.getCommentByProfil(id).subscribe((result) => {
-      this.comments = result;
+      this.comments = result.reverse();
+      console.log('comments:',this.comments)
     });
+  }
+
+  refreshComments(){
+    this.getProfilComments(this.idProfil);
   }
 }

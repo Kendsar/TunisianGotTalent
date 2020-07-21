@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-card-list',
@@ -13,10 +13,15 @@ export class CardListComponent implements OnInit {
   @Input() pageIndex = 1;
   @Input() pageSize = 2;
   
+  @Output() refreshData = new EventEmitter();
   
   constructor() { }
 
   ngOnInit() {
+  }
+
+  refresh(event){
+    this.refreshData.emit(event);
   }
 
 }

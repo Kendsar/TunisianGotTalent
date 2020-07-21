@@ -46,4 +46,39 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
         },
       });
     }
+
+    editComment(comment: Comment): Observable<any>{
+      return this.httpClient.post<Comment[]>(wsUrl.talent.comment.editComment, comment,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    deleteComment(id): Observable<any>{
+      const url = StringFormat(wsUrl.talent.comment.delete , id);
+      return this.httpClient.delete<Comment[]>(url ,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    getLikebyCommentUserID(idUser, idComment){
+      const url = StringFormat(wsUrl.talent.like.getLikebyCommentUserID, idUser, idComment);
+      return this.httpClient.get<boolean>(url ,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    like(idUser, idComment){
+      const url = StringFormat(wsUrl.talent.like.like, idUser, idComment);
+      return this.httpClient.get<boolean>(url ,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
   }

@@ -28,7 +28,13 @@ export const wsUrl = {
     },
     comment: {
       getCommentsByProfil: "/tgt/talent/comment/getCommentByProfil/{0}",
-      addNewComment: "/tgt/talent/comment/createComment"
+      addNewComment: "/tgt/talent/comment/createComment",
+      editComment: "/tgt/talent/comment/editComment",
+      delete: "/tgt/talent/comment/delete/{0}"
+    },
+    like: {
+      getLikebyCommentUserID: "/tgt/talent/likes/getLikeByCommentUserID/{0}/{1}",
+      like: '/tgt/talent/likes/like/{0}/{1}'
     }
   },
   event: {

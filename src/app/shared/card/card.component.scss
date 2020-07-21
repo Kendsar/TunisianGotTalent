@@ -68,6 +68,11 @@
 
 .raised-like {
   color: #fff;
-    background-color: #c82333;
-    border-color: #bd2130;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.comment-btn {
+  display: flex;
+  justify-content: center;
 }

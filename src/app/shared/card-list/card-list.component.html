@@ -1,6 +1,6 @@
 
 <ng-container *ngFor="let item of data | slice: (pageIndex-1) * pageSize : (pageIndex-1) * pageSize + pageSize">
-    <app-card [data]="item" [cardType]="cardType"></app-card>
+    <app-card (refreshData)="refresh($event)" [data]="item" [cardType]="cardType"></app-card>
 </ng-container>
 
 <div class="row">

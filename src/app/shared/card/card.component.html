@@ -98,21 +98,27 @@
   </div>
 
   <div *ngSwitchCase="EcardType.COMMENT" class="card col-md-12">
+    <form [formGroup]="commentForm">
     <div class="row">
       <div class="col-md-3" ngbTooltip="{{data.iduser.username_canonical}}">
         <img src="assets/img/faces/clem-onojeghuo-3.jpg" class="img-no-padding img-responsive comment-img" alt="Rounded Image">
       </div>
-      <div class="col-md-8" style="padding-top: 1%; text-align: initial">
-        <p class="card-text ">{{data.text}}</p>
+      
+      <div class="col-md-7" style="padding-top: 1%; text-align: initial">
+        <p *ngIf="!editMode" class="card-text ">{{data.text}}</p>
+        <textarea *ngIf="editMode" style="width: 100%; margin-top: 2%;" formControlName="comment"></textarea>
       </div>
-      <div class="col-md-1" style="padding-top: 1%;">
+      <div class="col-md-2" style="padding-top: 1%;">
         <h6>{{data.nblike}}</h6>
-        <div class="row">
-          <button type="button" class="btn btn-info btn-just-icon"><i class="fa fa-trash"></i></button>
-          <!-- <button type="button" class="btn raised-like btn-danger btn-just-icon"><i class="fa fa-heart"></i></button> -->
-          <button type="button" class="btn btn-danger btn-just-icon"><i class="fa fa-heart"></i></button>
+        <div class="row comment-btn">
+          <button *ngIf="connectedUser && connectedUser.id == data.iduser.id && editMode" type="button" class="btn btn-success btn-just-icon" (click)="editCommentAction(data.id)"><i class="fa fa-save"></i></button>
+          <button *ngIf="connectedUser && connectedUser.id == data.iduser.id && !editMode" type="button" class="btn btn-warning btn-just-icon" (click)="activateEditMode()"><i class="fa fa-edit"></i></button>
+          <button *ngIf="connectedUser && connectedUser.id == data.iduser.id" type="button" class="btn btn-info btn-just-icon" (click)="deleteCommentAction(data.id)"><i class="fa fa-trash"></i></button> 
+          <button *ngIf="!liked" [disabled]="!connectedUser ||connectedUser && connectedUser.id == data.iduser.id" type="button" style="background: transparent;" class="btn btn-danger btn-just-icon" (click)="likeAction(data.id)"><i style="color: #f5593d" class="fa fa-heart"></i></button>
+          <button *ngIf="liked" [disabled]="!connectedUser ||connectedUser && connectedUser.id == data.iduser.id" type="button" style="background: #dc3545;" class="btn btn-danger btn-just-icon"(click)="likeAction(data.id)"><i class="fa fa-heart"></i></button>
         </div>
       </div>
     </div>
+  </form>
   </div>
 </ng-container>

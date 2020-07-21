@@ -31,6 +31,7 @@ export class Comment {
     profils?: Profil;
     profil?: Profil;
     iduser?:any;
+    constructor(){}
 }
 
 export class Rating {

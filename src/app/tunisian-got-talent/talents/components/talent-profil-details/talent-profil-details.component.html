@@ -112,7 +112,7 @@
                                     </div>
                                 </form>
                                 <button *ngIf="!connectedUser" style="margin-bottom: 3%;" type="button" class="btn btn-outline-danger btn-round" (click)="login()"><i class="fa fa-user"></i>Sign In To Add Comments</button>
-                                <app-card-list *ngIf="comments.length > 0" [pageSize]="5" [data]="comments"
+                                <app-card-list *ngIf="comments.length > 0" (refreshData)="refreshComments()" [pageSize]="5" [data]="comments"
                                     [cardType]="EcardType.COMMENT"></app-card-list>
                             </ng-template>
                         </ngb-tab>
