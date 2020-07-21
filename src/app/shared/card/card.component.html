@@ -4,6 +4,9 @@
     class="evenement-card card row col-md-12">
     <img src="assets/img/events/show_us_your_talent.jpg" alt="" />
     <div class="card-body">
+      <div>
+        <button  class="btn btn-outline-success btn-round"><i class="fa fa-bookmark"></i> </button>
+      </div>
       <div class="row ">
   <div class="col-md-7">
       <h3 >{{ data.titre }}</h3>
@@ -44,9 +47,7 @@
         </div>
         <div class="col-md-2">
           <!-- [routerLink]="['/participer', data.id]" -->
-          <button type="button" class="btn btn-outline-success btn-round"  (click)="openDialog()"
-        
-         >
+          <button type="button" class="btn btn-outline-success btn-round"  (click)="openDialog()">
             Participer
           </button>
         </div>

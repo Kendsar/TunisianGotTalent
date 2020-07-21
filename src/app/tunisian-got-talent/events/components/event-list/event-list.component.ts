@@ -3,6 +3,8 @@ import { EventService } from "../../services/event.service";
 import { ECardType } from "app/shared/card-list/card-list.component";
 import { Event } from "../../models/event.model";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
+import { GlobalService } from "app/tunisian-got-talent/shared/shared.services";
 @Component({
   selector: "app-event-list",
   templateUrl: "./event-list.component.html",
@@ -10,13 +12,15 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 })
 export class EventListComponent implements OnInit {
   form: FormGroup;
-
+  connectedUser: any;
   EcardType = ECardType;
   events: Event[] = [];
   filtredEvents: Event[] = [];
-  constructor(private eventService: EventService, private fb: FormBuilder) {}
+  constructor(private eventService: EventService, private fb: FormBuilder,
+    private router: Router ,private globalService: GlobalService) {}
 
   ngOnInit(): void {
+    this.getConnectedUser();
     this.getAllEvents();
     this.initForm();
     this.search();
@@ -47,24 +51,6 @@ export class EventListComponent implements OnInit {
   //     console.log("event", this.events);
   //   });
   // }
-  // createEvent() {
-  //   this.eventService.getAllEvents().subscribe((result) => {
-  //     this.events = result;
-  //     console.log("event", this.events);
-  //   });
-  // }
-  // editEvent() {
-  //   this.eventService.getAllEvents().subscribe((result) => {
-  //     this.events = result;
-  //     console.log("event", this.events);
-  //   });
-  // }
-  // deleteEvent() {
-  //   this.eventService.getAllEvents().subscribe((result) => {
-  //     this.events = result;
-  //     console.log("event", this.events);
-  //   });
-  // }
 
   search() {
     this.form.controls.category.valueChanges.subscribe((x) => {
@@ -79,5 +65,15 @@ export class EventListComponent implements OnInit {
       }
       this.filtredEvents = result;
     });
+  }
+
+  getConnectedUser() {
+    this.globalService.getConnectedUser().subscribe((result) => {
+      this.connectedUser = result;
+    });
+  }
+
+  navigate(){
+    this.router.navigate(["/favoris",this.connectedUser.id]);
   }
 }

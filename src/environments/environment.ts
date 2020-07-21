@@ -52,8 +52,8 @@ export const wsUrl = {
       create: "/tgt/ratingEvent/new",
     },
     favoris: {
-      getAll: "/tgt/favoris/show",
-      getById: "/tgt/favoris/{0}",
+      getAll: "/tgt/favoris/{0}",
+      getById: "/tgt/favoris/show",
       delete: "/tgt/favoris/delete",
       create: "/tgt/favoris/new",
     },
