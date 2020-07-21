@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventsComponent } from './events.component';
@@ -8,7 +9,8 @@ import { ParticipationComponent } from './components/participation/participation
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   declarations: [EventsComponent, EventListComponent, ParticipationComponent]
 })

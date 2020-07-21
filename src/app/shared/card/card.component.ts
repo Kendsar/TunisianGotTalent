@@ -5,6 +5,8 @@ import { TalentService } from "./../../tunisian-got-talent/talents/services/tale
 import { GlobalService } from "./../../tunisian-got-talent/shared/shared.services";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ECardType } from "./../card-list/card-list.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ParticipationComponent } from 'app/tunisian-got-talent/events/components/participation/participation.component';
 
 @Component({
   selector: "app-card",
@@ -27,7 +29,8 @@ export class CardComponent implements OnInit {
   constructor(
     private globalService: GlobalService,
     private talentService: TalentService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -46,6 +49,12 @@ export class CardComponent implements OnInit {
         }
       }
     });
+  }
+
+  /* Event Card Logic */
+
+  openDialog() {
+    const modalRef = this.modalService.open(ParticipationComponent);
   }
 
   /* Comment Card Logic*/

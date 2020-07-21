@@ -4,7 +4,25 @@
     class="evenement-card card row col-md-12">
     <img src="assets/img/events/show_us_your_talent.jpg" alt="" />
     <div class="card-body">
-      <h5 class="card-title">{{ data.titre }}</h5>
+      <div class="row ">
+  <div class="col-md-7">
+      <h3 >{{ data.titre }}</h3>
+    </div>
+
+    <div class="col-md-5">
+      <ngb-rating max="5" rate="0">
+        <ng-template let-fill="fill" let-index="index">
+          <span
+            class="star"
+            [class.filled]="fill === 100"
+            [class.bad]="index < 2"
+            >&#9733;</span
+          >
+        </ng-template>
+      </ngb-rating>
+    
+  </div>
+</div>
       <p class="card-text">{{ data.description }}</p>
       <br />
       <div class="row">
@@ -25,7 +43,10 @@
           </div>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-outline-success btn-round">
+          <!-- [routerLink]="['/participer', data.id]" -->
+          <button type="button" class="btn btn-outline-success btn-round"  (click)="openDialog()"
+        
+         >
             Participer
           </button>
         </div>
