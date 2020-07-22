@@ -18,6 +18,7 @@ export const wsUrl = {
       delete: "/tgt/talent/profil/delete/{0}",
       create: "/tgt/talent/profil/create",
       edit: "/tgt/talent/profil/edit",
+      alreadyHaveProfil: "/tgt/talent/profil/profilByUSerID/{0}"
     },
     rating: {
       getAll: "/tgt/talent/rating/getAll",
@@ -67,7 +68,7 @@ export const wsUrl = {
     },
     participer: {
       getAll: "/tgt/participer/{0}",
-      getById: "/tgt/participer/show",
+      getparticipationByUserID: "/tgt/participer/show",
       delete: "/tgt/participer/delete",
       create: "/tgt/participer/new",
     },

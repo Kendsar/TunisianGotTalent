@@ -13,6 +13,31 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
 
     /**************Profil Services*****************/
 
+    createProfil(profil: Profil): Observable<any>{
+      return this.httpClient.put<any>(wsUrl.talent.profil.create, profil,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    editProfil(profil: Profil): Observable<any>{
+      return this.httpClient.post<any>(wsUrl.talent.profil.edit, profil,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    deleteProfil(id): Observable<any>{
+      const url = StringFormat(wsUrl.talent.profil.delete , id);
+      return this.httpClient.delete<any>(url ,{
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
     getAllProfils(): Observable<Profil[]> {
       return this.httpClient.get<Profil[]>(wsUrl.talent.profil.getAll, {
         headers: {
@@ -29,6 +54,17 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
         },
       });
     }
+
+    alreadyHaveProfil(idUser): Observable<any>{
+      const url = StringFormat(wsUrl.talent.profil.alreadyHaveProfil , idUser);
+      return this.httpClient.get<any>(url, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    /**************Comment Services*****************/
 
     getCommentByProfil(id): Observable<Comment[]>{
       const url = StringFormat(wsUrl.talent.comment.getCommentsByProfil , id);
@@ -64,6 +100,8 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
       });
     }
 
+    /**************Like Services*****************/
+
     getLikebyCommentUserID(idUser, idComment){
       const url = StringFormat(wsUrl.talent.like.getLikebyCommentUserID, idUser, idComment);
       return this.httpClient.get<boolean>(url ,{
@@ -81,6 +119,8 @@ import { StringFormat } from 'app/tunisian-got-talent/shared/shared.utils';
         },
       });
     }
+
+    /**************Rating Services*****************/
 
     rateProfil(rate: Rating): Observable<any>{
       return this.httpClient.put<any>(wsUrl.talent.rating.create, rate,{

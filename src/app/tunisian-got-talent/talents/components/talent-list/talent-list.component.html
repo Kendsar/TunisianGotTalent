@@ -27,8 +27,11 @@
           </div>
           <button type="button" class="btn btn-success btn-round reset-btn" (click)="reset()">Reset</button>
         </div>
-        
       </form>
+      <div class="add-profil-btn">
+        <button *ngIf="connectedUser && !profilAlreadyCreated" type="button" class="btn btn-success btn-round" (click)="createProfil()" style="margin-bottom: 3%;"><i style="font-size: 17px" class="fa fa-id-badge"></i>  Create Your Own Talent Profil From Here</button>
+        <button *ngIf="connectedUser && profilAlreadyCreated" type="button" class="btn btn-success btn-round" (click)="navigateToProfil()" style="margin-bottom: 3%;"><i style="font-size: 17px" class="fa fa-id-badge"></i>  Check Out Your Profil From Here</button>
+      </div>
       <app-card-list [pageSize]="5" [data]="filtredProfils" [cardType]="EcardType.TALENT"></app-card-list>
     </ng-container>
   </div>

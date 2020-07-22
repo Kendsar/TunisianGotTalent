@@ -1,6 +1,5 @@
 .search-block {
   justify-content: center;
-  padding-bottom: 5%;
 }
 
 .loop {
@@ -10,4 +9,9 @@
 .reset-btn {
   margin-left: 2%;
   height: 40px;
+}
+
+.add-profil-btn {
+  justify-content: center;
+  display: flex;
 }

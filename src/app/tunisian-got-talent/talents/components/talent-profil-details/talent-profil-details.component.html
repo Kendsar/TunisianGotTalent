@@ -11,11 +11,15 @@
                         class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <ngb-rating *ngIf="connectedUser" max=5 [rate]="rate" (rateChange)="rateChange($event)">
+                    <ngb-rating *ngIf="connectedUser && connectedUser.id !== profil.profils.iduser.id" max=5 [rate]="rate" (rateChange)="rateChange($event)">
                         <ng-template let-fill="fill" let-index="index">
                             <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
                         </ng-template>
                     </ngb-rating>
+                    <div *ngIf="connectedUser && connectedUser.id == profil.profils.iduser.id">
+                        <button  type="button" class="btn btn-warning btn-just-icon" (click)="editProfil()"><i class="fa fa-edit"></i></button>
+                        <button  type="button" class="btn btn-danger btn-just-icon" (click)="deleteProfil()"><i class="fa fa-trash"></i></button>
+                    </div>
                     <h4 class="title">{{profil.profils.iduser.username_canonical}}<br /></h4>
                     <h6 class="description">{{profil.profils.talent}}</h6>
                 </div>
@@ -97,7 +101,7 @@
                                             </div>
 
                                             <div class="col-md-8" style="padding-top: 1%; text-align: initial">
-                                                <textarea type="text" class="text-area"
+                                                <textarea type="text" class="form-control form-control-success"
                                                     placeholder="Write your comment here!"
                                                     formControlName="comment"></textarea>
                                             </div>

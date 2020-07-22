@@ -1,3 +1,4 @@
+import { NewProfilComponent } from './tunisian-got-talent/talents/components/new-profil/new-profil.component';
 import { TalentProfilDetailsComponent } from './tunisian-got-talent/talents/components/talent-profil-details/talent-profil-details.component';
 import { EventListComponent } from './tunisian-got-talent/events/components/event-list/event-list.component';
 import { TalentListComponent } from './tunisian-got-talent/talents/components/talent-list/talent-list.component';
@@ -21,7 +22,8 @@ import { FavorisComponent } from './tunisian-got-talent/events/components/favori
 
 const routes: Routes =[
   /** TunisianGotTalent Modules */
-  { path: 'profil',        component: ProfileComponent },
+  { path: 'createProfil',        component: NewProfilComponent },
+  { path: 'createProfil/:id',        component: NewProfilComponent },
   { path: 'profilDetails/:id',        component: TalentProfilDetailsComponent },
   { path: 'talents',        component: TalentListComponent },
   { path: 'events',         component: EventListComponent },

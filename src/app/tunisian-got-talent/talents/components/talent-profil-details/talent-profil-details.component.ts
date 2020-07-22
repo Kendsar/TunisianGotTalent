@@ -2,7 +2,12 @@ import { GlobalService } from "./../../../shared/shared.services";
 import { FormBuilder, Validators } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
 import { ECardType } from "app/shared/card-list/card-list.component";
-import { ProfilDetail, Comment, Profil, Rating } from "./../../models/talent.models";
+import {
+  ProfilDetail,
+  Comment,
+  Profil,
+  Rating,
+} from "./../../models/talent.models";
 import { TalentService } from "./../../services/talent.services";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -39,7 +44,9 @@ export class TalentProfilDetailsComponent implements OnInit {
   getConnectedUser() {
     this.globalService.getConnectedUser().subscribe((result) => {
       this.connectedUser = result;
-      this.getRateIfExist();
+      if (this.connectedUser) {
+        this.getRateIfExist();
+      }
     });
   }
 
@@ -62,7 +69,6 @@ export class TalentProfilDetailsComponent implements OnInit {
   comment() {
     if (this.commentForm.valid) {
       const comment = this.commentForm.controls.comment.value;
-      console.log("comment", comment);
       let myComment: Comment = new Comment();
       myComment.text = comment;
       myComment.iduser = {};
@@ -83,24 +89,22 @@ export class TalentProfilDetailsComponent implements OnInit {
   getProfil(id) {
     this.talentService.getProfilById(id).subscribe((result) => {
       this.profil = result;
-      console.log("profil", this.profil);
     });
   }
 
   getProfilComments(id) {
     this.talentService.getCommentByProfil(id).subscribe((result) => {
       this.comments = result.reverse();
-      console.log('comments:',this.comments)
     });
   }
 
-  refreshComments(){
+  refreshComments() {
     this.getProfilComments(this.idProfil);
   }
 
-  rateChange(event){
+  rateChange(event) {
     if (event > 0) {
-      let rate : Rating = new Rating();
+      let rate: Rating = new Rating();
       rate.rate = event;
       rate.iduser = {};
       rate.profil = new Profil();
@@ -110,9 +114,21 @@ export class TalentProfilDetailsComponent implements OnInit {
     }
   }
 
-  getRateIfExist(){
-    this.talentService.getRateByProfilUserId(this.idProfil, this.connectedUser.id).subscribe(result => {
-      this.rate = result;
-    })
+  getRateIfExist() {
+    this.talentService
+      .getRateByProfilUserId(this.idProfil, this.connectedUser.id)
+      .subscribe((result) => {
+        this.rate = result;
+      });
+  }
+
+  editProfil() {
+    this.router.navigate(["/createProfil", this.idProfil]);
+  }
+
+  deleteProfil() {
+    this.talentService.deleteProfil(this.idProfil).subscribe((result) => {
+      this.router.navigate(["/talents"]);
+    });
   }
 }

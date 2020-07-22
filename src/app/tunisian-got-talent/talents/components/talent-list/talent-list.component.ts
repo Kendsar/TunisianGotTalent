@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { GlobalService } from "./../../../shared/shared.services";
 import { Profil } from "./../../models/talent.models";
 import { TalentService } from "./../../services/talent.services";
 import { ECardType } from "./../../../../shared/card-list/card-list.component";
@@ -15,13 +17,40 @@ export class TalentListComponent implements OnInit {
   profils: Profil[] = [];
   filtredProfils: Profil[] = [];
   form: FormGroup;
+  connectedUser: any;
+  profilAlreadyCreated: boolean;
+  userProfilId: number;
 
-  constructor(private talentService: TalentService, private fb: FormBuilder) {}
+  constructor(
+    private talentService: TalentService,
+    private fb: FormBuilder,
+    private globalService: GlobalService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.getConnectedUser();
     this.getAllProfils();
     this.initForm();
     this.search();
+  }
+
+  getConnectedUser() {
+    this.globalService.getConnectedUser().subscribe((result) => {
+      this.connectedUser = result;
+      this.alreadyHaveProfil(this.connectedUser.id)
+    });
+  }
+
+  alreadyHaveProfil(idUser){
+    this.talentService.alreadyHaveProfil(idUser).subscribe(result=>{
+      if(result){
+        this.profilAlreadyCreated = true;
+        this.userProfilId = result.id;
+      } else {
+        this.profilAlreadyCreated = false;
+      }
+    })
   }
 
   initForm() {
@@ -42,6 +71,14 @@ export class TalentListComponent implements OnInit {
       this.profils = result;
       this.filtredProfils = this.profils;
     });
+  }
+
+  createProfil() {
+    this.router.navigate(["/createProfil"]);
+  }
+
+  navigateToProfil(){
+    this.router.navigate(["/profilDetails", this.userProfilId]);
   }
 
   search() {
@@ -73,7 +110,7 @@ export class TalentListComponent implements OnInit {
       } else if (governorate && category) {
         result = this.profils.filter(
           (item) =>
-          item.governorate.toLowerCase().includes(governorate) &&
+            item.governorate.toLowerCase().includes(governorate) &&
             item.category.toLowerCase() == category
         );
       } else if (username) {
@@ -81,8 +118,8 @@ export class TalentListComponent implements OnInit {
           item.iduser.username_canonical.toLowerCase().includes(username)
         );
       } else if (governorate) {
-        result = this.profils.filter(
-          (item) => item.governorate.toLowerCase().includes(governorate)
+        result = this.profils.filter((item) =>
+          item.governorate.toLowerCase().includes(governorate)
         );
       } else if (category) {
         result = this.profils.filter(
