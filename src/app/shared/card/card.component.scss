@@ -58,6 +58,25 @@
   }
 }
 
+.favoris-card {
+  height: 211px;
+
+  img {
+    height: 100%;
+    width: 32.5%;
+    max-width: 32.5%;
+    max-height: 211px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+  }
+
+  div.card-body {
+    width: 62.5%;
+    height: 100%;
+  }
+}
+
+
 .comment-img {
   max-width: 35% !important;
   background-color: #ffffff;

@@ -11,7 +11,6 @@
   <div class="col-md-7">
       <h3 >{{ data.titre }}</h3>
     </div>
-
     <div class="col-md-5">
       <ngb-rating max="5" rate="0">
         <ng-template let-fill="fill" let-index="index">
@@ -22,8 +21,7 @@
             >&#9733;</span
           >
         </ng-template>
-      </ngb-rating>
-    
+      </ngb-rating>  
   </div>
 </div>
       <p class="card-text">{{ data.description }}</p>
@@ -54,6 +52,42 @@
       </div>
     </div>
   </div>
+
+  <div
+  *ngSwitchCase="EcardType.FAVORIS"
+  class="favoris-card  card row col-md-12">
+  <img src="assets/img/events/show_us_your_talent.jpg" alt="" />
+  <div class="card-body">
+    <div class="row ">
+<div class="col-md-7">
+    <h3 >{{ data.idevent.titre }}</h3>
+  </div>
+  <div class="col-md-5">
+</div>
+</div>
+    <p class="card-text">{{ data.idevent.description }}</p>
+    <br />
+    <div class="row">
+      <div class="row col-md-10">
+        <div class="col-md-5">
+          <div>
+            Nombre de places : <span> {{ data.idevent.nbparticipant }} </span>
+          </div>
+          <div>
+            Category : <span> {{ data.idevent.idcat.titrecat }} </span>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div>
+            Date : <span> {{ data.idevent.date }} </span>
+          </div>
+          <!-- <div> Lieu : <span> {{ data.lieux }} </span> </div>  -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <div
     *ngSwitchCase="EcardType.COMPETITION"

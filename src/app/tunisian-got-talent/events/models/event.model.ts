@@ -10,3 +10,16 @@ export class Event {
   idcat: any;
   id_cat?: any;
 }
+
+export class Favoris {
+  id: any;
+  iduser: any;
+  idevent?: any;
+
+}
+
+export class Participate {
+  id?:any;
+  id_user?:any;
+  id_event?:any;    
+}

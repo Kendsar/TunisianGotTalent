@@ -1,3 +1,4 @@
+import { EventService } from './../../tunisian-got-talent/events/services/event.service';
 import { Comment } from './../../tunisian-got-talent/talents/models/talent.models';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -7,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ECardType } from "./../card-list/card-list.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParticipationComponent } from 'app/tunisian-got-talent/events/components/participation/participation.component';
+import { Participate } from 'app/tunisian-got-talent/events/models/event.model';
 
 @Component({
   selector: "app-card",
@@ -25,12 +27,14 @@ export class CardComponent implements OnInit {
   commentForm: FormGroup;
   editMode: boolean = false;
   liked: boolean;
+  participation:boolean;
 
   constructor(
     private globalService: GlobalService,
     private talentService: TalentService,
     private fb: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private eventService: EventService,
   ) {}
 
   ngOnInit() {
@@ -55,6 +59,10 @@ export class CardComponent implements OnInit {
 
   openDialog() {
     const modalRef = this.modalService.open(ParticipationComponent);
+    let participate: Participate = new Participate();
+    participate.id_user = this.connectedUser.id;
+    participate.id_event = this.data.id;
+    console.log("participate",participate)  
   }
 
   /* Comment Card Logic*/
