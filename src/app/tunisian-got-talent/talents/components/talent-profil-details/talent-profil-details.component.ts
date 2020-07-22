@@ -25,6 +25,8 @@ export class TalentProfilDetailsComponent implements OnInit {
   comments: Comment[] = [];
   commentForm: FormGroup;
   rate: number;
+  photoList: string[];
+
   constructor(
     private talentService: TalentService,
     private route: ActivatedRoute,
@@ -89,6 +91,7 @@ export class TalentProfilDetailsComponent implements OnInit {
   getProfil(id) {
     this.talentService.getProfilById(id).subscribe((result) => {
       this.profil = result;
+      this.photoList= this.profil.profils.photo.split('||').filter(item => item.length > 0);
     });
   }
 

@@ -8,7 +8,7 @@
         <div class="container">
             <div class="owner">
                 <div class="avatar">
-                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image"
+                    <img src="{{connectedUser.photo}}" alt="{{connectedUser.photo}}"
                         class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
@@ -83,8 +83,7 @@
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto">
                         <span class="label label-info">Photos</span>
-                        <input type="text" class="form-control form-control-success" formControlName="photos"
-                            placeholder="Photos">
+                        <div><app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload></div>
                         <br />
                     </div>
                 </div>

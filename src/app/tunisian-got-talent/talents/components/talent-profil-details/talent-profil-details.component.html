@@ -7,7 +7,7 @@
         <div class="container">
             <div class="owner">
                 <div class="avatar">
-                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image"
+                    <img src="{{profil.profils.iduser.photo}}" alt="Circle Image"
                         class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
@@ -41,6 +41,9 @@
                 <div class="col-md-8 mr-auto ml-auto">
                     <div class="card page-carousel">
                         <ngb-carousel>
+                            <!-- <ng-template *ngFor="let p of photoList" ngbSlide>
+                                <img src="{{p}}" alt="Random first slide">
+                            </ng-template> -->
                             <ng-template ngbSlide>
                                 <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
                                 <div class="carousel-caption">
@@ -95,7 +98,7 @@
                                     <div class="card comment">
                                         <div class="row" style="padding-top: 1%">
                                             <div class="col-md-3">
-                                                <img src="assets/img/faces/clem-onojeghuo-3.jpg"
+                                                <img src="{{connectedUser.photo}}"
                                                     class="img-no-padding img-responsive comment-img"
                                                     alt="Rounded Image">
                                             </div>

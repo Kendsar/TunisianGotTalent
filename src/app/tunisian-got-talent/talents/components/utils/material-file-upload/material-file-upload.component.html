@@ -1,0 +1,24 @@
+<button style="color: black;" class="btn btn-outline-danger btn-round" (click)="onClick()">
+    <span> <img class="img-icon" src="assets/img/cloud.png" alt="">
+    </span>
+    {{text}}
+</button>
+<br />
+<div style="padding-top: 5%;">
+    <ul>
+        <li *ngFor="let file of files">
+            <ngb-progressbar type="warning" [value]="file.progress" [striped]="true" [animated]="true">
+                <i>{{file.progress}}</i></ngb-progressbar><br>
+
+            <span id="file-label">
+                {{file.data.name}}
+                <a title="Retry" (click)="retryFile(file)" *ngIf="file.canRetry">
+                    <i class="fa fa-sync"></i></a>
+                <a title="Cancel" (click)="cancelFile(file)" *ngIf="file.canCancel">
+                    <i class="fa fa-times-circle"></i></a>
+            </span>
+        </li>
+    </ul>
+    <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}"
+        style="display:none;" />
+</div>

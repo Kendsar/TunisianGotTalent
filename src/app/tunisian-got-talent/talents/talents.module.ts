@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TalentsComponent } from './talents.component';
 import { NewProfilComponent } from './components/new-profil/new-profil.component';
+import { MaterialFileUploadComponent } from './components/utils/material-file-upload/material-file-upload.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { NewProfilComponent } from './components/new-profil/new-profil.component
     ReactiveFormsModule,
     NgbModule
   ],
-  declarations: [TalentsComponent, TalentListComponent, TalentProfilDetailsComponent, NewProfilComponent]
+  declarations: [TalentsComponent, TalentListComponent, TalentProfilDetailsComponent, NewProfilComponent, MaterialFileUploadComponent]
 })
 export class TalentsModule { }

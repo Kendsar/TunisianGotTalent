@@ -17,6 +17,7 @@ export class NewProfilComponent implements OnInit {
   idProfil: number;
   activateEditMode: boolean = false;
   profil: Profil;
+  imageList: string = '';
   constructor(
     private globalService: GlobalService,
     private fb: FormBuilder,
@@ -97,7 +98,7 @@ export class NewProfilComponent implements OnInit {
       profil.address = this.profilForm.controls.address.value;
       profil.governorate = this.profilForm.controls.governorate.value;
       profil.telephone = this.profilForm.controls.number.value;
-      profil.photo = "test";
+      profil.photo = this.imageList;
       if (this.activateEditMode) {
         profil.id = this.idProfil;
         this.talentService.editProfil(profil).subscribe((result) => {
@@ -109,5 +110,9 @@ export class NewProfilComponent implements OnInit {
         });
       }
     }
+  }
+
+  onFileComplete(data: any) {
+    this.imageList = this.imageList.concat(data.link).concat('||');
   }
 }
