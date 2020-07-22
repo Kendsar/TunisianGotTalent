@@ -128,16 +128,6 @@
         <p class="text-center">{{data.iduser.username_canonical}}</p>
       </div>
       <div class="card-body" style="width: 50%;">
-        <ngb-rating max="5" rate="0">
-          <ng-template let-fill="fill" let-index="index">
-            <span
-              class="star"
-              [class.filled]="fill === 100"
-              [class.bad]="index < 2"
-              >&#9733;</span
-            >
-          </ng-template>
-        </ngb-rating>
         <h5 class="card-title talent-span"> {{ data.talent }} </h5>
         <p class="card-text "> {{data.description}} </p>
         <br>
