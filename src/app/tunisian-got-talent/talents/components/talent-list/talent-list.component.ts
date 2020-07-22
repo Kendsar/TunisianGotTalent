@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { GlobalService } from "./../../../shared/shared.services";
 import { Profil } from "./../../models/talent.models";
 import { TalentService } from "./../../services/talent.services";
@@ -38,19 +38,19 @@ export class TalentListComponent implements OnInit {
   getConnectedUser() {
     this.globalService.getConnectedUser().subscribe((result) => {
       this.connectedUser = result;
-      this.alreadyHaveProfil(this.connectedUser.id)
+      if (this.connectedUser) this.alreadyHaveProfil(this.connectedUser.id);
     });
   }
 
-  alreadyHaveProfil(idUser){
-    this.talentService.alreadyHaveProfil(idUser).subscribe(result=>{
-      if(result){
+  alreadyHaveProfil(idUser) {
+    this.talentService.alreadyHaveProfil(idUser).subscribe((result) => {
+      if (result) {
         this.profilAlreadyCreated = true;
         this.userProfilId = result.id;
       } else {
         this.profilAlreadyCreated = false;
       }
-    })
+    });
   }
 
   initForm() {
@@ -77,7 +77,7 @@ export class TalentListComponent implements OnInit {
     this.router.navigate(["/createProfil"]);
   }
 
-  navigateToProfil(){
+  navigateToProfil() {
     this.router.navigate(["/profilDetails", this.userProfilId]);
   }
 
