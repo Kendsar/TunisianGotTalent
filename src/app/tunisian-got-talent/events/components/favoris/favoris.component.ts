@@ -30,8 +30,11 @@ export class FavorisComponent implements OnInit {
   {
     this.favoristService.getAllFavorisForUser(this.connectedUser.id).subscribe((result) => {
       this.favoris = result;
-      console.log("favoris", this.favoris);
     });
+  }
+
+  refreshData(){
+    this.getAllFavorisForUser();
   }
 
 }

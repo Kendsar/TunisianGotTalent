@@ -48,16 +48,16 @@ export const wsUrl = {
       edit: "/tgt/event/edit",
       search:"/tgt/event/search",
     },
-    raiting: {
-      getAll: "/tgt/ratingEvent/show",
+    rating: {
       getById: "/tgt/ratingEvent/{0}",
       create: "/tgt/ratingEvent/new",
+      getByEventUserID: "/tgt/ratingEvent/show/{0}/{1}",
     },
     favoris: {
       getAll: "/tgt/favoris/{0}",
-      getById: "/tgt/favoris/show",
-      delete: "/tgt/favoris/delete",
-      create: "/tgt/favoris/new",
+      alreadyInFavorite: "/tgt/favoris/show/{0}/{1}",
+      delete: "/tgt/favoris/delete/{0}/{1}",
+      create: "/tgt/favoris/new/{0}/{1}",
     },
     category: {
       getAll: "/tgt/categoryevent/",

@@ -23,3 +23,9 @@ export class Participate {
   id_user?:any;
   id_event?:any;    
 }
+
+export class Rate {
+  idevent?:any;
+  iduser?:any;
+  value?:any;    
+}

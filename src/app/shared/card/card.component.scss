@@ -31,13 +31,14 @@
   color: #b0c4de;
 }
 .filled {
-  color: #ffd700;
-}
-.bad {
-  color: #deb0b0;
+  color: #ffd700 !important;
 }
 .filled.bad {
-  color: #ff1e1e;
+  color: #ff1e1e !important;
+}
+
+.talent-span {
+  color: #f5593d;
 }
 
 .evenement-card {
