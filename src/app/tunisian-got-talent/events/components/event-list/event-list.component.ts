@@ -45,12 +45,6 @@ export class EventListComponent implements OnInit {
     this.filtredEvents = this.events;
   }
 
-  // getbyId() {
-  //   this.eventService.getAllEvents().subscribe((result) => {
-  //     this.events = result;
-  //     console.log("event", this.events);
-  //   });
-  // }
 
   search() {
     this.form.controls.category.valueChanges.subscribe((x) => {
