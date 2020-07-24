@@ -34,6 +34,8 @@ export class CardComponent implements OnInit {
   alreadyInFav = true;
   rate: number;
   showRating = false;
+  closed :boolean = false;
+  alreadyParticipate: boolean = false;
   
   constructor(
     private globalService: GlobalService,
@@ -50,6 +52,7 @@ export class CardComponent implements OnInit {
     }
     if (this.cardType == ECardType.EVENT){
       this.initRatingToShow();
+      this.checkEvent(this.data);
     }
   }
 
@@ -63,6 +66,7 @@ export class CardComponent implements OnInit {
         if (this.cardType == ECardType.EVENT){
           this.alreadyInFavorite();
           this.getRateIfExist(this.data.id);
+          this.getParticipationIfExist(this.data.id);
         }
       }
     });
@@ -70,12 +74,13 @@ export class CardComponent implements OnInit {
 
   /* Event Card Logic */
 
-  openDialog() {
-    const modalRef = this.modalService.open(ParticipationComponent);
+  participate() {
     let participate: Participate = new Participate();
     participate.id_user = this.connectedUser.id;
     participate.id_event = this.data.id;
-    console.log("participate",participate)  
+    this.eventService.participate(participate).subscribe(result => {
+      const modalRef = this.modalService.open(ParticipationComponent);
+    })
   }
 
   addFavorisAction(eventId){
@@ -111,12 +116,24 @@ export class CardComponent implements OnInit {
    this.eventService.getRateByEventUserID(eventId, this.connectedUser.id).subscribe(result => { 
      this.rate = result});
   }
+  getParticipationIfExist(eventId){
+   this.eventService.getparticipationByUserID(eventId, this.connectedUser.id).subscribe(result => { 
+     this.alreadyParticipate = result});
+  }
 
   initRatingToShow(){
     const d = Date.parse(this.data.date);
     let date = new Date(d);
     if (date < new Date())
     this.showRating = true;
+  }
+
+  checkEvent(event){
+    if (event.nbparticipant == 0 || new Date(Date.parse(event.date)) < new Date()){
+      this.closed = true;
+    }
+    
+    console.log("eventka3ba",event)
   }
 
   /* Comment Card Logic*/

@@ -68,7 +68,7 @@ export const wsUrl = {
     },
     participer: {
       getAll: "/tgt/participer/{0}",
-      getparticipationByUserID: "/tgt/participer/show",
+      getparticipationByEventUserID: "/tgt/participer/show/{0}/{1}",
       delete: "/tgt/participer/delete",
       create: "/tgt/participer/new",
     },

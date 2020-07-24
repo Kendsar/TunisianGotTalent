@@ -39,7 +39,7 @@ export class EventService {
 
   getparticipationByUserID(idUser, idEvent) {
     const url = StringFormat(
-      wsUrl.event.participer.getparticipationByUserID,
+      wsUrl.event.participer.getparticipationByEventUserID,
       idUser,
       idEvent
     );
@@ -125,6 +125,14 @@ export class EventService {
       iduser
     );
     return this.httpClient.get<number>(url, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  participate(p: Participate) : Observable<any>{
+    return this.httpClient.post<any>(wsUrl.event.participer.create, p,{
       headers: {
         "Access-Control-Allow-Origin": "*",
       },

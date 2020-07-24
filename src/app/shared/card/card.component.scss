@@ -42,7 +42,7 @@
 }
 
 .evenement-card {
-  height: 270px;
+  height: 300px;
 
   img {
     height: 100%;
@@ -100,4 +100,12 @@
 .star {
   font-size: 40px;
   color: #b0c4de;
+}
+
+.closed {
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  padding-top: 12%;
+  font-size: 15px;
 }

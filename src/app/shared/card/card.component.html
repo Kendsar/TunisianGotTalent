@@ -40,9 +40,11 @@
         </div>
         <div class="col-md-2">
           <!-- [routerLink]="['/participer', data.id]" -->
-          <button [disabled]="!connectedUser" type="button" class="btn btn-outline-success btn-round"  (click)="openDialog()">
+          <button *ngIf="connectedUser && !closed && !alreadyParticipate" type="button" class="btn btn-outline-success btn-round"  (click)="participate()">
             Participer
           </button>
+          <span *ngIf="closed" class="label label-danger closed">Closed</span>
+          <span *ngIf="!closed && alreadyParticipate" class="label label-danger closed" style="width: 135px; padding-top: 8%;">Already Participated</span>
         </div>
       </div>
     </div>
