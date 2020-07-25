@@ -37,7 +37,7 @@ import { SharedModule } from 'app/shared/shared.module';
         NgbdModalContent
     ],
     entryComponents: [NgbdModalContent],
-    exports:[ ComponentsComponent ],
+    exports:[ ComponentsComponent, NgbdModalComponent ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class ComponentsModule { }

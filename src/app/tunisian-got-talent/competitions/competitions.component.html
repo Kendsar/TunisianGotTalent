@@ -1,25 +1,33 @@
 <div class="wrapper">
-  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/tgt_002.png');">
+  <div class="page-header page-header-xs" data-parallax="true"
+    style="background-image: url('./assets/img/tgt_002.png');">
     <div class="filter"></div>
-</div>
+  </div>
   <div class="container" style="margin: 36px auto;">
 
     <div class="row" style="padding: 20px;">
       <div class="col-sm-3" style="text-align: center; margin: auto 0;">
         Chercher une compétition :
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <div class="form-group" style="text-align: center; margin: auto 0;">
           <fieldset>
-          <input type="text" class="form-control" placeholder="">
-          <i style="position: absolute; top: 13px; left: 13px;"class="nc-icon nc-zoom-split"></i>
-        </fieldset>
+            <input type="text" [(ngModel)]="filterText" (ngModelChange)="search()" class="form-control" placeholder=""
+              style="padding-left: 32px">
+            <i style="position: absolute; top: 13px; left: 13px;" class="nc-icon nc-zoom-split"></i>
+          </fieldset>
         </div>
       </div>
+      <div class="col-sm-5">
+          <button type="button" class="btn btn-default btn-link" style="float: right;" routerLink="/competitions/new">
+            <i class="nc-icon nc-simple-add" style="padding: 5px;"></i>
+            Ajouter une compétition
+          </button>
+      </div>
     </div>
-    
+
     <ng-container *ngIf="data">
-      <app-card-list [pageSize]="3" [data]="data" [cardType]="EcardType.COMPETITION"></app-card-list>
+      <app-card-list [pageSize]="3" [data]="filteredData" [cardType]="EcardType.COMPETITION"></app-card-list>
     </ng-container>
   </div>
 </div>

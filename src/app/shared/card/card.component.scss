@@ -9,13 +9,14 @@
 }
 
 .competition-card {
-  height: 211px;
+  height: 230px;
+  margin: 36px auto;
 
   img {
     height: 100%;
     width: 32.5%;
     max-width: 32.5%;
-    max-height: 211px;
+    max-height: 230px;
     border-bottom-left-radius: 12px;
     border-top-left-radius: 12px;
   }
@@ -39,4 +40,10 @@
 
 .br-default {
     margin: auto;
+}
+
+.icon-red, .text-red {
+  color: red;
+  font-weight: normal;
+  font-size: 14px;
 }
