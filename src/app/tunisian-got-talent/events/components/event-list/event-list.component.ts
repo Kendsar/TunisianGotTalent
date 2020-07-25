@@ -52,7 +52,7 @@ export class EventListComponent implements OnInit {
       let result: Event[] = [];
       if (category) {
         result = this.events.filter((item) =>
-          item.id_cat.titrecat.toLowerCase().includes(category)
+          item.idcat.titrecat.toLowerCase().includes(category)
         );
       } else {
         result = this.events;
