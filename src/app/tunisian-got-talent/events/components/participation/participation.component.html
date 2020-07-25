@@ -1,17 +1,19 @@
-<div class="wrapper">
-    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/ev.jpg');">
-      <div class="filter"></div>
-  </div>
-    <div class="container" style="margin: 36px auto;">
-      <ng-container *ngIf="participation">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="form-group has-success">
-              <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Category">
-            </div>
-          </div>
-        </div>
-        <app-card-list [pageSize]="2" [data]="participation" [cardType]="EcardType.EVENT"></app-card-list>
-      </ng-container>
+<!-- <div style="text-align: center;">
+    <i class="fa fa-check-circle icon"></i>
+</div>
+<div class="modal-body" style="text-align: center;">Succes</div> -->
+
+
+<div class="modal-header">
+    <h5 class="modal-title text-center">Succés</h5>
+</div>
+<div style="text-align: center;">
+    <i class="fa fa-check-circle icon"></i>
+</div>
+<div class="modal-body" style="text-align: center;"> Thank you for your participation
+</div>
+<div class="modal-footer">
+    <div class="right-side">
+        <button type="button" class="btn btn-danger btn-link" (click)="navigate()">OK</button>
     </div>
-  </div>
+</div>

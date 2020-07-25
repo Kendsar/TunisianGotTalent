@@ -1,17 +1,48 @@
 <div class="wrapper">
-    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/ev.jpg');">
-      <div class="filter"></div>
+  <div
+    class="page-header page-header-xs"
+    data-parallax="true"
+    style="background-image: url('./assets/img/organiser-son-événement.jpg');">
+    <!-- <div class="filter"></div> -->
   </div>
-    <div class="container" style="margin: 36px auto;">
-      <ng-container *ngIf="events">
-        <div class="row">
+  <div class="container" style="margin: 36px auto;">
+    <ng-container *ngIf="events">
+      <form [formGroup]="form">
+        <div class="row search-block">
+        <div *ngIf="connectedUser" class="col-sm-3">
+          <button type="button" class="btn btn-outline-success btn-round"  (click)="navigate()" >
+         Check list favoris     
+           <i class="fa fa-bookmark"></i>   </button>
+        </div>
+          <div  class="loop">
+            <img src="assets/img/zoom-2.png" alt="">
+          </div>
           <div class="col-sm-3">
             <div class="form-group has-success">
-              <input type="text" class="form-control form-control-success" id="inputSuccess1" placeholder="Category">
+              <input
+                type="text"
+                class="form-control form-control-success"
+                formControlName="category"
+                placeholder="Category"
+              />
             </div>
           </div>
+          <div class="col-sm-2">
+            <button
+              type="button"
+              class="btn btn-success btn-round reset-btn"
+              (click)="reset()"
+            >
+              Reset
+            </button>
+          </div>
         </div>
-        <app-card-list [pageSize]="2" [data]="events" [cardType]="EcardType.EVENT"></app-card-list>
-      </ng-container>
-    </div>
+      </form>
+      <app-card-list
+        [pageSize]="2"
+        [data]="filtredEvents"
+        [cardType]="EcardType.EVENT"
+      ></app-card-list>
+    </ng-container>
   </div>
+</div>

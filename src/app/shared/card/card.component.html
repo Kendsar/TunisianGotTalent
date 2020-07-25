@@ -1,25 +1,88 @@
 <ng-container [ngSwitch]="cardType">
-
-  <div *ngSwitchCase="EcardType.EVENT" class="event-card card">
-    <div class="row" style="padding: 15px;">
-      <img class="col-md-3" src="./../../../assets/img/events/{{data.imgSrc}}" alt="">
-      <div class="col-md-6">
-        <h5 class="card-title"> {{ data.titre }} </h5>
-        <br>
-        <div style="padding: 5px;"> <i class="nc-icon nc-pin-3"></i> Lieu : <span> {{ data.lieux }} </span> </div>
-        <div style="padding: 5px;"> <i class="nc-icon nc-circle-10"></i> Nombre de participants : <span>
-            {{ data.nb_participant }} </span> </div>
-        <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> Date : <span> 24/06/2020 </span> </div>
+  <div
+    *ngSwitchCase="EcardType.EVENT"
+    class="evenement-card card row col-md-12">
+    <img src="assets/img/events/show_us_your_talent.jpg" alt="" />
+    <div class="card-body">
+      <div *ngIf="connectedUser && !alreadyInFav">
+        <button  class="btn btn-outline-success btn-round" (click)="addFavorisAction(data.id)"><i class="fa fa-bookmark"></i> </button>
       </div>
-      <div class="col-md-3" style="text-align: center; margin: auto;">
-        <button *ngIf="data.nb_participant < 300" type="button" class="btn btn-outline-danger btn-round btn-lg">
-          Participer </button>
-        <div *ngIf="data.nb_participant == 300" style="display: flex; flex-direction: column;">
-          <button type="button" class="btn btn-default btn-round btn-lg"> Closed </button>
-          <div style="display: flex; flex-direction: column; padding: 15px 0px;">
-            <div style="text-align: initial;">Rating :</div>
-            <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+      <div class="row ">
+  <div class="col-md-7">
+      <h3 >{{ data.titre }}</h3>
+    </div>
+    <div *ngIf="connectedUser && showRating" class="col-md-5">
+      <ngb-rating max=5 [rate]="rate" (rateChange)="rateChange($event, data.id)">
+        <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+        </ng-template>
+    </ngb-rating>
+  </div>
+</div>
+      <p class="card-text">{{ data.description }}</p>
+      <br />
+      <div class="row">
+        <div class="row col-md-10">
+          <div class="col-md-5">
+            <div>
+              Nombre de places : <span> {{ data.nbparticipant }} </span>
+            </div>
+            <div>
+              Category : <span> {{ data.idcat.titrecat }} </span>
+            </div>
           </div>
+          <div class="col-md-5">
+            <div>
+              Date : <span> {{ data.date }} </span>
+            </div>
+            <!-- <div> Lieu : <span> {{ data.lieux }} </span> </div>  -->
+          </div>
+        </div>
+        <div class="col-md-2">
+          <!-- [routerLink]="['/participer', data.id]" -->
+          <button *ngIf="connectedUser && !closed && !alreadyParticipate" type="button" class="btn btn-outline-success btn-round"  (click)="participate()">
+            Participer
+          </button>
+          <span *ngIf="closed" class="label label-danger closed">Closed</span>
+          <span *ngIf="!closed && alreadyParticipate" class="label label-danger closed" style="width: 135px; padding-top: 8%;">Already Participated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+  *ngSwitchCase="EcardType.FAVORIS"
+  class="favoris-card  card row col-md-12">
+  <img src="assets/img/events/show_us_your_talent.jpg" alt="" />
+  <div class="card-body">
+    <div class="row ">
+<div class="col-md-7">
+    <h3 >{{ data.idevent.titre }}</h3>
+  </div>
+  <div class="col-md-5">
+</div>
+</div>
+    <p class="card-text">{{ data.idevent.description }}</p>
+    <br />
+    <div class="row">
+      <div class="row col-md-10">
+        <div class="col-md-4">
+          <div>
+            Nombre de places : <span> {{ data.idevent.nbparticipant }} </span>
+          </div>
+          <div>
+            Category : <span> {{ data.idevent.idcat.titrecat }} </span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div>
+            Date : <span> {{ data.idevent.date }} </span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-success btn-round"  (click)="removeFromFavoris(data.idevent.id)">
+            Remove
+          </button>
         </div>
       </div>
     </div>
@@ -27,6 +90,8 @@
       <p class="card-text col-md-5"> {{data.description}} </p>
     </div>
   </div>
+</div>
+
 
   <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10">
     <img src="./../../../assets/img/competitions/{{ data.imgSrc }}" alt="" />
@@ -57,7 +122,7 @@
   <div *ngSwitchCase="EcardType.TALENT" class="card col-md-12">
     <div class="row">
       <div class="col-md-3" style="padding: 3%">
-        <img src="assets/img/faces/clem-onojeghuo-3.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
+        <img src="{{data.iduser.photo}}" class="img-thumbnail img-responsive" alt="Rounded Image">
         <p class="text-center">{{data.iduser.username_canonical}}</p>
       </div>
       <div class="card-body" style="width: 50%;">
@@ -80,5 +145,30 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div *ngSwitchCase="EcardType.COMMENT" class="card col-md-12">
+    <form [formGroup]="commentForm">
+    <div class="row">
+      <div class="col-md-3" ngbTooltip="{{data.iduser.username_canonical}}">
+        <img src="{{data.iduser.photo}}" class="img-no-padding img-responsive comment-img" alt="Rounded Image">
+      </div>
+      
+      <div class="col-md-7" style="padding-top: 1%; text-align: initial">
+        <p *ngIf="!editMode" class="card-text ">{{data.text}}</p>
+        <textarea *ngIf="editMode" style="width: 100%; margin-top: 2%;" formControlName="comment"></textarea>
+      </div>
+      <div class="col-md-2" style="padding-top: 1%;">
+        <h6>{{data.nblike}}</h6>
+        <div class="row comment-btn">
+          <button *ngIf="connectedUser && connectedUser.id == data.iduser.id && editMode" type="button" class="btn btn-success btn-just-icon" (click)="editCommentAction(data.id)"><i class="fa fa-save"></i></button>
+          <button *ngIf="connectedUser && connectedUser.id == data.iduser.id && !editMode" type="button" class="btn btn-warning btn-just-icon" (click)="activateEditMode()"><i class="fa fa-edit"></i></button>
+          <button *ngIf="connectedUser && connectedUser.id == data.iduser.id" type="button" class="btn btn-info btn-just-icon" (click)="deleteCommentAction(data.id)"><i class="fa fa-trash"></i></button> 
+          <button *ngIf="!liked" [disabled]="!connectedUser ||connectedUser && connectedUser.id == data.iduser.id" type="button" style="background: transparent;" class="btn btn-danger btn-just-icon" (click)="likeAction(data.id)"><i style="color: #f5593d" class="fa fa-heart"></i></button>
+          <button *ngIf="liked" [disabled]="!connectedUser ||connectedUser && connectedUser.id == data.iduser.id" type="button" style="background: #dc3545;" class="btn btn-danger btn-just-icon"(click)="likeAction(data.id)"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+    </div>
+  </form>
   </div>
 </ng-container>

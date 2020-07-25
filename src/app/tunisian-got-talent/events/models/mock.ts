@@ -1,7 +1,8 @@
 
 import { Event } from './event.model';
 
-export const EVENTS_MOCK: Event[] = [
+/** Beug model (merge) change type to any */
+export const EVENTS_MOCK: any[] = [
     {
         id_sp: 1,
         id: 1,

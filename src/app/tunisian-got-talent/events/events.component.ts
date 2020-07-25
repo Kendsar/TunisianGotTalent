@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ECardType } from "app/shared/card-list/card-list.component";
-import { EVENTS_MOCK } from "./models/mock";
 import { EventService } from "./services/event.service";
 import { Event } from "./models/event.model";
 

@@ -9,7 +9,7 @@ export const environment = {
 
 export const wsUrl = {
   authentification: {
-    user: "tgt/talent/user/loginAdminUser",
+    user: "tgt/talent/user/loginUser",
   },
   talent: {
     profil: {
@@ -18,6 +18,7 @@ export const wsUrl = {
       delete: "/tgt/talent/profil/delete/{0}",
       create: "/tgt/talent/profil/create",
       edit: "/tgt/talent/profil/edit",
+      alreadyHaveProfil: "/tgt/talent/profil/profilByUSerID/{0}"
     },
     rating: {
       getAll: "/tgt/talent/rating/getAll",
@@ -25,7 +26,18 @@ export const wsUrl = {
       delete: "/tgt/talent/rating/delete/{0}",
       create: "/tgt/talent/rating/rate",
       edit: "/tgt/talent/rating/edit",
+      getByProfilUserId: '/tgt/talent/rating/getByProfilUserId/{0}/{1}'
     },
+    comment: {
+      getCommentsByProfil: "/tgt/talent/comment/getCommentByProfil/{0}",
+      addNewComment: "/tgt/talent/comment/createComment",
+      editComment: "/tgt/talent/comment/editComment",
+      delete: "/tgt/talent/comment/delete/{0}"
+    },
+    like: {
+      getLikebyCommentUserID: "/tgt/talent/likes/getLikeByCommentUserID/{0}/{1}",
+      like: '/tgt/talent/likes/like/{0}/{1}'
+    }
   },
   event: {
     events: {
@@ -36,16 +48,16 @@ export const wsUrl = {
       edit: "/tgt/event/edit",
       search:"/tgt/event/search",
     },
-    raiting: {
-      getAll: "/tgt/ratingEvent/show",
+    rating: {
       getById: "/tgt/ratingEvent/{0}",
       create: "/tgt/ratingEvent/new",
+      getByEventUserID: "/tgt/ratingEvent/show/{0}/{1}",
     },
     favoris: {
-      getAll: "/tgt/favoris/show",
-      getById: "/tgt/favoris/{0}",
-      delete: "/tgt/favoris/delete",
-      create: "/tgt/favoris/new",
+      getAll: "/tgt/favoris/{0}",
+      alreadyInFavorite: "/tgt/favoris/show/{0}/{1}",
+      delete: "/tgt/favoris/delete/{0}/{1}",
+      create: "/tgt/favoris/new/{0}/{1}",
     },
     category: {
       getAll: "/tgt/categoryevent/",
@@ -56,7 +68,7 @@ export const wsUrl = {
     },
     participer: {
       getAll: "/tgt/participer/{0}",
-      getById: "/tgt/participer/show",
+      getparticipationByEventUserID: "/tgt/participer/show/{0}/{1}",
       delete: "/tgt/participer/delete",
       create: "/tgt/participer/new",
     },

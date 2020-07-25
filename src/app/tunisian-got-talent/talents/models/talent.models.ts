@@ -16,6 +16,24 @@ export class Profil {
     iduser: any;
 }
 
+export class ProfilDetail {
+    profils?: Profil;
+    comment?:Comment[];
+    likes?:any;
+    ratings?:any;
+}
+
+export class Comment {
+    id?:number;
+    nbdislike?:number;
+    nblike?:number;
+    text?:string;
+    profils?: Profil;
+    profil?: Profil;
+    iduser?:any;
+    constructor(){}
+}
+
 export class Rating {
     id?: number;
     rate: string;

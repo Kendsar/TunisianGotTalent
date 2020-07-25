@@ -33,6 +33,57 @@
     padding: 32px;
 }
 
+.star {
+  font-size: 40px;
+  color: #b0c4de;
+}
+.filled {
+  color: #ffd700 !important;
+}
+.filled.bad {
+  color: #ff1e1e !important;
+}
+
+.talent-span {
+  color: #f5593d;
+}
+
+.evenement-card {
+  height: 300px;
+
+  img {
+    height: 100%;
+    width: 32.5%;
+    max-width: 32.5%;
+    max-height: 211px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+  }
+
+  div.card-body {
+    width: 62.5%;
+    height: 100%;
+  }
+}
+
+.favoris-card {
+  height: 211px;
+
+  img {
+    height: 100%;
+    width: 32.5%;
+    max-width: 32.5%;
+    max-height: 211px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+  }
+
+  div.card-body {
+    width: 62.5%;
+    height: 100%;
+  }
+}
+
 .nc-icon {
     font-size: 15px;
     padding: 0 8px;
@@ -46,4 +97,36 @@
   color: red;
   font-weight: normal;
   font-size: 14px;
+}
+
+.comment-img {
+  max-width: 35% !important;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  padding: 4px;
+  border-radius: 50% !important;
+}
+
+.raised-like {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.comment-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.star {
+  font-size: 40px;
+  color: #b0c4de;
+}
+
+.closed {
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  padding-top: 12%;
+  font-size: 15px;
 }

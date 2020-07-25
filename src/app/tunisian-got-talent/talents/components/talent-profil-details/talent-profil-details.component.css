@@ -22,3 +22,23 @@
   font-weight: 500;
   line-height: 1.5em;
 }
+
+.text-area {
+  border: none !important;
+  min-height: 60px;
+  margin-bottom: 2%;
+  width: 100%;
+  background: transparent;
+}
+
+.comment-img {
+  max-width: 35% !important;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  padding: 4px;
+  border-radius: 50% !important;
+}
+
+.comment {
+  background: #f5593d17;
+}

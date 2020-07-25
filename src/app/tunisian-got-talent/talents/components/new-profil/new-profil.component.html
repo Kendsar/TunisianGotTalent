@@ -1,0 +1,100 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true"
+        style="background-image: url('./assets/img/talent1.jpg');">
+        <div class="filter"></div>
+    </div>
+    <div class="section profile-content">
+
+        <div class="container">
+            <div class="owner">
+                <div class="avatar" *ngIf="connectedUser">
+                    <img src="{{connectedUser.photo}}" alt="{{connectedUser.photo}}"
+                        class="img-circle img-no-padding img-responsive">
+                </div>
+                <div class="name">
+                    <h4 class="title">{{connectedUser ? connectedUser.username_canonical : ''}}</h4>
+                </div>
+            </div>
+            <form [formGroup]="profilForm">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Talent Name</span>
+                        <input type="text" class="form-control form-control-success" formControlName="name"
+                            placeholder="talent name">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Talent Category</span>
+                        <input type="text" class="form-control form-control-success" formControlName="category"
+                            placeholder="talent category">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Description</span>
+                        <textarea class="form-control form-control-success" formControlName="description"
+                            placeholder="description"></textarea>
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Age</span>
+                        <input type="number" step="1" min="0" class="form-control form-control-success"
+                            formControlName="age" placeholder="age">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Phone Number</span>
+                        <input type="tel" class="form-control form-control-success" formControlName="number"
+                            placeholder="phone number">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Address</span>
+                        <input type="text" class="form-control form-control-success" formControlName="address"
+                            placeholder="adress">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Governorate</span>
+                        <input type="text" class="form-control form-control-success" formControlName="governorate"
+                            placeholder="governorate">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Youtube Video Link</span>
+                        <input type="url" class="form-control form-control-success" formControlName="youtubeLink"
+                            placeholder="Youtube link">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <span class="label label-info">Photos</span>
+                        <div><app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload></div>
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto" style="text-align: end;">
+                        <button type="button" class="btn btn-success btn-round" (click)="reset()">Reset</button>
+                        <button type="button" class="btn btn-success btn-round" (click)="save()">{{activateEditMode ? 'Edit' : 'Save'}}</button>
+                    </div>
+                </div>
+            </form>
+            <br />
+        </div>
+    </div>
+</div>

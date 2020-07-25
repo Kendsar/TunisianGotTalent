@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div
+    class="page-header page-header-xs"
+    data-parallax="true"
+    style="background-image: url('./assets/img/organiser-son-événement.jpg');"
+  ></div>
+  <div class="container" style="margin: 36px auto;">
+    <ng-container *ngIf="connectedUser">
+      <form [formGroup]="form">
+        <div class="row search-block">
+          <div class="loop">
+            <img src="assets/img/zoom-2.png" alt="" />
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group has-success">
+              <input
+                type="text"
+                class="form-control form-control-success"
+                formControlName="titre"
+                placeholder="Titre"
+              />
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <button
+              type="button"
+              class="btn btn-success btn-round reset-btn"
+              (click)="reset()"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </form>
+      <app-card-list
+        [pageSize]="2"
+        [data]="filtredFavorits"
+        [cardType]="EcardType.FAVORIS"
+        (refreshData)="refreshData()"
+      ></app-card-list>
+    </ng-container>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="profil">
     <div class="page-header page-header-xs" data-parallax="true"
         style="background-image: url('./assets/img/talent1.jpg');">
         <div class="filter"></div>
@@ -7,31 +7,33 @@
         <div class="container">
             <div class="owner">
                 <div class="avatar">
-                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image"
+                    <img src="{{profil.profils.iduser.photo}}" alt="Circle Image"
                         class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <ngb-rating max=5 rate=0>
+                    <ngb-rating *ngIf="connectedUser && connectedUser.id !== profil.profils.iduser.id" max=5 [rate]="rate" (rateChange)="rateChange($event)">
                         <ng-template let-fill="fill" let-index="index">
                             <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
                         </ng-template>
                     </ngb-rating>
-                    <h4 class="title">Jane Faker<br /></h4>
-                    <h6 class="description">Music Producer</h6>
+                    <div *ngIf="connectedUser && connectedUser.id == profil.profils.iduser.id">
+                        <button  type="button" class="btn btn-warning btn-just-icon" (click)="editProfil()"><i class="fa fa-edit"></i></button>
+                        <button  type="button" class="btn btn-danger btn-just-icon" (click)="deleteProfil()"><i class="fa fa-trash"></i></button>
+                    </div>
+                    <h4 class="title">{{profil.profils.iduser.username_canonical}}<br /></h4>
+                    <h6 class="description">{{profil.profils.talent}}</h6>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based
-                        Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
-                        with a solid groove structure. </p>
+                    <p>{{profil.profils.description}}</p>
                     <br />
                 </div>
             </div>
-            <div class="container">
+            <div *ngIf="profil.profils.video" class="container">
                 <div class="text-center" style="padding-bottom: 5%">
                     <br />
-                    <a (click)="youtubeNavigator()" class="btn btn-outline-danger btn-round"><i
+                    <a (click)="youtubeNavigator(profil.profils.video)" class="btn btn-outline-danger btn-round"><i
                             class="fa fa-play"></i>Watch video</a>
                 </div>
             </div>
@@ -39,6 +41,9 @@
                 <div class="col-md-8 mr-auto ml-auto">
                     <div class="card page-carousel">
                         <ngb-carousel>
+                            <!-- <ng-template *ngFor="let p of photoList" ngbSlide>
+                                <img src="{{p}}" alt="Random first slide">
+                            </ng-template> -->
                             <ng-template ngbSlide>
                                 <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
                                 <div class="carousel-caption">
@@ -68,20 +73,20 @@
                         <ngb-tab title="About Me">
                             <ng-template ngbTabContent>
                                 <div class="row" style="text-align: start">
-                                    <h5 class="about col-md-6"> <img src="assets/img/phone.png" alt=""
-                                            class="icons"> <span style="color: #f5593d;"> Phone number : </span>
-                                        <span>98698589</span></h5>
+                                    <h5 class="about col-md-6"> <img src="assets/img/phone.png" alt="" class="icons">
+                                        <span style="color: #f5593d;"> Phone number : </span>
+                                        <span>{{profil.profils.telephone}}</span></h5>
                                     <h5 class="about col-md-6"><img src="assets/img/maill.png" alt=""> <span
                                             style="color: #f5593d;"> Email :
-                                        </span><span>hannachi.louay@gmail.com</span></h5>
+                                        </span><span>{{profil.profils.iduser.email}}</span></h5>
                                 </div>
                                 <div class="row" style="text-align: start">
-                                    <h5 class="about col-md-6"><img src="assets/img/map.png" alt=""
-                                            class="icons"><span style="color: #f5593d;"> Address : </span><span>hedi
-                                            nouira 8563 borj louzir</span></h5>
+                                    <h5 class="about col-md-6"><img src="assets/img/map.png" alt="" class="icons"><span
+                                            style="color: #f5593d;"> Address :
+                                        </span><span>{{profil.profils.address}}</span></h5>
                                     <h5 class="about col-md-6"><img src="assets/img/home-run.png" alt=""
                                             class="icons"><span style="color: #f5593d;"> Governorate :
-                                        </span><span>hammem lanf</span></h5>
+                                        </span><span>{{profil.profils.governorate}}</span></h5>
                                 </div>
 
 
@@ -89,9 +94,33 @@
                         </ngb-tab>
                         <ngb-tab title="Comments">
                             <ng-template ngbTabContent>
-                                <h3 class="text-muted">Not following anyone yet :(</h3>
-                                <br>
-                                <button class="btn btn-warning btn-round">Find artists</button>
+                                <form [formGroup]="commentForm" *ngIf="connectedUser && connectedUser.id !== profil.profils.iduser.id">
+                                    <div class="card comment">
+                                        <div class="row" style="padding-top: 1%">
+                                            <div class="col-md-3">
+                                                <img src="{{connectedUser.photo}}"
+                                                    class="img-no-padding img-responsive comment-img"
+                                                    alt="Rounded Image">
+                                            </div>
+
+                                            <div class="col-md-8" style="padding-top: 1%; text-align: initial">
+                                                <textarea type="text" class="form-control form-control-success"
+                                                    placeholder="Write your comment here!"
+                                                    formControlName="comment"></textarea>
+                                            </div>
+
+                                            <div class="col-md-1" style="padding-top: 1%;">
+                                                <div class="row" style="padding-top: 36%;">
+                                                    <button type="button" class="btn btn-info btn-just-icon"
+                                                        (click)="comment()"><i class="fa fa-share"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <button *ngIf="!connectedUser" style="margin-bottom: 3%;" type="button" class="btn btn-outline-danger btn-round" (click)="login()"><i class="fa fa-user"></i>Sign In To Add Comments</button>
+                                <app-card-list *ngIf="comments.length > 0" (refreshData)="refreshComments()" [pageSize]="5" [data]="comments"
+                                    [cardType]="EcardType.COMMENT"></app-card-list>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
