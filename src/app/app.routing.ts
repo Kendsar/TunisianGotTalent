@@ -25,7 +25,7 @@ const routes: Routes =[
   /** TunisianGotTalent Modules */
   // { path: 'entreprises',     component: TalentsComponent },
   // { path: 'sponsorise',      component: TalentsComponent },
-  { path: 'events',         component: EventsComponent },
+  { path: 'events',         component: EventListComponent },
   { path: 'profil',        component: ProfileComponent },
   { path: 'createProfil',        component: NewProfilComponent },
   { path: 'createProfil/:id',        component: NewProfilComponent },

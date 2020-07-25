@@ -10,6 +10,7 @@ import { ECardType } from "./../card-list/card-list.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParticipationComponent } from 'app/tunisian-got-talent/events/components/participation/participation.component';
 import { Participate, Rate } from 'app/tunisian-got-talent/events/models/event.model';
+import { format } from 'util';
 
 @Component({
   selector: "app-card",
@@ -132,9 +133,15 @@ export class CardComponent implements OnInit {
     if (event.nbparticipant == 0 || new Date(Date.parse(event.date)) < new Date()){
       this.closed = true;
     }
-    
-    console.log("eventka3ba",event)
   }
+
+  GetFormattedDate(date) {
+    var todayTime = new Date(Date.parse(date));
+    var month = format(todayTime .getMonth() + 1);
+    var day = format(todayTime .getDate());
+    var year = format(todayTime .getFullYear());
+    return day + "/" + month + "/" + year;
+}
 
   /* Comment Card Logic*/
 
