@@ -74,6 +74,8 @@ export const wsUrl = {
     },
   },
   business: {},
-  forum: {},
+  forum: {
+    getAll: "/tgt/articles"
+  },
   competition: {},
 };

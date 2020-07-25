@@ -1,3 +1,5 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <ng-container [ngSwitch]="cardType">
   <div
     *ngSwitchCase="EcardType.EVENT"
@@ -119,6 +121,48 @@
       </div>
     </div>
   </div>
+
+  <div *ngSwitchCase="EcardType.FORUM" class="competition-card card row col-md-12">
+    <div class="col-md-3" style="padding: 3%">
+  <img src="./../../../assets/img/competitions/{{ data.imgSrc }}" class="img-thumbnail img-responsive" alt="Rounded Image" />
+</div>
+<div class="col-md-2">
+  <i (click)="myFunction(data.id)" class="fa fa-thumbs-up"></i>
+
+</div>
+
+  <div class="card-body">
+  
+    <h4>{{data.user.username}}</h4>
+    <div>
+
+      <h4>Category : <span> {{ data.category }} </span></h4>
+
+    </div>
+    <h5 >{{ data.profileName }}</h5>
+    <p class="card-text">
+      {{ data.content }}
+    </p>
+    <br />
+    <div class="row">
+      <div class="col-md-10">
+        <div>
+          Date de creation : <span> {{ data.publication_date   }} </span>
+        </div>
+        
+      </div>
+
+      <div class="col-md-2 comment" >
+        <button (click)="openDialog()" type="button" class="btnForum btn-outline-danger btn-round">
+          Comment
+        </button>
+      </div>
+
+      
+      
+    </div>
+  </div>
+</div>
 
   <div *ngSwitchCase="EcardType.TALENT" class="card col-md-12">
     <div class="row">
