@@ -28,7 +28,8 @@ export class CompetitionsComponent implements OnInit {
     if (this.filterText.length > 0) {
       this.filteredData = this.data.filter(e => {
         return e.nom.toLowerCase().indexOf(this.filterText.toLowerCase()) != -1 ||
-          e.description.toLowerCase().indexOf(this.filterText.toLowerCase()) != -1
+          e.description.toLowerCase().indexOf(this.filterText.toLowerCase()) != -1 ||
+          e.comp_type.toLowerCase().indexOf(this.filterText.toLowerCase()) != -1
       });
     } else {
       this.filteredData = this.data;

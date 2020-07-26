@@ -18,6 +18,7 @@ export class NewCompetitionComponent implements OnInit {
     this.newCompFormG = new FormGroup({
       nom: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
+      competition_type: new FormControl('Talents divers', Validators.required),
       date_deb: new FormControl('', Validators.required),
       date_fin: new FormControl('', Validators.required),
       nb_max_participant: new FormControl('', Validators.required),
@@ -28,6 +29,7 @@ export class NewCompetitionComponent implements OnInit {
   OnSubmit() {
     let modal = document.getElementById("myModal");
     modal.style.display = "block"
+    console.log('newCompFormG value', this.newCompFormG.value)
     if (this.newCompFormG.valid) {
       /** WebService POST*/
       /** Success popup */

@@ -183,4 +183,15 @@ export class CardComponent implements OnInit {
       this.refreshData.emit();
     });
   }
+
+  competitionRateChanged(event, data){
+    if (event>0){
+      let rate = new Rate()
+      console.log('data', data)
+      console.log('event', event)
+      rate.iduser = this.connectedUser.id;
+      rate.value = event;
+      // this.eventService.rateEvent(rate).subscribe();
+    }
+  }
 }

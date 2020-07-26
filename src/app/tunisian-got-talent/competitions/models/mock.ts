@@ -3,13 +3,13 @@ import { Competition } from "./competition.model";
 export const COMPETITION_MOCK: Competition[] = [
     {
         id: 0,
-        nom:  'Sing Competition',
+        nom:  'Competition de Talents divers',
         description:  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a vehicula nisl. Ut tempor nibh eros, eget blandit erat pulvinar porta. Vestibulum erat libero',
         date_debut:  '2020-08-21',
         date_fin:  '2020-08-26',
         nb_participant:  56,
         nb_max_participant: 100,
-        imgSrc: 'competition_1.jpg'
+        comp_type: 'Talents divers'
     },
     {
         id: 1,
@@ -19,7 +19,7 @@ export const COMPETITION_MOCK: Competition[] = [
         date_fin:  '2020-07-21',
         nb_participant:  25,
         nb_max_participant: 100,
-        imgSrc: 'competition_4.jpg'
+        comp_type: 'Dessin'
     },
     {
         id: 2,
@@ -29,7 +29,7 @@ export const COMPETITION_MOCK: Competition[] = [
         date_fin:  '2020-07-21',
         nb_participant:  19,
         nb_max_participant: 100,
-        imgSrc: 'competition_3.jpg'
+        comp_type: 'Art'
     },
     {
         id: 3,
@@ -39,16 +39,36 @@ export const COMPETITION_MOCK: Competition[] = [
         date_fin:  '2020-07-21',
         nb_participant:  100,
         nb_max_participant: 100,
-        imgSrc: 'competition_2.jpg'
+        comp_type: 'Danse'
     },
     {
-        id: 3,
+        id: 4,
         nom:  'Sing Competition',
         description:  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a vehicula nisl. Ut tempor nibh eros, eget blandit erat pulvinar porta. Vestibulum erat libero',
         date_debut:  '2020-06-21',
         date_fin:  '2020-07-21',
         nb_participant:  100,
         nb_max_participant: 100,
-        imgSrc: 'competition_1.jpg'
-    }
+        comp_type: 'Chant'
+    },
+    {
+        id: 5,
+        nom:  'Competition de magie',
+        description:  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a vehicula nisl. Ut tempor nibh eros, eget blandit erat pulvinar porta. Vestibulum erat libero',
+        date_debut:  '2020-06-21',
+        date_fin:  '2020-07-21',
+        nb_participant:  100,
+        nb_max_participant: 100,
+        comp_type: 'Spectacle de magie'
+    },
+    {
+        id: 5,
+        nom:  'Performance de spectacle',
+        description:  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a vehicula nisl. Ut tempor nibh eros, eget blandit erat pulvinar porta. Vestibulum erat libero',
+        date_debut:  '2020-06-21',
+        date_fin:  '2020-07-21',
+        nb_participant:  100,
+        nb_max_participant: 100,
+        comp_type: 'Performance de spectacle'
+    },
 ]

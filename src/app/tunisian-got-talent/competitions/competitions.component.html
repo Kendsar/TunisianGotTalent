@@ -12,18 +12,18 @@
       <div class="col-sm-4">
         <div class="form-group" style="text-align: center; margin: auto 0;">
           <fieldset>
-            <input type="text" [(ngModel)]="filterText" (ngModelChange)="search()" class="form-control" placeholder=""
+            <input type="text" [(ngModel)]="filterText" (ngModelChange)="search()" class="form-control" placeholder="Recherche par Nom, Type....."
               style="padding-left: 32px">
             <i style="position: absolute; top: 13px; left: 13px;" class="nc-icon nc-zoom-split"></i>
           </fieldset>
         </div>
       </div>
-      <div class="col-sm-5">
+      <!-- <div class="col-sm-5">
           <button type="button" class="btn btn-default btn-link" style="float: right;" routerLink="/competitions/new">
             <i class="nc-icon nc-simple-add" style="padding: 5px;"></i>
             Ajouter une compétition
           </button>
-      </div>
+      </div> -->
     </div>
 
     <ng-container *ngIf="data">

@@ -7,11 +7,11 @@
   <div class="container" style="margin: 36px auto;">
 
     <div class="row">
-      <button type="button" class="btn btn-danger btn-just-icon" (click)="location.back()"> 
+      <button type="button" class="btn btn-danger btn-just-icon" (click)="location.back()">
         <i class="fa fa-arrow-left"></i>
       </button>
     </div>
-    
+
     <div class="col-md-8 new-competition-container">
       <h3>Nouvelle competition</h3>
 
@@ -32,6 +32,27 @@
         <label> Description </label>
         <textarea formControlName="description" class="form-control" rows="4"
           placeholder="Décrire la compétition..."></textarea>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <label>Type de compétition</label>
+            <div class="input-group" [ngClass]="{'input-group-focus':focus6===true}">
+              <div class="input-group-prepend">
+              </div>
+              <select formControlName="competition_type" class="form-control" placeholder="Type de compétition"
+                (focus)="focus6=true" (blur)="focus6=false">
+                <option value="Talents divers">Talents divers</option>
+                <option value="Chant">Chant</option>
+                <option value="Spectacle de magie">Spectacle de magie</option>
+                <option value="Danse">Danse</option>
+                <option value="Performance de spectacle">Performance de spectacle</option>
+                <option value="Art">Art</option>
+                <option value="Dessin">Dessin</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
         <div class="row">
           <div class="col-md-6">
