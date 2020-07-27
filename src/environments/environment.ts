@@ -11,9 +11,6 @@ export const wsUrl = {
   authentification: {
     user: "tgt/talent/user/loginUser",
   },
-  entreprise:{
-    getAll:"/tgt/sponsoring/afficherEntreprise"
-  },
   talent: {
     profil: {
       getAll: "/tgt/talent/profil/getAll",
@@ -83,7 +80,9 @@ export const wsUrl = {
     editCompetition: '/tgt/competition/{0}/edit',
     deleteCompetition: '/tgt/competition/delete/{0}'
   },
-  business: {},
+  business: {
+    getAll:"/tgt/sponsoring/afficherSponsoriseByUser"
+  },
   forum: {
     getAll: "/tgt/articles"
   }
