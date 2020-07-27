@@ -6,56 +6,55 @@
 
     <div class="container" style="margin: 36px auto;">
         <div class="row">
-            
+
             <div class="col-6">
                 <img src="./assets/img/entrep.jpg" class="img-fluid" alt="">
             </div>
+                <div class="col-6">
+                    <h4 class="font-weight-bold">Créez votre entreprise</h4>
+                    <p>Ajouter votre entreprise pour profiter des talent exposé à travers notre plaetforme </p>
+                    <form [formGroup]="form" class="mt-4">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="">Nom de l'entreprise</label>
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Lieux de l'entreprise</label>
+                                <input type="text" class="form-control" formControlName="place">
+                            </div>
+                        </div>
 
-            <div class="col-6">
-                <h4 class="font-weight-bold">Créez votre entreprise</h4>
-                <p>Ajouter votre entreprise pour profiter des talent exposé à travers notre plaetforme    </p>
-                <form class="mt-4">
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="">Nom de l'entreprise</label>
-                            <input type="text" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="">Email de l'entreprise</label>
+                                <input type="email" class="form-control" formControlName="email">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Site de l'entreprise</label>
+                                <input type="text" class="form-control" formControlName="site">
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="">Lieux de l'entreprise</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="">Email de l'entreprise</label>
-                            <input type="text" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="">Nombre d'employer</label>
+                                <input type="number" class="form-control" formControlName="nbEmp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Date de création</label>
+                                <input type="date" class="form-control" formControlName="date">
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="">Site de l'entreprise</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="">Nombre d'employer</label>
-                            <input type="text" class="form-control">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <button type="submit" value="Valider" class="btn btn-primary" (click)="addEntreprise()">ADD</button>
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="">Date de création</label>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <input type="submit" value="Valider" class="btn btn-primary">
-                        </div>
-                    </div>
-
-                </form>
-            </div>
+                    </form>
+                </div>
         </div>
     </div>
 </div>

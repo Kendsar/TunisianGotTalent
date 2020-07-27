@@ -14,14 +14,9 @@ export class EntrepriseListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.entrepriseService.getAllEntreprises().subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    this.entrepriseService.getEntrepriseById().subscribe(result=> {
+      console.log('x',result)
+    })
   }
 
 }
