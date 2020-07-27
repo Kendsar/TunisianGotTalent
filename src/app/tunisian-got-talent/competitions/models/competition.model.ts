@@ -5,5 +5,6 @@ export class Competition {
     date_debut: string;
     date_fin: string;
     nb_participant: number;
-    imgSrc: string;
+    nb_max_participant: number;
+    comp_type: string;
 }

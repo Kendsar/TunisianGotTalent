@@ -14,6 +14,7 @@ import { ForumService } from 'app/tunisian-got-talent/forum/services/forum.servi
 import { AddCommentComponent } from 'app/tunisian-got-talent/forum/component/add-comment/add-comment.component';
 import { AddArticleComponent } from 'app/tunisian-got-talent/forum/component/add-article/add-article.component';
 import { ForumShowCommentComponent } from 'app/tunisian-got-talent/forum/component/forum-show-comment/forum-show-comment.component';
+import { format } from 'util';
 
 @Component({
   selector: "app-card",
@@ -24,6 +25,7 @@ export class CardComponent implements OnInit {
   @Input() data;
   @Input() cardType: ECardType;
   @Output() refreshData = new EventEmitter();
+  @Output() cardClick = new EventEmitter();
 
   EcardType = ECardType;
   connectedUser: any;
@@ -38,8 +40,13 @@ export class CardComponent implements OnInit {
   alreadyInFav = true;
   rate: number;
   showRating = false;
+  closed :boolean = false;
+  alreadyParticipate: boolean = false;
+
+  /* Forum Var*/
   message;
 
+  
   constructor(
     private globalService: GlobalService,
     private talentService: TalentService,
@@ -56,6 +63,7 @@ export class CardComponent implements OnInit {
     }
     if (this.cardType == ECardType.EVENT){
       this.initRatingToShow();
+      this.checkEvent(this.data);
     }
   }
 
@@ -72,6 +80,7 @@ export class CardComponent implements OnInit {
         if (this.cardType == ECardType.EVENT){
           this.alreadyInFavorite();
           this.getRateIfExist(this.data.id);
+          this.getParticipationIfExist(this.data.id);
         }
       }
     });
@@ -79,12 +88,13 @@ export class CardComponent implements OnInit {
 
   /* Event Card Logic */
 
-  openDialog() {
-    const modalRef = this.modalService.open(ParticipationComponent);
+  participate() {
     let participate: Participate = new Participate();
     participate.id_user = this.connectedUser.id;
     participate.id_event = this.data.id;
-    console.log("participate",participate)  
+    this.eventService.participate(participate).subscribe(result => {
+      const modalRef = this.modalService.open(ParticipationComponent);
+    })
   }
 
   openDialogComment(x) {
@@ -129,6 +139,11 @@ console.log(this.message);
     });
   }
 
+  emitCardClick(data){
+    console.log('card emitCardClick data', data)
+    this.cardClick.emit(data);
+  }
+
   alreadyInFavorite(){
     this.eventService.isAlreadyInFavorite(this.data.id, this.connectedUser.id).subscribe(result => {
       this.alreadyInFav = result;
@@ -149,6 +164,10 @@ console.log(this.message);
    this.eventService.getRateByEventUserID(eventId, this.connectedUser.id).subscribe(result => { 
      this.rate = result});
   }
+  getParticipationIfExist(eventId){
+   this.eventService.getparticipationByUserID(eventId, this.connectedUser.id).subscribe(result => { 
+     this.alreadyParticipate = result});
+  }
 
   initRatingToShow(){
     const d = Date.parse(this.data.date);
@@ -156,6 +175,20 @@ console.log(this.message);
     if (date < new Date())
     this.showRating = true;
   }
+
+  checkEvent(event){
+    if (event.nbparticipant == 0 || new Date(Date.parse(event.date)) < new Date()){
+      this.closed = true;
+    }
+  }
+
+  GetFormattedDate(date) {
+    var todayTime = new Date(Date.parse(date));
+    var month = format(todayTime .getMonth() + 1);
+    var day = format(todayTime .getDate());
+    var year = format(todayTime .getFullYear());
+    return day + "/" + month + "/" + year;
+}
 
   /* Comment Card Logic*/
 
@@ -196,6 +229,17 @@ console.log(this.message);
     this.talentService.deleteComment(id).subscribe(result => {
       this.refreshData.emit();
     });
+  }
+
+  competitionRateChanged(event, data){
+    if (event>0){
+      let rate = new Rate()
+      console.log('data', data)
+      console.log('event', event)
+      rate.iduser = this.connectedUser.id;
+      rate.value = event;
+      // this.eventService.rateEvent(rate).subscribe();
+    }
   }
 
   myFunction(x) {

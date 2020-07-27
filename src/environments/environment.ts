@@ -11,6 +11,9 @@ export const wsUrl = {
   authentification: {
     user: "tgt/talent/user/loginUser",
   },
+  entreprise:{
+    getAll:"/tgt/sponsoring/afficherEntreprise"
+  },
   talent: {
     profil: {
       getAll: "/tgt/talent/profil/getAll",
@@ -68,14 +71,20 @@ export const wsUrl = {
     },
     participer: {
       getAll: "/tgt/participer/{0}",
-      getparticipationByUserID: "/tgt/participer/show",
+      getparticipationByEventUserID: "/tgt/participer/show/{0}/{1}",
       delete: "/tgt/participer/delete",
       create: "/tgt/participer/new",
     },
   },
+  competition: {
+    getAll: '/tgt/competition/getAll',
+    newMock: '/tgt/competition/newMock',
+    createCompetition: '/tgt/competition/create',
+    editCompetition: '/tgt/competition/{0}/edit',
+    deleteCompetition: '/tgt/competition/delete/{0}'
+  },
   business: {},
   forum: {
     getAll: "/tgt/articles"
-  },
-  competition: {},
+  }
 };

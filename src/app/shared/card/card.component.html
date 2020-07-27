@@ -33,17 +33,18 @@
           </div>
           <div class="col-md-5">
             <div>
-              Date : <span> {{ data.date }} </span>
+              Date : <span> {{ GetFormattedDate(data.date) }} </span>
             </div>
             <!-- <div> Lieu : <span> {{ data.lieux }} </span> </div>  -->
           </div>
         </div>
         <div class="col-md-2">
           <!-- [routerLink]="['/participer', data.id]" -->
-          <button [disabled]="!connectedUser" type="button" class="btn btn-outline-success btn-round"
-            (click)="openDialog()">
+          <button *ngIf="connectedUser && !closed && !alreadyParticipate" type="button" class="btn btn-outline-success btn-round"  (click)="participate()">
             Participer
           </button>
+          <span *ngIf="closed" class="label label-danger closed">Closed</span>
+          <span *ngIf="!closed && alreadyParticipate" class="label label-danger closed" style="width: 135px; padding-top: 8%;">Already Participated</span>
         </div>
       </div>
     </div>
@@ -73,7 +74,7 @@
           </div>
           <div class="col-md-4">
             <div>
-              Date : <span> {{ data.idevent.date }} </span>
+              Date : <span> {{ GetFormattedDate(data.idevent.date) }} </span>
             </div>
           </div>
           <div class="col-md-2">
@@ -85,34 +86,49 @@
         </div>
       </div>
     </div>
+    <div class="row" style="padding: 15px;">
+      <p class="card-text col-md-5"> {{data.description}} </p>
+    </div>
   </div>
 
 
-  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-12">
-    <img src="./../../../assets/img/competitions/{{ data.imgSrc }}" alt="" />
+  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10" (click)="emitCardClick(data)">
+    <img *ngIf="data.comp_type == 'Talents divers'" src="./../../../assets/img/competitions/competition_3.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Chant'" src="./../../../assets/img/competitions/sing_comp.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Spectacle de magie'" src="./../../../assets/img/competitions/magic_comp.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Danse'" src="./../../../assets/img/competitions/danse_comp.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Performance de spectacle'" src="./../../../assets/img/competitions/performance_spectacle_comp.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Art'" src="./../../../assets/img/competitions/art_comp.png" alt="" />
+    <img *ngIf="data.comp_type == 'Dessin'" src="./../../../assets/img/competitions/dessin_comp.jpg" alt="" />
     <div class="card-body">
-      <h5>{{ data.nom }}</h5>
-      <p class="card-text">
+      <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
+        <h5 style="margin: auto 0;">{{ data.nom }}</h5> 
+        <div style="margin: auto">
+            Type :
+            <span style="font-weight: 900; font-size: 12px; padding: 0 6px;"> {{data.comp_type}} </span>
+           </div>
+      </div>
+
+      <p class="card-text comp-card-text">
         {{ data.description }}
       </p>
-      <div>
-        Nombre de participants : <span> {{ data.nb_participant }} </span>
-      </div>
-      <br />
+      <div style="padding: 5px;"><i class="nc-icon nc-circle-10" [ngClass]="{'icon-red': data.full}"></i>
+         <span [ngClass]="{'text-red': data.full}"> Nombre de participants : {{ data.nb_participant }} / {{ data.nb_max_participant }} </span> </div>
       <div class="row">
-        <div class="col-md-10">
-          <div>
-            Date de début : <span> {{ data.date_debut }} </span>
-          </div>
-          <div>
-            Date de fin : <span> {{ data.date_fin }} </span>
+        <div class="col-md-7">
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"
+              [ngClass]="{'icon-red': data.closed}"></i> <span  [ngClass]="{'text-red': data.closed}"> Date de début : {{ data.date_debut }}
+            </span> </div>
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> <span> Date de fin : {{ data.date_fin }} </span>
           </div>
         </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-outline-danger btn-round">
-            Participer
-          </button>
+        <div class="col-md-5" style="display: flex; flex-direction: row; justify-content: space-around;">
+          <span style="margin: auto;"> Évaluer : </span>
+          <bar-rating style="margin: auto; padding-bottom: 18px;" [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating>
         </div>
+      </div>
+      <div class="row" style="flex-direction: row-reverse;">
+        <button type="button" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full"> Participer </button>
       </div>
     </div>
   </div>
@@ -166,7 +182,12 @@
         <p class="text-center">{{data.iduser.username_canonical}}</p>
       </div>
       <div class="card-body" style="width: 50%;">
-        <h5 class="card-title talent-span"> {{ data.talent }} </h5>
+        <!-- <ngb-rating max="5" rate="0">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+          </ng-template>
+        </ngb-rating> -->
+        <h5 style="padding-top: 4%" class="card-title talent-span"> {{ data.talent }} </h5>
         <p class="card-text "> {{data.description}} </p>
         <br>
         <div><span class="talent-span">Talent Category :</span> <span> {{ data.category }} </span> </div>

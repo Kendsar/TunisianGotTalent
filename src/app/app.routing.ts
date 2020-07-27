@@ -4,7 +4,7 @@ import { EventListComponent } from './tunisian-got-talent/events/components/even
 import { TalentListComponent } from './tunisian-got-talent/talents/components/talent-list/talent-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ComponentsComponent } from './components/components.component';
@@ -17,39 +17,56 @@ import { EventsComponent } from './tunisian-got-talent/events/events.component';
 import { CompetitionsComponent } from './tunisian-got-talent/competitions/competitions.component';
 import { BusinessComponent } from './tunisian-got-talent/business/business.component';
 import { ForumComponent } from './tunisian-got-talent/forum/forum.component';
+import { NewCompetitionComponent } from './tunisian-got-talent/competitions/new-competition/new-competition.component';
 import { ParticipationComponent } from './tunisian-got-talent/events/components/participation/participation.component';
 import { FavorisComponent } from './tunisian-got-talent/events/components/favoris/favoris.component';
+import { CompetitionDetailsComponent } from './tunisian-got-talent/competitions/competition-details/competition-details.component';
+import { SponsoriserListComponent } from './tunisian-got-talent/sponsoriser/sponsoriser-list/sponsoriser-list.component';
+import { EntrepriseMainComponent } from './tunisian-got-talent/entreprise/entreprise-main/entreprise-main.component';
+import { EntrepriseListComponent } from './tunisian-got-talent/entreprise/entreprise-list/entreprise-list.component';
+import { EntrepriseAddComponent } from './tunisian-got-talent/entreprise/entreprise-add/entreprise-add.component';
 
-const routes: Routes =[
+const routes: Routes = [
   /** TunisianGotTalent Modules */
-  { path: 'createProfil',        component: NewProfilComponent },
-  { path: 'createProfil/:id',        component: NewProfilComponent },
-  { path: 'profilDetails/:id',        component: TalentProfilDetailsComponent },
-  { path: 'talents',        component: TalentListComponent },
-  { path: 'events',         component: EventListComponent },
-  { path: 'competitions',   component: CompetitionsComponent },
-  { path: 'business',       component: BusinessComponent },
-  { path: 'forum',          component: ForumComponent },
+  // { path: 'entreprises',     component: TalentsComponent },
+  // { path: 'sponsorise',      component: TalentsComponent },
+  { path: 'events', component: EventListComponent },
+  { path: 'profil', component: ProfileComponent },
+  { path: 'createProfil', component: NewProfilComponent },
+  { path: 'createProfil/:id', component: NewProfilComponent },
+  { path: 'profilDetails/:id', component: TalentProfilDetailsComponent },
+  { path: 'talents', component: TalentListComponent },
+  { path: 'events', component: EventListComponent },
+  { path: 'competitions', component: CompetitionsComponent },
+  { path: 'competitions/new', component: NewCompetitionComponent },
+  { path: 'competition/details', component: CompetitionDetailsComponent },
+  { path: 'business', component: BusinessComponent },
+  { path: 'forum', component: ForumComponent },
   { path: 'participer/:id', component: ParticipationComponent },
-  { path: 'favoris/:id',    component: FavorisComponent },
+  { path: 'favoris/:id', component: FavorisComponent },
 
+  /* entreprise & sponsoriser */
+  { path: 'sponsoriser', component: SponsoriserListComponent },
 
+  { path: 'entreprise', component: EntrepriseMainComponent },
+  { path: 'entreprise-list', component: EntrepriseListComponent },
+  { path: 'create-entreprise', component: EntrepriseAddComponent },
 
 
   /** Template */
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home',             component: ComponentsComponent },
-    { path: 'user-profile',     component: ProfileComponent },
-    { path: 'signup',           component: SignupComponent },
-    { path: 'landing',          component: LandingComponent },
-    { path: 'nucleoicons',      component: NucleoiconsComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: ComponentsComponent },
+  { path: 'user-profile', component: ProfileComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'landing', component: LandingComponent },
+  { path: 'nucleoicons', component: NucleoiconsComponent },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
+    RouterModule.forRoot(routes, {
       useHash: true
     })
   ],

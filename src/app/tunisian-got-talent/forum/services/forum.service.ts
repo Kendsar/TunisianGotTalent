@@ -13,7 +13,7 @@ export class ForumService {
   constructor(private httpClient: HttpClient) { }
 
   getAll() {
-    return this.httpClient.get("http://127.0.0.1:8000/tgt/articles",{
+    return this.httpClient.get("/tgt/articles",{
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
@@ -25,7 +25,7 @@ export class ForumService {
 
   
   add(id){
-    return this.httpClient.post("http://127.0.0.1:8000/tgt/reaction/post", id,{
+    return this.httpClient.post("/tgt/reaction/post", id,{
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
@@ -33,7 +33,7 @@ export class ForumService {
   }
   
     getAllComm() {
-    return this.httpClient.get("http://127.0.0.1:8000/tgt/comments",{
+    return this.httpClient.get("/tgt/comments",{
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
@@ -42,7 +42,7 @@ export class ForumService {
 
 
   addComment(comment){
-    return this.httpClient.post("http://127.0.0.1:8000/tgt/comment/post", comment,{
+    return this.httpClient.post("/tgt/comment/post", comment,{
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
@@ -50,7 +50,7 @@ export class ForumService {
   }
 
   addArticle(a){
-    return this.httpClient.post("http://127.0.0.1:8000/tgt/article/post", a,{
+    return this.httpClient.post("/tgt/article/post", a,{
       headers: {
         'Access-Control-Allow-Origin': '*',
       },

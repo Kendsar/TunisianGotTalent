@@ -1,1 +1,20 @@
-<p>events works</p>
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/tgt_003.jpg');">
+    <div class="filter"></div>
+</div>
+  <div class="container" style="margin: 36px auto;">
+
+    <div class="row" style="padding: 20px;">
+
+      <div class="col-sm-4">
+        <div class="form-group" style="text-align: center; margin: auto 0;">
+          <input type="text" class="form-control" placeholder="Chercher un évènement">
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="data">
+      <app-card-list [pageSize]="2" [data]="data" [cardType]="EcardType.EVENT"></app-card-list>
+    </ng-container>
+  </div>
+</div>

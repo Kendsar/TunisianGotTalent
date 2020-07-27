@@ -9,13 +9,15 @@
 }
 
 .competition-card {
-  height: 300px;
+  height: 240px;
+  margin: 36px auto;
+  cursor: pointer;
 
   img {
     height: 100%;
     width: 32.5%;
     max-width: 32.5%;
-    max-height: 211px;
+    max-height: 240px;
     border-bottom-left-radius: 12px;
     border-top-left-radius: 12px;
   }
@@ -26,13 +28,21 @@
   }
 }
 
+.event-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
 .star {
   font-size: 40px;
   color: #b0c4de;
 }
+
 .filled {
   color: #ffd700 !important;
 }
+
 .filled.bad {
   color: #ff1e1e !important;
 }
@@ -42,7 +52,7 @@
 }
 
 .evenement-card {
-  height: 270px;
+  height: 300px;
 
   img {
     height: 100%;
@@ -77,6 +87,21 @@
   }
 }
 
+.nc-icon {
+  font-size: 15px;
+  padding: 0 8px;
+}
+
+.br-default {
+  margin: auto;
+}
+
+.icon-red,
+.text-red {
+  color: red;
+  font-weight: normal;
+  font-size: 14px;
+}
 
 .comment-img {
   max-width: 35% !important;
@@ -102,6 +127,20 @@
   color: #b0c4de;
 }
 
+.closed {
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  padding-top: 12%;
+  font-size: 15px;
+}
+
+.comp-card-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .fa {
   font-size: 50px;
   cursor: pointer;
@@ -114,5 +153,4 @@
   padding-left: 20px;
 }
 .comment{
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
