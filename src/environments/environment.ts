@@ -73,7 +73,13 @@ export const wsUrl = {
       create: "/tgt/participer/new",
     },
   },
+  competition: {
+    getAll: '/tgt/competition/getAll',
+    newMock: '/tgt/competition/newMock',
+    createCompetition: '/tgt/competition/create',
+    editCompetition: '/tgt/competition/{0}/edit',
+    deleteCompetition: '/tgt/competition/delete/{0}'
+  },
   business: {},
   forum: {},
-  competition: {},
 };
