@@ -11,7 +11,7 @@ export class EntrerpiseService {
   constructor(private http: HttpClient) { }
 
   getAllEntreprises() {
-    return this.http.get<any>(wsUrl.entreprise.getAll, {
+    return this.http.get<any>(wsUrl.business.getAll, {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },

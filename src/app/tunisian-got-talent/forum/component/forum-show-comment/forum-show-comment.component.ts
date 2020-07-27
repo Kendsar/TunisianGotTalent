@@ -9,8 +9,7 @@ import { ForumService } from '../../services/forum.service';
   styleUrls: ['./forum-show-comment.component.css']
 })
 export class ForumShowCommentComponent implements OnInit {
-  @Input() data;
-  message;
+  @Input() message;
 
 
   constructor(
@@ -22,6 +21,4 @@ export class ForumShowCommentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
 }

@@ -1,4 +1,4 @@
 export class ForumShowComment {
-    article_id?: any;
-    value?: any;
+    user_id: string;
+    value: string;
 }

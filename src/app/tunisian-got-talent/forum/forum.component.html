@@ -7,7 +7,7 @@
 <button type="button" class="btnFilter btn-outline-danger " (click)="a('other')" >other</button>  
 
 <div class="container" style="margin: 36px auto;">
-  <button type="button" class="btnFilter btn-outline-danger "  (click)="openDialogArticle()">add article</button>  
+  <button *ngIf="connectedUser" type="button" class="btnFilter btn-outline-danger "  (click)="openDialogArticle()">add article</button>  
 
     <ng-container *ngIf="data">
       <app-card-list [pageSize]="3" [data]="data" [cardType]="EcardType.FORUM"></app-card-list>

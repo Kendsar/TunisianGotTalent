@@ -1,44 +1,44 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ForumService } from '../../services/forum.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ForumService } from "../../services/forum.service";
+import { GlobalService } from "app/tunisian-got-talent/shared/shared.services";
 
 @Component({
-  selector: 'app-add-comment',
-  templateUrl: './add-comment.component.html',
-  styleUrls: ['./add-comment.component.css']
+  selector: "app-add-comment",
+  templateUrl: "./add-comment.component.html",
+  styleUrls: ["./add-comment.component.css"],
 })
 export class AddCommentComponent implements OnInit {
   @Input() id;
-  constructor(public activeModal: NgbActiveModal, private forumService:ForumService) {
-
-   }
-  
   message;
-  ngOnInit(): void {
- 
-    
-  }
-
+  connectedUser;
   addForm = new FormGroup({
     value: new FormControl("", Validators.required),
-    article_id: new FormControl()
-
+    article_id: new FormControl(),
+    user_id: new FormControl(),
   });
-  
-  add(id){
-    
-    console.log(id);
-    
-    this.addForm.controls.article_id.setValue(id);
-    console.log(this.addForm.value);
+  constructor(
+    public activeModal: NgbActiveModal,
+    private forumService: ForumService,
+    private globalService: GlobalService,
+  ) {}
 
-    this.forumService.addComment(this.addForm.value).subscribe( res => {
-      this.message = res;
-       console.log(this.message);
-});
-      
-
+  ngOnInit(): void {
+    this.getConnectedUser();
+  }
+  getConnectedUser() {
+    this.globalService.getConnectedUser().subscribe((result) => {
+      this.connectedUser = result;
+    });
   }
 
+  add(id) {
+    this.addForm.controls.article_id.setValue(id);
+    this.addForm.controls.user_id.setValue(this.connectedUser.id);
+    this.forumService.addComment(this.addForm.value).subscribe((res) => {
+      this.message = res;
+      this.activeModal.close();
+    });
+  }
 }

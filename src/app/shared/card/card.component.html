@@ -134,7 +134,7 @@
   </div>
 
 
-  <div *ngSwitchCase="EcardType.FORUM" class="competition-card card row col-md-12">
+  <div *ngSwitchCase="EcardType.FORUM" class="forum-card card row col-md-12">
     <div class="col-md-3" style="padding: 3%">
       <img src="/assets/img/competitions/{{ data.user.photo }}" class="img-thumbnail img-responsive"
         alt="Rounded Image" />
@@ -162,18 +162,18 @@
           </div>
         </div>
         <div class="col-md-2 comment">
-          <button (click)="openDialogComment(data.id)" type="button" class="btnForum btn-outline-danger btn-round">
+          <button *ngIf="connectedUser" (click)="openDialogComment(data.id)" type="button" class="btnForum btn-outline-danger btn-round">
             Comment
           </button>
         </div>
-        <button (click)="openDialogShowComment(data.value)" type="button" class="btnForum btn-outline-danger btn-round">
+        <button (click)="openDialogShowComment(data.id)" type="button" class="btnForum btn-outline-danger btn-round">
           Show comments
         </button>
       </div>
     </div>
   </div>
 
- 
+
 
   <div *ngSwitchCase="EcardType.TALENT" class="card col-md-12">
     <div class="row">

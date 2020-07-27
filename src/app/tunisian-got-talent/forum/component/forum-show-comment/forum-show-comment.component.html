@@ -1,17 +1,22 @@
-<p>all comments</p>
-  <div class="card-body">
-    <h4></h4>
-    <div>
-      Comment: <span>{{data?.value}}</span>
-    </div>
-    <h5></h5>
-    <p class="card-text">
-    </p>
-    <br />
-    <div class="row">
-      <div class="col-md-10">
+<div *ngIf="message.length > 0">
+  <ng-container *ngFor="let item of message">
+    <div class="card-body">
+      <div>
+        User: <span>{{ item.user.username }}</span>
+      </div>
+      <div>
+        Comment: <span>{{ item.value }}</span>
       </div>
     </div>
-  </div>
-
-
+    <hr />
+  </ng-container>
+</div>
+<div *ngIf="message.length == 0">
+  <ng-container>
+    <div class="card-body">
+      <div>
+        <span>No Comments !</span>
+      </div>
+    </div>
+  </ng-container>
+</div>
