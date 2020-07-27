@@ -11,6 +11,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParticipationComponent } from 'app/tunisian-got-talent/events/components/participation/participation.component';
 import { Participate, Rate } from 'app/tunisian-got-talent/events/models/event.model';
 import { ForumService } from 'app/tunisian-got-talent/forum/services/forum.service';
+import { AddCommentComponent } from 'app/tunisian-got-talent/forum/component/add-comment/add-comment.component';
+import { AddArticleComponent } from 'app/tunisian-got-talent/forum/component/add-article/add-article.component';
+import { ForumShowCommentComponent } from 'app/tunisian-got-talent/forum/component/forum-show-comment/forum-show-comment.component';
 
 @Component({
   selector: "app-card",
@@ -36,7 +39,7 @@ export class CardComponent implements OnInit {
   rate: number;
   showRating = false;
   message;
-  
+
   constructor(
     private globalService: GlobalService,
     private talentService: TalentService,
@@ -82,6 +85,35 @@ export class CardComponent implements OnInit {
     participate.id_user = this.connectedUser.id;
     participate.id_event = this.data.id;
     console.log("participate",participate)  
+  }
+
+  openDialogComment(x) {
+    const modalRef = this.modalService.open(AddCommentComponent);
+
+    modalRef.componentInstance.id = x;
+
+    //let participate: Participate = new Participate();
+   // participate.id_user = this.connectedUser.id;
+   // participate.id_event = this.data.id;
+    //console.log("participate",participate)  
+  }
+
+  openDialogShowComment(value){
+    const modalRef = this.modalService.open(ForumShowCommentComponent);
+    modalRef.componentInstance.value = value;
+    this.forumService.getAllComm().subscribe( res => {
+      this.message = res;
+
+});
+console.log(this.message);
+  }
+
+  openDialogArticle() {
+    const modalRef = this.modalService.open(AddArticleComponent);
+    //let participate: Participate = new Participate();
+   // participate.id_user = this.connectedUser.id;
+   // participate.id_event = this.data.id;
+    //console.log("participate",participate)  
   }
 
   addFavorisAction(eventId){
@@ -165,6 +197,7 @@ export class CardComponent implements OnInit {
       this.refreshData.emit();
     });
   }
+
   myFunction(x) {
     // x.classList.toggle("fa-thumbs-down");
     this.addForm.controls.article_id.setValue(x);

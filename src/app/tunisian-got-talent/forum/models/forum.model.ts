@@ -5,3 +5,6 @@ export class Forum {
     dateCr: string;
     categ: string;
 }
+
+
+

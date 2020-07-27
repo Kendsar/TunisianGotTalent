@@ -1,0 +1,31 @@
+<div class="container" style="margin: 36px auto;">
+    <p>Hello, {{id}}!</p>
+
+      <form [formGroup]="addForm">
+        <div class="row search-block">
+       
+          
+          <div class="col-sm-9">
+            <div class="form-group has-success">
+        
+              <input
+                type="text"
+                class="form-control form-control-success"
+                formControlName="value"
+                placeholder="create comment" 
+              />
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <button
+              type="button"
+              class="btn btn-success btn-round reset-btn"
+              (click)="add(id)"
+            >
+              post 
+            </button>
+          </div>
+        </div>
+      </form>
+    
+  </div>

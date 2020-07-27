@@ -3,6 +3,8 @@ import { FORUM_MOCK } from './models/mock';
 import { ECardType } from 'app/shared/card-list/card-list.component';
 import { ForumService } from './services/forum.service';
 import { finalize } from 'rxjs/operators';
+import { AddArticleComponent } from './component/add-article/add-article.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-forum',
@@ -11,7 +13,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class ForumComponent implements OnInit {
 
-  constructor(private forumService: ForumService, ) { }
+  constructor(private forumService: ForumService, private modalService: NgbModal) { }
 
   data1 = FORUM_MOCK;
   EcardType = ECardType;
@@ -45,5 +47,10 @@ export class ForumComponent implements OnInit {
  filterByString(d,s) {
    return d.filter(e => e.category.includes(s))
       .sort((a,b) => a.category.includes(s) && !b.category.includes(s) ? -1 : b.category.includes(s) && !a.category.includes(s) ? 1 :0);
+}
+
+openDialogArticle() {
+  const modalRef = this.modalService.open(AddArticleComponent);
+
 }
 }
