@@ -19,13 +19,13 @@ export class Favoris {
 }
 
 export class Participate {
-  id?:any;
-  id_user?:any;
-  id_event?:any;    
+  id?: any;
+  id_user?: any;
+  id_event?: any;
 }
 
 export class Rate {
-  idevent?:any;
-  iduser?:any;
-  value?:any;    
+  idevent?: any;
+  iduser?: any;
+  value?: any;
 }

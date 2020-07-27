@@ -140,3 +140,17 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+  padding-left: 20px;
+}
+
+.fa:hover {
+  color: darkblue;
+  padding-left: 20px;
+}
+.comment{
+  margin-bottom: 20px; }

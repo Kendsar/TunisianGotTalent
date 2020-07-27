@@ -34,6 +34,81 @@
         background-color: transparent;
     }
 }
+
+.btnForum{
+    box-sizing: border-box;
+    border-width: $border-thick;
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    padding: .5rem $padding-base-horizontal;
+    line-height: 1.75;
+    margin-right: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &.btn-border,
+    &.btn-link{
+        background-color: $transparent-bg;
+    }
+
+    @include btn-styles($default-color, $default-states-color);
+    @include transition($fast-transition-time, linear);
+
+    &:hover,
+    &:focus{
+        outline: 0 !important;
+        @include box-shadow(none);
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+         @include box-shadow(none);
+         outline: 0 !important;
+    }
+
+    &[class*="btn-outline-"]{
+        background-image: none;
+        background-color: white;
+    }
+}
+
+.btnFilter{
+    box-sizing: border-box;
+    border-width: $border-thick;
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    padding: .5rem $padding-base-horizontal;
+    line-height: 1.75;
+    margin-right: -2px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &.btn-border,
+    &.btn-link{
+        background-color: $transparent-bg;
+    }
+
+    @include btn-styles($default-color, $default-states-color);
+    @include transition($fast-transition-time, linear);
+
+    &:hover,
+    &:focus{
+        outline: 0 !important;
+        @include box-shadow(none);
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+         @include box-shadow(none);
+         outline: 0 !important;
+    }
+
+    &[class*="btn-outline-"]{
+        background-image: none;
+        background-color: transparent;
+    }
+}
+
 .btn-just-icon{
     border-radius: $border-radius-btn-large;
     height: 40px;

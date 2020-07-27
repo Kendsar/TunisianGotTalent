@@ -37,5 +37,6 @@ export enum ECardType {
   EVENT = "EVENT",
   TALENT = "TALENT",
   COMMENT = "COMMENT",
-  FAVORIS = "FAVORIS"
+  FAVORIS = "FAVORIS",
+  FORUM = "FORUM",
 }

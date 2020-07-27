@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { EventService } from './../../tunisian-got-talent/events/services/event.service';
 import { Comment } from './../../tunisian-got-talent/talents/models/talent.models';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { TalentService } from "./../../tunisian-got-talent/talents/services/talent.services";
 import { GlobalService } from "./../../tunisian-got-talent/shared/shared.services";
@@ -10,6 +10,10 @@ import { ECardType } from "./../card-list/card-list.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParticipationComponent } from 'app/tunisian-got-talent/events/components/participation/participation.component';
 import { Participate, Rate } from 'app/tunisian-got-talent/events/models/event.model';
+import { ForumService } from 'app/tunisian-got-talent/forum/services/forum.service';
+import { AddCommentComponent } from 'app/tunisian-got-talent/forum/component/add-comment/add-comment.component';
+import { AddArticleComponent } from 'app/tunisian-got-talent/forum/component/add-article/add-article.component';
+import { ForumShowCommentComponent } from 'app/tunisian-got-talent/forum/component/forum-show-comment/forum-show-comment.component';
 import { format } from 'util';
 
 @Component({
@@ -38,6 +42,10 @@ export class CardComponent implements OnInit {
   showRating = false;
   closed :boolean = false;
   alreadyParticipate: boolean = false;
+
+  /* Forum Var*/
+  message;
+
   
   constructor(
     private globalService: GlobalService,
@@ -45,6 +53,7 @@ export class CardComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal,
     private eventService: EventService,
+    private forumService: ForumService
   ) {}
 
   ngOnInit() {
@@ -58,6 +67,9 @@ export class CardComponent implements OnInit {
     }
   }
 
+  addForm = new FormGroup({
+    article_id: new FormControl("", Validators.required)
+  });
   getConnectedUser() {
     this.globalService.getConnectedUser().subscribe((result) => {
       this.connectedUser = result;
@@ -83,6 +95,35 @@ export class CardComponent implements OnInit {
     this.eventService.participate(participate).subscribe(result => {
       const modalRef = this.modalService.open(ParticipationComponent);
     })
+  }
+
+  openDialogComment(x) {
+    const modalRef = this.modalService.open(AddCommentComponent);
+
+    modalRef.componentInstance.id = x;
+
+    //let participate: Participate = new Participate();
+   // participate.id_user = this.connectedUser.id;
+   // participate.id_event = this.data.id;
+    //console.log("participate",participate)  
+  }
+
+  openDialogShowComment(value){
+    const modalRef = this.modalService.open(ForumShowCommentComponent);
+    modalRef.componentInstance.value = value;
+    this.forumService.getAllComm().subscribe( res => {
+      this.message = res;
+
+});
+console.log(this.message);
+  }
+
+  openDialogArticle() {
+    const modalRef = this.modalService.open(AddArticleComponent);
+    //let participate: Participate = new Participate();
+   // participate.id_user = this.connectedUser.id;
+   // participate.id_event = this.data.id;
+    //console.log("participate",participate)  
   }
 
   addFavorisAction(eventId){
@@ -199,5 +240,17 @@ export class CardComponent implements OnInit {
       rate.value = event;
       // this.eventService.rateEvent(rate).subscribe();
     }
+  }
+
+  myFunction(x) {
+    // x.classList.toggle("fa-thumbs-down");
+    this.addForm.controls.article_id.setValue(x);
+    console.log(this.addForm.value);
+    
+ this.forumService.add(this.addForm.value).subscribe( res => {
+                  this.message = res;
+                   console.log(this.message);
+    });
+    console.log(x);
   }
 }

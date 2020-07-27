@@ -84,5 +84,7 @@ export const wsUrl = {
     deleteCompetition: '/tgt/competition/delete/{0}'
   },
   business: {},
-  forum: {},
+  forum: {
+    getAll: "/tgt/articles"
+  }
 };
