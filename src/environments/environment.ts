@@ -11,6 +11,9 @@ export const wsUrl = {
   authentification: {
     user: "tgt/talent/user/loginUser",
   },
+  entreprise:{
+    getAll:"/tgt/sponsoring/afficherEntreprise"
+  },
   talent: {
     profil: {
       getAll: "/tgt/talent/profil/getAll",

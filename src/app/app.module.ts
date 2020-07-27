@@ -18,11 +18,24 @@ import { TalentsModule } from './tunisian-got-talent/talents/talents.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
+/* import entreprise & sponsoriser components */
+
+import { EntrepriseAddComponent } from './tunisian-got-talent/entreprise/entreprise-add/entreprise-add.component';
+import { EntrepriseListComponent } from './tunisian-got-talent/entreprise/entreprise-list/entreprise-list.component';
+import { EntrepriseMainComponent } from './tunisian-got-talent/entreprise/entreprise-main/entreprise-main.component';
+
+import { SponsoriserListComponent } from './tunisian-got-talent/sponsoriser/sponsoriser-list/sponsoriser-list.component';
+
 /** TO-DO LAZY LOADING */
 const TUNISIAN_GOT_TALENT_MODULES = [BusinessModule, CompetitionsModule, EventsModule, ForumModule, TalentsModule];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EntrepriseAddComponent,
+    EntrepriseListComponent,
+    EntrepriseMainComponent,
+    SponsoriserListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +48,7 @@ const TUNISIAN_GOT_TALENT_MODULES = [BusinessModule, CompetitionsModule, EventsM
 
     SharedModule,
     CoreModule,
-    
+
     TUNISIAN_GOT_TALENT_MODULES,
 
     HttpClientModule,
