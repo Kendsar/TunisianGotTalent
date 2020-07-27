@@ -93,7 +93,7 @@
 </div>
 
 
-  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10">
+  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10" (click)="emitCardClick(data)">
     <img *ngIf="data.comp_type == 'Talents divers'" src="./../../../assets/img/competitions/competition_3.jpg" alt="" />
     <img *ngIf="data.comp_type == 'Chant'" src="./../../../assets/img/competitions/sing_comp.jpg" alt="" />
     <img *ngIf="data.comp_type == 'Spectacle de magie'" src="./../../../assets/img/competitions/magic_comp.jpg" alt="" />
@@ -102,7 +102,7 @@
     <img *ngIf="data.comp_type == 'Art'" src="./../../../assets/img/competitions/art_comp.png" alt="" />
     <img *ngIf="data.comp_type == 'Dessin'" src="./../../../assets/img/competitions/dessin_comp.jpg" alt="" />
     <div class="card-body">
-      <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
+      <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
         <h5 style="margin: auto 0;">{{ data.nom }}</h5> 
         <div style="margin: auto">
             Type :
@@ -110,7 +110,7 @@
            </div>
       </div>
 
-      <p class="card-text">
+      <p class="card-text comp-card-text">
         {{ data.description }}
       </p>
       <div style="padding: 5px;"><i class="nc-icon nc-circle-10" [ngClass]="{'icon-red': data.full}"></i>
@@ -124,10 +124,12 @@
           </div>
         </div>
         <div class="col-md-5" style="display: flex; flex-direction: row; justify-content: space-around;">
-          <div><button type="button" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full">
-              Participer </button></div>
-          <bar-rating [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating>
+          <span style="margin: auto;"> Évaluer : </span>
+          <bar-rating style="margin: auto; padding-bottom: 18px;" [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating>
         </div>
+      </div>
+      <div class="row" style="flex-direction: row-reverse;">
+        <button type="button" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full"> Participer </button>
       </div>
     </div>
   </div>

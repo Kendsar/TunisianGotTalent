@@ -1,9 +1,9 @@
 
 <ng-container *ngFor="let item of data | slice: (pageIndex-1) * pageSize : (pageIndex-1) * pageSize + pageSize">
-    <app-card (refreshData)="refresh($event)" [data]="item" [cardType]="cardType"></app-card>
+    <app-card (refreshData)="refresh($event)" [data]="item" [cardType]="cardType" (cardClick)="emitCardClick($event)"></app-card>
 </ng-container>
 
-<div class="row">
+<div *ngIf="data && data.length > 0" class="row">
   <ngb-pagination 
   style="margin: auto;"
   [collectionSize]="data.length"

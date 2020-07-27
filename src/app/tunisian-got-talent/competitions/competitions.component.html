@@ -5,29 +5,37 @@
   </div>
   <div class="container" style="margin: 36px auto;">
 
-    <div class="row" style="padding: 20px;">
-      <div class="col-sm-3" style="text-align: center; margin: auto 0;">
-        Chercher une compétition :
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group" style="text-align: center; margin: auto 0;">
-          <fieldset>
-            <input type="text" [(ngModel)]="filterText" (ngModelChange)="search()" class="form-control" placeholder="Recherche par Nom, Type....."
-              style="padding-left: 32px">
-            <i style="position: absolute; top: 13px; left: 13px;" class="nc-icon nc-zoom-split"></i>
+    <ng-container *ngIf="showCompDetails">
+      <app-competition-details [comp]="competitionDetails" (back)="showCompDetails = false"></app-competition-details>
+    </ng-container>
+    
+    <ng-container *ngIf="!showCompDetails">
+      <div class="row" style="padding: 20px;">
+        <div class="col-sm-1" style="text-align: center; margin: auto 0;">
+          <div class="loop">
+            <img src="assets/img/zoom-2.png" alt="Loop">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group" style="text-align: center; margin: auto 0;">
+            <fieldset>
+              <input type="text" [(ngModel)]="filterText" (ngModelChange)="search()" class="form-control" placeholder="Chercher une compétition par Nom, Type.....">
+              <!-- <i style="position: absolute; top: 13px; left: 13px;" class="nc-icon nc-zoom-split"></i> -->
           </fieldset>
         </div>
       </div>
       <!-- <div class="col-sm-5">
-          <button type="button" class="btn btn-default btn-link" style="float: right;" routerLink="/competitions/new">
+        <button type="button" class="btn btn-default btn-link" style="float: right;" routerLink="/competitions/new">
             <i class="nc-icon nc-simple-add" style="padding: 5px;"></i>
             Ajouter une compétition
           </button>
-      </div> -->
-    </div>
-
-    <ng-container *ngIf="data">
-      <app-card-list [pageSize]="3" [data]="filteredData" [cardType]="EcardType.COMPETITION"></app-card-list>
+        </div> -->
+      </div>
+      
+      <ng-container *ngIf="filteredData">
+        <div class="col-md-10" style="margin: 36px auto;" *ngIf="filteredData.length == 0"> Pas de résultat pour cette recherche.. </div>
+        <app-card-list [pageSize]="3" [data]="filteredData" [cardType]="EcardType.COMPETITION" (cardClick)="seeCompDetails($event)"></app-card-list>
+      </ng-container>
     </ng-container>
   </div>
 </div>

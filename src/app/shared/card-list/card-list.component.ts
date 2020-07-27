@@ -14,6 +14,7 @@ export class CardListComponent implements OnInit {
   @Input() pageSize = 2;
   
   @Output() refreshData = new EventEmitter();
+  @Output() cardClick = new EventEmitter();
   
   constructor() { }
 
@@ -22,6 +23,11 @@ export class CardListComponent implements OnInit {
 
   refresh(event){
     this.refreshData.emit(event);
+  }
+
+  emitCardClick(data){
+    console.log('card list emitCardClick data', data)
+    this.cardClick.emit(data);
   }
 
 }

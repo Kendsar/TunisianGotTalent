@@ -21,6 +21,7 @@ export class CardComponent implements OnInit {
   @Input() data;
   @Input() cardType: ECardType;
   @Output() refreshData = new EventEmitter();
+  @Output() cardClick = new EventEmitter();
 
   EcardType = ECardType;
   connectedUser: any;
@@ -95,6 +96,11 @@ export class CardComponent implements OnInit {
     this.eventService.deleteFromFavoris(eventId, this.connectedUser.id).subscribe(result => {
       this.refreshData.emit();
     });
+  }
+
+  emitCardClick(data){
+    console.log('card emitCardClick data', data)
+    this.cardClick.emit(data);
   }
 
   alreadyInFavorite(){

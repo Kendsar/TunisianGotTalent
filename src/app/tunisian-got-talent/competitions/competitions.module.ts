@@ -7,6 +7,8 @@ import { CompetitionDataFactoryService } from './factory/competition-data-factor
 import { NewCompetitionComponent } from './new-competition/new-competition.component';
 import { ComponentsModule } from 'app/components/components.module';
 import { RouterModule } from '@angular/router';
+import { CompetitionDetailsComponent } from './competition-details/competition-details.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   imports: [
@@ -15,9 +17,10 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ComponentsModule
+    ComponentsModule,
+    BarRatingModule
   ],
   providers: [CompetitionDataFactoryService, DatePipe],
-  declarations: [CompetitionsComponent, NewCompetitionComponent]
+  declarations: [CompetitionsComponent, NewCompetitionComponent, CompetitionDetailsComponent]
 })
 export class CompetitionsModule { }

@@ -11,6 +11,7 @@
 .competition-card {
   height: 240px;
   margin: 36px auto;
+  cursor: pointer;
 
   img {
     height: 100%;
@@ -21,25 +22,27 @@
     border-top-left-radius: 12px;
   }
 
-    div.card-body {
-        width: 62.5%;
-        height: 100%;
-    }
+  div.card-body {
+    width: 62.5%;
+    height: 100%;
+  }
 }
 
 .event-card {
-    display: flex;
-    flex-direction: column;
-    padding: 32px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
 }
 
 .star {
   font-size: 40px;
   color: #b0c4de;
 }
+
 .filled {
   color: #ffd700 !important;
 }
+
 .filled.bad {
   color: #ff1e1e !important;
 }
@@ -85,15 +88,16 @@
 }
 
 .nc-icon {
-    font-size: 15px;
-    padding: 0 8px;
+  font-size: 15px;
+  padding: 0 8px;
 }
 
 .br-default {
-    margin: auto;
+  margin: auto;
 }
 
-.icon-red, .text-red {
+.icon-red,
+.text-red {
   color: red;
   font-weight: normal;
   font-size: 14px;
@@ -129,4 +133,10 @@
   text-align: center;
   padding-top: 12%;
   font-size: 15px;
+}
+
+.comp-card-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
