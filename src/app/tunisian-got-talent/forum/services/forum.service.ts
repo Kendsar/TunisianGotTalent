@@ -51,4 +51,13 @@ export class ForumService {
       },
     });
   }
+
+  getLikeByArticle(articleId): Observable<any>{
+    const url = StringFormat("/tgt/article/reaction/{0}", articleId);
+    return this.httpClient.get<any>(url, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
 }

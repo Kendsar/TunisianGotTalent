@@ -140,8 +140,12 @@
         alt="Rounded Image" />
     </div>
 
-    <div class="col-md-2">
-      <i (click)="myFunction(data.id)" class="fa fa-thumbs-up"></i>
+    <div class="col-md-2" style="padding-left: 5% !important;">
+      <h3 >{{nbLikes}}</h3>
+    </div>
+
+    <div *ngIf="connectedUser" class="col-md-2" style="padding-left: 2% !important;">
+      <i (click)="myFunction(data.id)" class="m-like fa fa-thumbs-up"></i>
       <label></label>
     </div>
 

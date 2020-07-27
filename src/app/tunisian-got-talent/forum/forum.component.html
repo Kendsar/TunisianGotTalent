@@ -2,9 +2,12 @@
   <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/tgt_002.png');">
     <div class="filter"></div>
 </div>
-<button type="button" class="btnFilter btn-outline-danger " (click)="a('event')" >events</button>  
-<button type="button" class="btnFilter btn-outline-danger " (click)="a('competions')" >competitions</button>  
-<button type="button" class="btnFilter btn-outline-danger " (click)="a('other')" >other</button>  
+<div style="text-align: center;padding-top: 1%;">
+  <button style="margin-right: 1%;" type="button" class="btnFilter btn-outline-danger " (click)="a('event')" >events</button>  
+  <button style="margin-right: 1%;" type="button" class="btnFilter btn-outline-danger " (click)="a('competions')" >competitions</button>  
+  <button type="button" class="btnFilter btn-outline-danger " (click)="a('other')" >other</button>  
+</div>
+
 
 <div class="container" style="margin: 36px auto;">
   <button *ngIf="connectedUser" type="button" class="btnFilter btn-outline-danger "  (click)="openDialogArticle()">add article</button>  

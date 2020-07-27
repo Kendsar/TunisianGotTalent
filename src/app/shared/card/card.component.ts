@@ -48,6 +48,7 @@ export class CardComponent implements OnInit {
 
   /* Forum Var*/
   message;
+  nbLikes = 0;
 
   constructor(
     private globalService: GlobalService,
@@ -66,6 +67,9 @@ export class CardComponent implements OnInit {
     if (this.cardType == ECardType.EVENT) {
       this.initRatingToShow();
       this.checkEvent(this.data);
+    }
+    if (this.cardType == ECardType.FORUM) {
+      this.countNbLikes(this.data.id);
     }
   }
 
@@ -263,8 +267,16 @@ export class CardComponent implements OnInit {
 
     this.forumService.add(this.addForm.value).subscribe((res) => {
       this.message = res;
-      console.log(this.message);
+      this.nbLikes ++;
     });
-    console.log(x);
+    
+  }
+
+  countNbLikes(articleId){
+    this.forumService.getLikeByArticle(articleId).subscribe(res => {
+      res.forEach(item =>{
+        this.nbLikes ++
+      })
+    });
   }
 }
