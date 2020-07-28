@@ -52,10 +52,10 @@
 }
 
 .evenement-card {
-  height: 300px;
+  height: 280px;
 
   img {
-    height: 100%;
+    min-height: 280px;
     width: 32.5%;
     max-width: 32.5%;
     max-height: 211px;
@@ -70,10 +70,10 @@
 }
 
 .favoris-card {
-  height: 211px;
+  height: 250px;
 
   img {
-    height: 100%;
+    min-height: 250px;
     width: 32.5%;
     max-width: 32.5%;
     max-height: 211px;
