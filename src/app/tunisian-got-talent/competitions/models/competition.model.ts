@@ -8,3 +8,9 @@ export class Competition {
     nb_max_participant: number;
     comp_type: string;
 }
+
+export class CompetitionRate {
+    compId?: any;
+    connectedUserId?: any;
+    rateValue?: any;
+  }

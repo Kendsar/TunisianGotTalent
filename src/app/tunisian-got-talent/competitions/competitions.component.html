@@ -34,7 +34,7 @@
       
       <ng-container *ngIf="filteredData">
         <div class="col-md-10" style="margin: 36px auto;" *ngIf="filteredData.length == 0"> Pas de résultat pour cette recherche.. </div>
-        <app-card-list [pageSize]="3" [data]="filteredData" [cardType]="EcardType.COMPETITION" (cardClick)="seeCompDetails($event)"></app-card-list>
+        <app-card-list [pageSize]="3" [data]="filteredData" [cardType]="EcardType.COMPETITION" (cardClick)="seeCompDetails($event)" (participateToCompetition)="participateComp($event);"></app-card-list>
       </ng-container>
     </ng-container>
   </div>

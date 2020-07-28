@@ -1,6 +1,6 @@
 
 <ng-container *ngFor="let item of data | slice: (pageIndex-1) * pageSize : (pageIndex-1) * pageSize + pageSize">
-    <app-card (refreshData)="refresh($event)" [data]="item" [cardType]="cardType" (cardClick)="emitCardClick($event)"></app-card>
+    <app-card (refreshData)="refresh($event)" [data]="item" [cardType]="cardType" (cardClick)="emitCardClick($event)" (participateToCompetition)="competitionParticipate($event)"></app-card>
 </ng-container>
 
 <div *ngIf="data && data.length > 0" class="row">

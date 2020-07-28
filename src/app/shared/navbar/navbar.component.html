@@ -45,7 +45,7 @@
                     <a [routerLink]="['/signup']" *ngIf="!connectedUser" class="nav-link"><i class="fa fa-user"></i><span style="vertical-align: sub">Sign In</span></a>
                 </li>
                 <li *ngIf="connectedUser" class="nav-item">
-                    <a class="nav-link" (click)="logOut()"><span style="vertical-align: sub; color: #dc3545;">Log Out</span></a>
+                    <a class="nav-link" (click)="logOut()"><span style="vertical-align: sub; color: #dc3545; cursor: pointer;">Log Out</span></a>
                 </li>
                 <li class="nav-item" *ngIf="!isHome()">
                     <a [routerLink]="['/home']" *ngIf="!isDocumentation()" class="nav-link"><i class="nc-icon nc-layout-11"></i></a>

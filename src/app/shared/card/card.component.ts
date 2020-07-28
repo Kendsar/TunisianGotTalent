@@ -19,6 +19,8 @@ import { AddArticleComponent } from "app/tunisian-got-talent/forum/component/add
 import { ForumShowCommentComponent } from "app/tunisian-got-talent/forum/component/forum-show-comment/forum-show-comment.component";
 import { format } from "util";
 import { EntrerpiseService } from "app/tunisian-got-talent/entreprise/services/entrerpise.service";
+import { CompetitionService } from "app/tunisian-got-talent/competitions/services/competition.service";
+import { CompetitionRate } from "app/tunisian-got-talent/competitions/models/competition.model"
 
 @Component({
   selector: "app-card",
@@ -30,16 +32,19 @@ export class CardComponent implements OnInit {
   @Input() cardType: ECardType;
   @Output() refreshData = new EventEmitter();
   @Output() cardClick = new EventEmitter();
-
+  
   EcardType = ECardType;
   connectedUser: any;
-
+  
   /*Comment Var*/
   commentForm: FormGroup;
   editMode: boolean = false;
   liked: boolean;
   participation: boolean;
-
+  
+  /** Competition */
+  @Output() participateToCompetition = new EventEmitter<any>();
+  
   /*Event Var */
   alreadyInFav = true;
   rate: number;
@@ -59,6 +64,7 @@ export class CardComponent implements OnInit {
     private eventService: EventService,
     private forumService: ForumService,
     private entrepriseService: EntrerpiseService,
+    private competitionService: CompetitionService,
   ) {}
 
   ngOnInit() {
@@ -253,13 +259,25 @@ export class CardComponent implements OnInit {
 
   competitionRateChanged(event, data) {
     if (event > 0) {
-      let rate = new Rate();
       console.log("data", data);
       console.log("event", event);
-      rate.iduser = this.connectedUser.id;
-      rate.value = event;
-      // this.eventService.rateEvent(rate).subscribe();
+      
+      let rate = new CompetitionRate();
+      rate.compId = data.id;
+      rate.connectedUserId = this.connectedUser.id;
+      rate.rateValue = event;
+
+      this.competitionService.rate(rate).subscribe(e => {
+        console.log('e', e)
+      });
     }
+  }
+
+  compParticip(competition){
+    if (this.connectedUser){
+      competition.connectedUserId = this.connectedUser.id;
+    }
+    this.participateToCompetition.emit(competition);
   }
 
   myFunction(x) {

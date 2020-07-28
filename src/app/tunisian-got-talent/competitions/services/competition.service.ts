@@ -9,34 +9,46 @@ import { wsUrl } from './../../../../environments/environment';
 })
 export class CompetitionService {
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-getCompetitions(): Observable<any> {
-  return this.http.get(wsUrl.competition.getAll);
-}
+  getCompetitions(): Observable<any> {
+    return this.http.get(wsUrl.competition.getAll);
+  }
 
-/**
- * TEST
- * COMP MOCK
- */
-newCompMock(): Observable<any> {
-  return this.http.get(wsUrl.competition.newMock);
-}
+  getCompParticipations(): Observable<any> {
+    return this.http.get(wsUrl.competition.getParticipations);
+  }
 
-createComp(competition): Observable<any> {
-  return this.http.put(wsUrl.competition.createCompetition, competition);
-}
+  getCompRatings(): Observable<any> {
+    return this.http.get(wsUrl.competition.getRatings);
+  }
 
-editComp(compId): Observable<any> {
-  return this.http.post(wsUrl.competition.editCompetition, compId);
-}
+  /**
+   * TEST
+   * COMP MOCK
+   */
+  newCompMock(): Observable<any> {
+    return this.http.get(wsUrl.competition.newMock);
+  }
 
-deleteComp(compId): Observable<any> {
-  return this.http.post(wsUrl.competition.deleteCompetition, compId);
-}
+  createComp(competition): Observable<any> {
+    return this.http.put(wsUrl.competition.createCompetition, competition);
+  }
 
-participate(){}
+  editComp(compId): Observable<any> {
+    return this.http.post(wsUrl.competition.editCompetition, compId);
+  }
 
-vote(){}
+  deleteComp(compId): Observable<any> {
+    return this.http.post(wsUrl.competition.deleteCompetition, compId);
+  }
+
+  participate(competition) {
+    return this.http.post(wsUrl.competition.participateComp, competition);
+  }
+
+  rate(competition) {
+    return this.http.post(wsUrl.competition.rateComp, competition);
+  }
 
 }

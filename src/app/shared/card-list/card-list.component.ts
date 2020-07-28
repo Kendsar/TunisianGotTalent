@@ -12,10 +12,12 @@ export class CardListComponent implements OnInit {
 
   @Input() pageIndex = 1;
   @Input() pageSize = 2;
-  
+
   @Output() refreshData = new EventEmitter();
   @Output() cardClick = new EventEmitter();
-  
+
+  @Output() participateToCompetition = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
@@ -26,8 +28,11 @@ export class CardListComponent implements OnInit {
   }
 
   emitCardClick(data){
-    console.log('card list emitCardClick data', data)
     this.cardClick.emit(data);
+  }
+
+  competitionParticipate(competition) {
+    this.participateToCompetition.emit(competition);
   }
 
 }

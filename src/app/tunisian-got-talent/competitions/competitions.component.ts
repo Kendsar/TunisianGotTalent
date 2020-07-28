@@ -4,6 +4,7 @@ import { ECardType } from 'app/shared/card-list/card-list.component';
 import { CompetitionDataFactoryService } from './factory/competition-data-factory.service';
 import { CompetitionService } from './services/competition.service';
 import { Competition } from './models/competition.model';
+import { GlobalService } from '../shared/shared.services';
 
 @Component({
   selector: 'app-competitions',
@@ -12,7 +13,7 @@ import { Competition } from './models/competition.model';
 })
 export class CompetitionsComponent implements OnInit {
 
-  constructor(private competitionService: CompetitionService, private dataFactory: CompetitionDataFactoryService) { }
+  constructor(private competitionService: CompetitionService, private dataFactory: CompetitionDataFactoryService, private globalService: GlobalService) { }
 
   data = COMPETITION_MOCK;
   filteredData;
@@ -24,10 +25,14 @@ export class CompetitionsComponent implements OnInit {
   competitionDetails: Competition;
 
   ngOnInit() {
-    this.competitionService.getCompetitions().subscribe(e => {
-      this.data = this.dataFactory.competitionCheck(e);
-      this.filteredData = this.data;
-    })
+      this.competitionService.getCompetitions().subscribe(comps => {
+        this.competitionService.getCompParticipations().subscribe(particips => {
+          this.competitionService.getCompRatings().subscribe(ratings => {
+            this.data = this.dataFactory.competitionCheck(comps, particips, ratings);
+            this.filteredData = this.data;
+          });
+        });
+      });
   }
 
   search() {
@@ -45,6 +50,9 @@ export class CompetitionsComponent implements OnInit {
   seeCompDetails(data) {
     this.showCompDetails = true;
     this.competitionDetails = data;
-    console.log('comp', data)
+  }
+
+  participateComp(competition) {
+    this.competitionService.participate(competition).subscribe(e => { })
   }
 }

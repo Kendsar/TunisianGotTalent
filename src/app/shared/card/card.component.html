@@ -96,18 +96,18 @@
   </div>
 
 
-  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10" (click)="emitCardClick(data)">
-    <img *ngIf="data.comp_type == 'Talents divers'" src="./../../../assets/img/competitions/competition_3.jpg" alt="" />
-    <img *ngIf="data.comp_type == 'Chant'" src="./../../../assets/img/competitions/sing_comp.jpg" alt="" />
-    <img *ngIf="data.comp_type == 'Spectacle de magie'" src="./../../../assets/img/competitions/magic_comp.jpg"
-      alt="" />
-    <img *ngIf="data.comp_type == 'Danse'" src="./../../../assets/img/competitions/danse_comp.jpg" alt="" />
-    <img *ngIf="data.comp_type == 'Performance de spectacle'"
-      src="./../../../assets/img/competitions/performance_spectacle_comp.jpg" alt="" />
-    <img *ngIf="data.comp_type == 'Art'" src="./../../../assets/img/competitions/art_comp.png" alt="" />
-    <img *ngIf="data.comp_type == 'Dessin'" src="./../../../assets/img/competitions/dessin_comp.jpg" alt="" />
+  <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10">
+
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Talents divers'" src="./../../../assets/img/competitions/competition_3.jpg" alt="" />
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Chant'" src="./../../../assets/img/competitions/sing_comp.jpg" alt="" />
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Spectacle de magie'" src="./../../../assets/img/competitions/magic_comp.jpg" alt="" />
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Danse'" src="./../../../assets/img/competitions/danse_comp.jpg" alt="" />
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Performance de spectacle'" src="./../../../assets/img/competitions/performance_spectacle_comp.jpg" alt="" />
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Art'" src="./../../../assets/img/competitions/art_comp.png" alt="" />
+    <img (click)="emitCardClick(data)" *ngIf="data.comp_type == 'Dessin'" src="./../../../assets/img/competitions/dessin_comp.jpg" alt="" />
+
     <div class="card-body">
-      <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
+      <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;" (click)="emitCardClick(data)">
         <h5 style="margin: auto 0;">{{ data.nom }}</h5>
         <div style="margin: auto">
           Type :
@@ -115,31 +115,37 @@
         </div>
       </div>
 
-      <p class="card-text comp-card-text">
+      <p class="card-text comp-card-text" (click)="emitCardClick(data)">
         {{ data.description }}
       </p>
-      <div style="padding: 5px;"><i class="nc-icon nc-circle-10" [ngClass]="{'icon-red': data.full}"></i>
-        <span [ngClass]="{'text-red': data.full}"> Nombre de participants : {{ data.nb_participant }} /
+      <div style="padding: 5px;"><i class="nc-icon nc-circle-10" [ngClass]="{'icon-red': data.full}" (click)="emitCardClick(data)"></i>
+        <span [ngClass]="{'text-red': data.full}"> Participants : {{ data.nb_participant }} /
           {{ data.nb_max_participant }} </span> </div>
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6" (click)="emitCardClick(data)">
           <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60" [ngClass]="{'icon-red': data.closed}"></i> <span
-              [ngClass]="{'text-red': data.closed}"> Date de début : {{ data.date_debut }}
+              [ngClass]="{'text-red': data.closed}"> Starting date : {{ data.date_debut }}
             </span> </div>
-          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> <span> Date de fin : {{ data.date_fin }}
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> <span> End date : {{ data.date_fin }}
             </span>
           </div>
         </div>
-        <div class="col-md-5" (click)="stopEventEmit($event)" style="display: flex; flex-direction: row; justify-content: space-around; cursor: auto;">
-          <span style="margin: auto;"> Évaluer : </span>
-          <bar-rating style="margin: auto; padding-bottom: 18px;" [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating> 
-          <span style="margin: auto;"> {{rate}} </span>
+        <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: space-around; cursor: auto; margin: auto;">
+          <button *ngIf="connectedUser && !data.participated" type="button" style="height: 40px;" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full" (click)="compParticip(data)">
+            Participate
+         </button>
+         <p class="text-success" *ngIf="connectedUser && data.participated"> Already participated, Good luck !</p>
         </div>
       </div>
-      <div class="row" style="flex-direction: row-reverse;">
-        <button type="button" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full"> Participer
-        </button>
+      <div class="row" style="flex-direction: row;">
+      <div class="row col-md-7" style="flex-direction: row;">
       </div>
+      <div *ngIf="connectedUser" class="row col-md-5" style="flex-direction: row;">
+        <span style="margin: auto;"> Rate : </span>
+        <bar-rating style="margin: auto; padding-bottom: 18px;" [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating> 
+        <span style="margin: auto;"> {{rate}} </span>
+      </div>
+    </div>
     </div>
   </div>
 

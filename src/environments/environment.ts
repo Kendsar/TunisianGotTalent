@@ -75,10 +75,14 @@ export const wsUrl = {
   },
   competition: {
     getAll: '/tgt/competition/getAll',
+    getParticipations: '/tgt/competition/getParticipations',
+    getRatings: '/tgt/competition/getRatings',
     newMock: '/tgt/competition/newMock',
     createCompetition: '/tgt/competition/create',
     editCompetition: '/tgt/competition/{0}/edit',
-    deleteCompetition: '/tgt/competition/delete/{0}'
+    deleteCompetition: '/tgt/competition/delete/{0}',
+    participateComp: '/tgt/competition/participate',
+    rateComp: '/tgt/competition/rate'
   },
   business: {
     getEntrepriseById:"/tgt/sponsoring/afficherEntrepriseByEvent/{0}",
