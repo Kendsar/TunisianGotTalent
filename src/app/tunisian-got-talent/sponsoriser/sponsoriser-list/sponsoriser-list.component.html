@@ -5,7 +5,24 @@
     </div>
 
     <div class="container" style="margin: 36px auto;">
+
         <div class="row">
+
+            <ng-container *ngFor="let item of sponsore">
+                <div class="col-4">
+
+                    <div class="card" style="width: 18rem;">
+
+                        <div class="card-body">
+                            
+                            <p class="card-text"> <span class="font-weight-bold"> Type :</span> {{item.type}}
+                            </p>
+                            <p class="card-text"> <span class="font-weight-bold"> Date :</span>
+                                {{item.date_sp}} </p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
 
         </div>
     </div>

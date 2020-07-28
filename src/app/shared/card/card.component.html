@@ -3,9 +3,11 @@
   <div *ngSwitchCase="EcardType.EVENT" class="evenement-card card row col-md-12">
     <img src="assets/img/events/show_us_your_talent.jpg" alt="" />
     <div class="card-body">
-      <div *ngIf="connectedUser && !alreadyInFav">
-        <button class="btn btn-outline-success btn-round" (click)="addFavorisAction(data.id)"><i
+      <div *ngIf="connectedUser" class="row">
+        <button *ngIf="!alreadyInFav" class="btn btn-outline-success btn-round" (click)="addFavorisAction(data.id)"><i
             class="fa fa-bookmark"></i> </button>
+            <div style="text-align: end; width: 80%;">
+              <button *ngIf="!closed" class="btn btn-outline-danger btn-round" (click)="sponsoriseAction()">Sponsorise</button></div>
       </div>
       <div class="row ">
         <div class="col-md-7">
@@ -40,11 +42,13 @@
         </div>
         <div class="col-md-2">
           <!-- [routerLink]="['/participer', data.id]" -->
-          <button *ngIf="connectedUser && !closed && !alreadyParticipate" type="button" class="btn btn-outline-success btn-round"  (click)="participate()">
+          <button *ngIf="connectedUser && !closed && !alreadyParticipate" type="button"
+            class="btn btn-outline-success btn-round" (click)="participate()">
             Participer
           </button>
           <span *ngIf="closed" class="label label-danger closed">Closed</span>
-          <span *ngIf="!closed && alreadyParticipate" class="label label-danger closed" style="width: 135px; padding-top: 8%;">Already Participated</span>
+          <span *ngIf="!closed && alreadyParticipate" class="label label-danger closed"
+            style="width: 135px; padding-top: 8%;">Already Participated</span>
         </div>
       </div>
     </div>
@@ -95,31 +99,35 @@
   <div *ngSwitchCase="EcardType.COMPETITION" class="competition-card card row col-md-10" (click)="emitCardClick(data)">
     <img *ngIf="data.comp_type == 'Talents divers'" src="./../../../assets/img/competitions/competition_3.jpg" alt="" />
     <img *ngIf="data.comp_type == 'Chant'" src="./../../../assets/img/competitions/sing_comp.jpg" alt="" />
-    <img *ngIf="data.comp_type == 'Spectacle de magie'" src="./../../../assets/img/competitions/magic_comp.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Spectacle de magie'" src="./../../../assets/img/competitions/magic_comp.jpg"
+      alt="" />
     <img *ngIf="data.comp_type == 'Danse'" src="./../../../assets/img/competitions/danse_comp.jpg" alt="" />
-    <img *ngIf="data.comp_type == 'Performance de spectacle'" src="./../../../assets/img/competitions/performance_spectacle_comp.jpg" alt="" />
+    <img *ngIf="data.comp_type == 'Performance de spectacle'"
+      src="./../../../assets/img/competitions/performance_spectacle_comp.jpg" alt="" />
     <img *ngIf="data.comp_type == 'Art'" src="./../../../assets/img/competitions/art_comp.png" alt="" />
     <img *ngIf="data.comp_type == 'Dessin'" src="./../../../assets/img/competitions/dessin_comp.jpg" alt="" />
     <div class="card-body">
       <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
-        <h5 style="margin: auto 0;">{{ data.nom }}</h5> 
+        <h5 style="margin: auto 0;">{{ data.nom }}</h5>
         <div style="margin: auto">
-            Type :
-            <span style="font-weight: 900; font-size: 12px; padding: 0 6px;"> {{data.comp_type}} </span>
-           </div>
+          Type :
+          <span style="font-weight: 900; font-size: 12px; padding: 0 6px;"> {{data.comp_type}} </span>
+        </div>
       </div>
 
       <p class="card-text comp-card-text">
         {{ data.description }}
       </p>
       <div style="padding: 5px;"><i class="nc-icon nc-circle-10" [ngClass]="{'icon-red': data.full}"></i>
-         <span [ngClass]="{'text-red': data.full}"> Nombre de participants : {{ data.nb_participant }} / {{ data.nb_max_participant }} </span> </div>
+        <span [ngClass]="{'text-red': data.full}"> Nombre de participants : {{ data.nb_participant }} /
+          {{ data.nb_max_participant }} </span> </div>
       <div class="row">
         <div class="col-md-7">
-          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"
-              [ngClass]="{'icon-red': data.closed}"></i> <span  [ngClass]="{'text-red': data.closed}"> Date de début : {{ data.date_debut }}
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60" [ngClass]="{'icon-red': data.closed}"></i> <span
+              [ngClass]="{'text-red': data.closed}"> Date de début : {{ data.date_debut }}
             </span> </div>
-          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> <span> Date de fin : {{ data.date_fin }} </span>
+          <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> <span> Date de fin : {{ data.date_fin }}
+            </span>
           </div>
         </div>
         <div class="col-md-5" (click)="stopEventEmit($event)" style="display: flex; flex-direction: row; justify-content: space-around; cursor: auto;">
@@ -129,20 +137,25 @@
         </div>
       </div>
       <div class="row" style="flex-direction: row-reverse;">
-        <button type="button" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full"> Participer </button>
+        <button type="button" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full"> Participer
+        </button>
       </div>
     </div>
   </div>
 
 
-  <div *ngSwitchCase="EcardType.FORUM" class="competition-card card row col-md-12">
+  <div *ngSwitchCase="EcardType.FORUM" class="forum-card card row col-md-12">
     <div class="col-md-3" style="padding: 3%">
       <img src="/assets/img/competitions/{{ data.user.photo }}" class="img-thumbnail img-responsive"
         alt="Rounded Image" />
     </div>
 
-    <div class="col-md-2">
-      <i (click)="myFunction(data.id)" class="fa fa-thumbs-up"></i>
+    <div class="col-md-2" style="padding-left: 5% !important;">
+      <h3>{{nbLikes}}</h3>
+    </div>
+
+    <div *ngIf="connectedUser" class="col-md-2" style="padding-left: 2% !important;">
+      <i (click)="myFunction(data.id)" class="m-like fa fa-thumbs-up"></i>
       <label></label>
     </div>
 
@@ -163,18 +176,19 @@
           </div>
         </div>
         <div class="col-md-2 comment">
-          <button (click)="openDialogComment(data.id)" type="button" class="btnForum btn-outline-danger btn-round">
+          <button *ngIf="connectedUser" (click)="openDialogComment(data.id)" type="button"
+            class="btnForum btn-outline-danger btn-round">
             Comment
           </button>
         </div>
-        <button (click)="openDialogShowComment(data.value)" type="button" class="btnForum btn-outline-danger btn-round">
+        <button (click)="openDialogShowComment(data.id)" type="button" class="btnForum btn-outline-danger btn-round">
           Show comments
         </button>
       </div>
     </div>
   </div>
 
- 
+
 
   <div *ngSwitchCase="EcardType.TALENT" class="card col-md-12">
     <div class="row">

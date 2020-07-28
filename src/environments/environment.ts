@@ -81,7 +81,13 @@ export const wsUrl = {
     deleteCompetition: '/tgt/competition/delete/{0}'
   },
   business: {
-    getAll:"/tgt/sponsoring/afficherSponsoriseByUser"
+    getEntrepriseById:"/tgt/sponsoring/afficherEntrepriseByEvent/{0}",
+    getAllEntreprise:"/tgt/sponsoring/afficherEntreprise",
+    addEntreprise:"/tgt/sponsoring/addEntreprise",
+    supprimerEntreprise:"/tgt/sponsoring/supprimerEntreprise/{0}",
+    modifierEntreprise:"/tgt/sponsoring/modifierEntreprise",
+    sponsorise:"/tgt/sponsoring/addSponsorise",
+    allSponsorise:"/tgt/sponsoring/afficherSponsorise",
   },
   forum: {
     getAll: "/tgt/articles"

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EntrerpiseService } from 'app/tunisian-got-talent/entreprise/services/entrerpise.service';
 
 @Component({
   selector: 'app-sponsoriser-list',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sponsoriser-list.component.css']
 })
 export class SponsoriserListComponent implements OnInit {
-
+  sponsore = [];
   
-  constructor() { }
+  constructor(private entrepriseService: EntrerpiseService) { }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData(){
+    this.entrepriseService.getAllSponsore().subscribe(r => {
+      this.sponsore = r;
+      console.log('this.sponsore',this.sponsore)
+    })
   }
 
 }

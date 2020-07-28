@@ -141,16 +141,47 @@
   overflow: hidden;
 }
 
-.fa {
-  font-size: 50px;
-  cursor: pointer;
-  user-select: none;
-  padding-left: 20px;
-}
+// .fa {
+//   font-size: 50px;
+//   cursor: pointer;
+//   user-select: none;
+//   padding-left: 20px;
+// }
 
-.fa:hover {
-  color: darkblue;
-  padding-left: 20px;
-}
+// .fa:hover {
+//   color: darkblue;
+//   padding-left: 20px;
+// }
 .comment{
   margin-bottom: 20px; }
+
+.forum-card{
+  height: 300px;
+  margin: 36px auto;
+  cursor: pointer;
+
+  img {
+    height: 100%;
+    width: 32.5%;
+    max-width: 32.5%;
+    max-height: 240px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+  }
+
+  div.card-body {
+    width: 62.5%;
+    height: 100%;
+  }
+}
+
+ .m-like {
+   font-size: 50px;
+   cursor: pointer;
+   user-select: none;
+   padding-left: 20px;
+ }
+ .m-like:hover {
+   color: darkblue;
+   padding-left: 20px;
+ }
