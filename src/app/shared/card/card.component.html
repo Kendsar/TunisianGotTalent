@@ -131,7 +131,7 @@
           </div>
         </div>
         <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: space-around; cursor: auto; margin: auto;">
-          <button *ngIf="connectedUser && !data.participated" type="button" style="height: 40px;" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full" (click)="compParticip(data)">
+          <button *ngIf="connectedUser && !data.participated" type="button" style="height: 40px;" class="btn btn-outline-danger btn-round" [disabled]="data.closed || data.full" (click)="compParticip(data); data.nb_participant = data.nb_participant + 1; data.participated = true">
             Participate
          </button>
          <p class="text-success" *ngIf="connectedUser && data.participated"> Already participated, Good luck !</p>

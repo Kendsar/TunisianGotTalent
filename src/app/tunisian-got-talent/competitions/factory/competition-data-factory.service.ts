@@ -23,6 +23,9 @@ export class CompetitionDataFactoryService {
     let userRatings;
     let userParticipations;
 
+    const allRatings = ratings;
+    const allParticipations = participations;
+
     if (this.connectedUser) {
       userRatings = ratings.filter(e => e.id_user == this.connectedUser.id)
       userParticipations = participations.filter(e => e.id_user == this.connectedUser.id)
@@ -31,7 +34,8 @@ export class CompetitionDataFactoryService {
     return data.map(e => {
       e.closed = this.checkDate(e.date_debut);
       e.full = e.nb_participant == e.nb_max_participant;
-      e.participated = userParticipations && userParticipations.filter(p => p.id_comp == e.id)[0] ? true : false
+      // e.nb_participant = allParticipations && allParticipations.filter(p => p.id_comp == e.id).length;
+      e.participated = userParticipations && userParticipations.filter(p => p.id_comp == e.id)[0] ? true : false;
       return e
     })
   }
@@ -42,11 +46,9 @@ export class CompetitionDataFactoryService {
     const date = formatDate(compared_date, 'yyyy-MM-dd', 'en_US');
 
     if (actualDateStr > date) {
-      console.log('---actualDate is greater----');
-      return false;
-    } else {
-      console.log('---compared_date is greater-----');
       return true;
+    } else {
+      return false;
     }
   }
 
