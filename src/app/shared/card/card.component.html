@@ -122,9 +122,10 @@
           <div style="padding: 5px;"> <i class="nc-icon nc-calendar-60"></i> <span> Date de fin : {{ data.date_fin }} </span>
           </div>
         </div>
-        <div class="col-md-5" style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div class="col-md-5" (click)="stopEventEmit($event)" style="display: flex; flex-direction: row; justify-content: space-around; cursor: auto;">
           <span style="margin: auto;"> Évaluer : </span>
-          <bar-rating style="margin: auto; padding-bottom: 18px;" [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating>
+          <bar-rating style="margin: auto; padding-bottom: 18px;" [(rate)]="rate" [max]="5" (rateChange)="competitionRateChanged($event, data)"></bar-rating> 
+          <span style="margin: auto;"> {{rate}} </span>
         </div>
       </div>
       <div class="row" style="flex-direction: row-reverse;">

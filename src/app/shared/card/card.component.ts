@@ -253,4 +253,8 @@ console.log(this.message);
     });
     console.log(x);
   }
+
+  stopEventEmit(event){
+    event.stopPropagation();
+  }
 }
