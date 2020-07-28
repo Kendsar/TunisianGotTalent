@@ -51,6 +51,7 @@ const routes: Routes = [
   { path: 'entreprise', component: EntrepriseMainComponent },
   { path: 'entreprise-list', component: EntrepriseListComponent },
   { path: 'create-entreprise', component: EntrepriseAddComponent },
+  { path: 'create-entreprise/:id', component: EntrepriseAddComponent },
 
 
   /** Template */

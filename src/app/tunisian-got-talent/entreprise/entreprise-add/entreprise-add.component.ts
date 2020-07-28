@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EntrerpiseService } from '../services/entrerpise.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Entreprise } from '../entreprise.models';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,14 +11,43 @@ import { Entreprise } from '../entreprise.models';
   styleUrls: ['./entreprise-add.component.css']
 })
 export class EntrepriseAddComponent implements OnInit {
-
+  entreprise: any;
   form: FormGroup;
+  idEvent: number;
+  activateEditMode: boolean = false;
+  constructor(private entrepriseService: EntrerpiseService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router
 
-  constructor(private entrepriseService: EntrerpiseService, private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.getIdFromPath();
+  }
+
+  getIdFromPath() {
+    this.route.params.subscribe((params) => {
+      if (params["id"]) {
+        this.idEvent = params["id"];
+        this.activateEditMode = true;
+        this.getEventByID(this.idEvent);
+      }
+    });
+  }
+
+  getEventByID(id){
+    this.entrepriseService.getEntrepriseByID(id).subscribe(result => {
+      this.entreprise = result;
+      this.patchFields(result);
+    })
+  }
+
+  patchFields(result){
+    this.form.controls.name.setValue(result.nom);
+    this.form.controls.place.setValue(result.lieux);
+    this.form.controls.email.setValue(result.email);
+    this.form.controls.site.setValue(result.site_officiel);
+    this.form.controls.nbEmp.setValue(result.nbr_employe);
+    //this.form.controls.name.setValue(result.nom);
   }
 
   initForm() {
@@ -31,7 +61,7 @@ export class EntrepriseAddComponent implements OnInit {
     });
   }
 
-  addEntreprise(){
+  addEntreprise() {
     let ent = new Entreprise();
     ent.name = this.form.controls.name.value;
     ent.place = this.form.controls.place.value;
@@ -40,10 +70,17 @@ export class EntrepriseAddComponent implements OnInit {
     ent.nbEmp = this.form.controls.nbEmp.value;
     ent.date = this.form.controls.date.value;
     ent.id_user = 1;
-    console.log('xxx',ent)
-    this.entrepriseService.addEntreprise(ent).subscribe(result => {
-      console.log('x', result)
-    });
+
+    if (this.activateEditMode){
+      ent.id = this.idEvent;
+      this.entrepriseService.editEntreprise(ent).subscribe(r => {
+        this.router.navigate(['/entreprise-list']);
+      });
+    } else {
+      this.entrepriseService.addEntreprise(ent).subscribe(r => {
+        this.router.navigate(['/entreprise-list']);
+      });
+    }
   }
 
 }

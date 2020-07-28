@@ -5,33 +5,41 @@
     </div>
 
     <div class="container" style="margin: 36px auto;">
-        <div class="row mb-3">
-            <div class="col-3"><input type="text" class="form-control"></div>
-            <div class="col-9"> <button class="btn btn-primary">Rechercher</button></div>
-        </div>
+        <form [formGroup]="form">
+            <div class="row mb-3" >
+                <div class="col-3"><input type="text" class="form-control" formControlName="searchCriteria"></div>
+                <div class="col-9"> <button class="btn btn-primary" (click)="rechercher()">Rechercher</button></div>
+            </div>
+        </form>
         <div class="row">
 
-            <div class="col-4">
-                <div class="card" style="width: 18rem;">
+            <ng-container *ngFor="let item of ent">
+                <div class="col-4">
 
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-center font-weight-bold">Vermeg</li>
-                    </ul>
-                    <div class="card-body">
-                        <p class="card-text"> <span class="font-weight-bold"> Site Web :</span> www.abc.com </p>
-                        <p class="card-text"> <span class="font-weight-bold"> Employés :</span> 35 </p>
-                        <p class="card-text"> <span class="font-weight-bold"> Création :</span> 29 - 10 - 2001 </p>
-                        <p class="card-text"> <span class="font-weight-bold"> Email :</span> contact@abc.tn </p>
-                        <p class="card-text"> <span class="font-weight-bold"> Lieux :</span> Tunis </p>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6"><button class="btn btn-warning btn-sm">Modifier</button></div>
-                            <div class="col-6"><button class="btn btn-danger btn-sm">Supprimer</button></div>
+                    <div class="card" style="width: 18rem;">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center font-weight-bold">{{item.nom}}</li>
+                        </ul>
+                        <div class="card-body">
+                            <p class="card-text"> <span class="font-weight-bold"> Site Web :</span>
+                                {{item.site_officiel}} </p>
+                            <p class="card-text"> <span class="font-weight-bold"> Employés :</span> {{item.nbr_employe}}
+                            </p>
+                            <p class="card-text"> <span class="font-weight-bold"> Création :</span>
+                                {{item.date_creation}} </p>
+                            <p class="card-text"> <span class="font-weight-bold"> Email :</span> {{item.email}}email</p>
+                            <p class="card-text"> <span class="font-weight-bold"> Lieux :</span> {{item.lieux}} </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6"><button class="btn btn-warning btn-sm" (click)="edit(item.id)">Modifier</button></div>
+                                <div class="col-6"><button class="btn btn-danger btn-sm" (click)="delete(item.id)">Supprimer</button></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </ng-container>
 
         </div>
     </div>

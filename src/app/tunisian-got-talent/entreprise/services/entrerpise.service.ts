@@ -44,9 +44,52 @@ export class EntrerpiseService {
   }
   addEntreprise(entreprise): Observable<any> {
     return this.http.post<any>(wsUrl.business.addEntreprise, entreprise, {
-     headers: {
+      headers: {
         "Access-Control-Allow-Origin": "*",
       },
     });
   }
+
+  delete(id) {
+    const url = StringFormat(wsUrl.business.supprimerEntreprise, id);
+    return this.http.post<any>(url, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  sponsorise(): Observable<any> {
+    return this.http.get<any>(wsUrl.business.sponsorise, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  getAllSponsore(){
+    return this.http.get<any>(wsUrl.business.allSponsorise, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  getEntrepriseByID(id){
+    const url = StringFormat(wsUrl.business.getEntrepriseById, id);
+    return this.http.get<any>(url, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
+  editEntreprise(entreprise){
+    return this.http.post<any>(wsUrl.business.modifierEntreprise, entreprise,{
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  }
+
 }

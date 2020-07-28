@@ -18,6 +18,7 @@ import { AddCommentComponent } from "app/tunisian-got-talent/forum/component/add
 import { AddArticleComponent } from "app/tunisian-got-talent/forum/component/add-article/add-article.component";
 import { ForumShowCommentComponent } from "app/tunisian-got-talent/forum/component/forum-show-comment/forum-show-comment.component";
 import { format } from "util";
+import { EntrerpiseService } from "app/tunisian-got-talent/entreprise/services/entrerpise.service";
 
 @Component({
   selector: "app-card",
@@ -56,7 +57,8 @@ export class CardComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal,
     private eventService: EventService,
-    private forumService: ForumService
+    private forumService: ForumService,
+    private entrepriseService: EntrerpiseService,
   ) {}
 
   ngOnInit() {
@@ -278,5 +280,9 @@ export class CardComponent implements OnInit {
         this.nbLikes ++
       })
     });
+  }
+
+  sponsoriseAction(){
+    this.entrepriseService.sponsorise().subscribe()
   }
 }
